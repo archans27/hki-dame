@@ -31433,6 +31433,9 @@ select {
           animation: bounce 1s infinite;
 }
 
+span.material-icons.small-icon { font-size: 16px; float: right;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -184472,4 +184475,3 @@ select {
             animation: bounce 1s infinite;
   }
 }
-
