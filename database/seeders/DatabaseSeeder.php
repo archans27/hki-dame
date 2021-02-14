@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::create([
             'name' => 'Admin HKI',
-            'email' => 'hkidame@gmail.com',
+            'email' => 'hkidame@mail.com',
             'password' => Hash::make('password')
         ]);
         \App\Models\Jemaat::factory(20)->create();
