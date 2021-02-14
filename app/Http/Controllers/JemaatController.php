@@ -14,7 +14,8 @@ class JemaatController extends Controller
      */
     public function index()
     {
-        dd(Jemaat::all());
+        $jemaats = Jemaat::all();
+        return view('master.indexjemaat', ['jemaats' => $jemaats]);
     }
 
     /**
