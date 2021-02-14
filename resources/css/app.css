@@ -2,4 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-span.material-icons.small-icon { font-size: 16px; float: right;}
+span.material-icons.small-icon {
+    font-size: 16px;
+    float: right;
+}
+
+.material-icons{
+    display: inline-flex;
+    vertical-align: middle;
+}
