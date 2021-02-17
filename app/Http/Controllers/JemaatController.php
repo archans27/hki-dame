@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jemaat;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
 
 class JemaatController extends Controller
 {
@@ -15,72 +16,47 @@ class JemaatController extends Controller
     public function index()
     {
         $jemaats = Jemaat::all();
-        return view('master.indexjemaat', ['jemaats' => $jemaats]);
+        return view('master.jemaat.index', ['jemaats' => $jemaats]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function create(Jemaat $jemaat)
     {
-        //
+        return view('master.jemaat.create', ['jemaat' => $jemaat]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\StoreJemaatRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $jemaat = new jemaat($validated);
+        $jemaat->save();
+
+        return view('master.jemaat.show', ['jemaat' => $jemaat]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Jemaat  $jemaat
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Jemaat $jemaat)
+    public function show(Request $request, Jemaat $jemaat)
     {
-        //
+        return view('master.jemaat.show', ['jemaat' => $jemaat]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Jemaat  $jemaat
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Jemaat $jemaat)
     {
-        //
+        return view('master.jemaat.edit', ['jemaat' => $jemaat]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Jemaat  $jemaat
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Jemaat $jemaat)
+    public function update(\App\Http\Requests\StoreJemaatRequest $request, Jemaat $jemaat)
     {
-        //
+        $validated = $request->validated();
+        $jemaat->fill($validated);
+        $jemaat->save();
+
+        return redirect('/jemaat/'.$jemaat->id)->with('succeed', "Jemaat dengan nama $jemaat->nama sudah tersimpan ke database");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Jemaat  $jemaat
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Jemaat $jemaat)
     {
-        //
+        //$name = clone $jemaat->nama;
+        $jemaat->delete();
+        return redirect('/jemaat')->with('succeed', "Jemaat dengan nama $jemaat->nama sudah dihapus dari database");
     }
 }
