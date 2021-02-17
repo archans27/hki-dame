@@ -13,15 +13,16 @@
     <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto bg-gray-600">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <x-responsive-nav-link :href="route('logout')"
+            <button type="submit" class="active w-full text-left my-5" :href="route('logout')"
                     onclick="event.preventDefault();
                         toggleModal('modal-id');">
                 HKI Admin
-                <span class="material-icons small-icon">
+                <span class="material-icons small-icon float-right">
                     power_settings_new
                 </span>
-            </x-responsive-nav-link>
+              </button>
         </form>
+
 
           <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="modal-id">
             <div class="relative w-auto my-6 mx-auto max-w-3xl">
@@ -29,7 +30,7 @@
               <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <!--header-->
                 <div class="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
-                  <h3 class="text-3xl font-semibold">
+                  <h3 class="text-3xl font-semibold text-black">
                     Logout
                   </h3>
                   <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('modal-id')">
