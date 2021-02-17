@@ -9,19 +9,21 @@
         </svg>
       </button>
     </div>
-    <hr/>
+    
     <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto bg-gray-600">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="active w-full text-left my-5"
-                    onclick="event.preventDefault();
-                        toggleModal('modal-logout');">
-                HKI Admin
-                <span class="material-icons small-icon float-right">
-                    power_settings_new
-                </span>
-              </button>
+      <hr/> 
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="active w-full text-left my-3"
+                onclick="event.preventDefault();
+                    toggleModal('modal-logout');">
+            HKI Admin
+            <span class="material-icons small-icon float-right">
+                power_settings_new
+            </span>
+          </button>
         </form>
+      <hr class="mb-5"/>
       
       <x-responsive-nav-link class="active" :active="1" href="{{url('/dashboard')}}">Dashboard</x-responsive-nav-link>
       <div @click.away="open = false" class="relative" x-data="{ open: false }">
