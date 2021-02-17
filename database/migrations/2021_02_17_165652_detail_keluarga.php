@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class DetailKeluarga extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('detail_keluarga', function (Blueprint $table) {
+            $table->uuid('id');
+            $table->uuid('keluarga_id');
+            $table->uuid('jemaat_id');
+            $table->string('hubungan');
+            $table->integer('anak_ke');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('detail_keluarga');
+    }
+}

@@ -13,7 +13,7 @@ class CreateJemaatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jemaats', function (Blueprint $table) {
+        Schema::create('jemaat', function (Blueprint $table) {
             $table->uuid('id');
             $table->string('no_anggota');
             $table->integer('sektor_id');
@@ -42,6 +42,6 @@ class CreateJemaatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jemaats');
+        Schema::dropIfExists('jemaat');
     }
 }
