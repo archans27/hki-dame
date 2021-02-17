@@ -13,7 +13,7 @@
     <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto bg-gray-600">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="active w-full text-left my-5" :href="route('logout')"
+            <button type="submit" class="active w-full text-left my-5"
                     onclick="event.preventDefault();
                         toggleModal('modal-id');">
                 HKI Admin
