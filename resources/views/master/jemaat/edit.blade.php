@@ -13,16 +13,5 @@
                 
             </div>
         </div>
-        <script>
-            const picker = new Pikaday({
-                field: document.getElementById('datepicker'),
-                format: 'YYYY-MM-DD',
-            })
-            picker.getMoment()
-            const picker2 = new Pikaday({
-                field: document.getElementById('tanggalAnggota'),
-                format: 'YYYY-MM-DD',
-            })
-        </script>
     </div>
 </x-app-layout>

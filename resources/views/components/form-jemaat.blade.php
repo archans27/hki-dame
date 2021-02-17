@@ -29,7 +29,7 @@
     @enderror
 
     <label for="tanggal_lahir" class="block text-black mt-3 font-bold">Tanggal lahir</label>
-    <input type="text" id="datepicker" name="tanggal_lahir" value="{{old('jemaat',$jemaat->tanggal_lahir)}}" class="bg-gray-100 rounded-md"/>
+    <input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{old('jemaat',$jemaat->tanggal_lahir)}}" class="bg-gray-100 rounded-md"/>
     @error('tanggal_lahir')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
@@ -121,7 +121,7 @@
     @enderror
 
     <label for="tanggal_anggota" class="block text-black mt-3 font-bold">Tanggal menjadi anggota</label>
-    <input type="text" name="tanggal_anggota" id="tanggalAnggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota)}}" class="bg-gray-100 rounded-md"/>
+    <input type="text" name="tanggal_anggota" id="tanggal-anggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota)}}" class="bg-gray-100 rounded-md"/>
     @error('tanggal_anggota')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
@@ -153,3 +153,15 @@
     </a>
     
 </form>
+
+<script>
+    const picker = new Pikaday({
+        field: document.getElementById('tanggal-lahir'),
+        format: 'YYYY-MM-DD',
+    })
+    picker.getMoment()
+    const picker2 = new Pikaday({
+        field: document.getElementById('tanggal-anggota'),
+        format: 'YYYY-MM-DD',
+    })
+</script>
