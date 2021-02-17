@@ -47,7 +47,11 @@
                                   <form method="post" action="{{url('/jemaat/'.$jemaat->id)}}" class="float-left">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit">
+                                    <button type="submit"
+                                      onclick="event.preventDefault();
+                                        toggleModal('modal-delete');
+                                        deleteJemaat('{{url('/jemaat/'.$jemaat->id)}}')"
+                                    >
                                       <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">
                                         delete
                                         </span>
@@ -62,4 +66,20 @@
             </div>
         </div>
     </div>
+    <x-popup-confirm
+      :modalId="'modal-delete'"
+      :formId="'form-modal-delete'"
+      :title="'Delete Data'"
+      :message="'Apakah anda yakin akan menghapus data ini?'"
+      :action="'Hapus data'"
+      :actionUrl="url('/')"
+      :actionMethod="'DELETE'"
+    />
 </x-app-layout>
+
+<script>
+  function deleteJemaat(url){
+    document.getElementById('form-modal-delete').setAttribute('action', url);
+    console.log(url);
+  }
+</script>

@@ -40,6 +40,7 @@
     </nav>
     <x-popup-confirm
       :modalId="'modal-logout'"
+      :formId="'form-modal-logout'"
       :title="'LOGOUT'"
       :message="'Apakah anda yakin akan keluar dari aplikasi?'"
       :action="'Keluar dari aplikasi'"
