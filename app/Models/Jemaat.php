@@ -11,6 +11,7 @@ class Jemaat extends Model
 {
     use HasFactory;
 
+    protected $table = 'jemaat';
     public $incrementing = false;
     protected $attributes = [
         'hidup' => true
