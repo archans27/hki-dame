@@ -31433,11 +31433,6 @@ select {
           animation: bounce 1s infinite;
 }
 
-span.material-icons.small-icon {
-  font-size: 16px;
-  float: right;
-}
-
 .material-icons{
   display: inline-flex;
   vertical-align: middle;
