@@ -15,23 +15,13 @@
             @csrf
             <button type="submit" class="active w-full text-left my-5"
                     onclick="event.preventDefault();
-                        toggleModal('modal-id');">
+                        toggleModal('modal-logout');">
                 HKI Admin
                 <span class="material-icons small-icon float-right">
                     power_settings_new
                 </span>
               </button>
-        </form>          
-          <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-id-backdrop"></div>
-          <script type="text/javascript">
-            function toggleModal(modalID){
-              document.getElementById(modalID).classList.toggle("hidden");
-              document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
-              document.getElementById(modalID).classList.toggle("flex");
-              document.getElementById(modalID + "-backdrop").classList.toggle("flex");
-            }
-          </script>
-          
+        </form>
       
       <x-responsive-nav-link class="active" :active="1" href="{{url('/dashboard')}}">Dashboard</x-responsive-nav-link>
       <div @click.away="open = false" class="relative" x-data="{ open: false }">
@@ -48,7 +38,8 @@
         </div>
       </div>
     </nav>
-    <x-popup-confirm 
+    <x-popup-confirm
+      :modalId="'modal-logout'"
       :title="'LOGOUT'"
       :message="'Apakah anda yakin akan keluar dari aplikasi?'"
       :action="'Keluar dari aplikasi'"
