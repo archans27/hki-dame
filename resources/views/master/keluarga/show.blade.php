@@ -19,7 +19,7 @@
                         Kembali
                     </button>
                 </form>
-                <form action="{{url('/keluarga/'.$keluargas[0]->id.'/edit')}}" class="float-right">
+                <form action="{{url('/keluarga/'.$keluargas[0]->keluarga_id.'/edit')}}" class="float-right">
                     <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
                         <span class="material-icons">
                             mode_edit

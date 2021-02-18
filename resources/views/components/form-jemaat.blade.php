@@ -4,12 +4,6 @@
     @method($method)
     @csrf
 
-    <label for="keluarga" class="block text-black mt-3 font-bold">Keluarga</label>
-    <input id="keluarga" type="text" name="keluarga_id" value="{{old('keluarga',$jemaat->keluarga_id)}}" placeholder="Nama kepala keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('keluarga')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
-
     <label for="nama" class="block text-black mt-3 font-bold">Nama lengkap</label>
     <input type="text" name="nama" value="{{old('nama',$jemaat->nama)}}" placeholder="Nama lengkap jemaat" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('nama')

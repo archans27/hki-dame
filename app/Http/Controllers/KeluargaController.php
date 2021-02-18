@@ -47,7 +47,7 @@ class KeluargaController extends Controller
         ]);
         
         $keluarga = Keluarga::create($request->all());
-        //$keluarga->save();
+        $keluarga->save();
         $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $request->kepala_keluarga_id)->first();
         if(!isset($detailKeluarga)){
             $detailKeluarga = new DetailKeluarga();
@@ -86,7 +86,15 @@ class KeluargaController extends Controller
      */
     public function edit(Keluarga $keluarga)
     {
-        //
+        $keluargas =  DB::table('keluarga')
+            ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
+            ->join('jemaat', 'jemaat.id' , '=', 'detail_keluarga.jemaat_id')
+            ->where('keluarga.id', '=', $keluarga->id)
+            ->orderBy('jemaat.tanggal_lahir', 'asc')
+            ->get()
+        ;
+
+        return view('master.keluarga.edit', ['keluargas' => $keluargas]);
     }
 
     /**
