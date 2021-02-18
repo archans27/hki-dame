@@ -15,9 +15,10 @@ class CreateKeluargaTable extends Migration
     {
         Schema::create('keluarga', function (Blueprint $table) {
             $table->uuid('id');
+            $table->string('kepala_keluarga_id');
             $table->string('kepala_keluarga');
             $table->string('no_keluarga');
-            $table->string('alamat');
+            $table->string('alamat_rumah');
             $table->integer('sektor_id');
             $table->timestamps();
         });

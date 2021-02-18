@@ -14,10 +14,10 @@ class DetailKeluarga extends Migration
     public function up()
     {
         Schema::create('detail_keluarga', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->uuid('keluarga_id');
-            $table->uuid('jemaat_id');
-            $table->string('hubungan');
+            //$table->uuid('id');
+            $table->foreignId('keluarga_id');
+            $table->foreignId('jemaat_id');
+            $table->enum('hubungan', ['Suami', 'Istri', 'Anak', 'Menantu', 'Cucu', 'Orang Tua', 'Mertua', 'Famili Lain'])->nullable();
             $table->integer('anak_ke')->nullable();
             $table->timestamps();
         });
