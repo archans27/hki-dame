@@ -1,0 +1,97 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit Data Jemaat') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12" style="clear: both">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
+                <form action="{{url('keluarga')}}" method="post">
+                    @method('POST')
+                    @csrf
+
+                    <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama Kepala Keluarga</label>
+                    <input id="kepala_keluarga" type="text" name="kepala_keluarga" value="{{old('kepala_keluarga')}}" placeholder="Nama kepala keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                    @error('kepala_keluarga')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
+                    <input name="kepala_keluarga_id" type="hidden" value="38ff3696-15ed-4f68-a44f-1d8c03fed5c2">
+                    @error('kepala_keluarga_id')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
+                    <label for="hubungan" class="block text-black mt-3 font-bold">Hubungan dalam keluarga</label>
+                    <select name="hubungan" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Regular input">
+                        <option @if (old('hubungan') == "Suami") {{"selected"}}@endif value='Suami' >Suami</option>
+                        <option @if (old('hubungan') == "Istri") {{"selected"}}@endif value='Istri'>Istri</option>
+                        <option @if (old('hubungan') == "Anak") {{"selected"}}@endif value='Anak'>Anak</option>
+                        <option @if (old('hubungan') == "Menantu") {{"selected"}}@endif value='Menantu'>Menantu</option>
+                        <option @if (old('hubungan') == "Cucu") {{"selected"}}@endif value='Cucu'>Cucu</option>
+                        <option @if (old('hubungan') == "Orang Tua") {{"selected"}}@endif value='Orang Tua'>Orang Tua</option>
+                        <option @if (old('hubungan') == "Mertua") {{"selected"}}@endif value='Mertua'>Mertua</option>
+                        <option @if (old('hubungan') == "Famili Lain") {{"selected"}}@endif value='Famili Lain'>Famili Lain</option>
+                    </select>
+                    @error('hubungan')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
+                    <label for="no_keluarga" class="block text-black mt-3 font-bold">No Keluarga</label>
+                    <input id="no_keluarga" type="text" name="no_keluarga" value="{{old('no_keluarga')}}" placeholder="Nomor Keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                    @error('no_keluarga')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
+                    <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
+                    <select name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Regular input">
+                        <option>-</option>
+                        <option @if (old('sektor_id') == "1") {{"selected"}}@endif value='1' >Sektor 1</option>
+                        <option @if (old('sektor_id') == "2") {{"selected"}}@endif value='2'>Sektor 2</option>
+                        <option @if (old('sektor_id') == "3") {{"selected"}}@endif value='3'>Sektor 3</option>
+                        <option @if (old('sektor_id') == "4") {{"selected"}}@endif value='4'>Sektor 4</option>
+                        <option @if (old('sektor_id') == "5") {{"selected"}}@endif value='5'>Sektor 5</option>
+                        <option @if (old('sektor_id') == "6") {{"selected"}}@endif value='6'>Sektor 6</option>
+                        <option @if (old('sektor_id') == "7") {{"selected"}}@endif value='7'>Sektor 7</option>
+                        <option @if (old('sektor_id') == "8") {{"selected"}}@endif value='8'>Sektor 8</option>
+                        <option @if (old('sektor_id') == "9") {{"selected"}}@endif value='9'>Sektor 9</option>
+                        <option @if (old('sektor_id') == "10") {{"selected"}}@endif value='10'>Sektor 10</option>
+                        <option @if (old('sektor_id') == "11") {{"selected"}}@endif value='11'>Sektor 11</option>
+                        <option @if (old('sektor_id') == "12") {{"selected"}}@endif value='12'>Sektor 12</option>
+                        <option @if (old('sektor_id') == "13") {{"selected"}}@endif value='13'>Sektor 13</option>
+                    </select>
+                    @error('sektor_id')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
+                    <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat rumah</label>
+                    <input type="text" name="alamat_rumah" value="{{old('alamat_rumah')}}" placeholder="Tempat lahir jemaat" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                    @error('alamat_rumah')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
+                    <div class="clear-both py-5"></div>
+
+                    <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
+                        <span class="material-icons">
+                            save
+                        </span>
+                        Simpan perubahan
+                    </button>
+
+                    <a href="{{route('jemaat.index')}}">
+                        <button type="button" class='relative text-blue-500 border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
+                            <span class="material-icons">
+                                backspace
+                            </span>
+                            Kembali
+                        </button>
+                    </a>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</x-app-layout>

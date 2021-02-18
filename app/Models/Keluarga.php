@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 use App\Models\DetailKeluarga;
 use App\Models\Jemaat;
 
@@ -13,6 +14,14 @@ class Keluarga extends Model
 
     public $incrementing = false;
     protected $table = 'keluarga';
+    protected $guarded = ['id'];
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->id = Uuid::uuid4();
+        });
+    }
 
     public function detailKeluarga()
     {

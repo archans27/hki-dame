@@ -24,4 +24,12 @@ class DetailKeluarga extends Model
         return $this->belongsTo(Keluarga::class, 'keluarga_id' , 'id');
     }
 
+    public static function findOrCreate($key, $col='id')
+    {
+        $obj = static::where($key, '=', $col)->first();
+        $new = new static;
+        $new->$col = $key;
+        return $obj ?: $new;
+    }
+
 }

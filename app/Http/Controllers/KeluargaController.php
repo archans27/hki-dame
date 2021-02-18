@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Keluarga;
+use App\Models\DetailKeluarga;
 use Illuminate\Http\Request;
 use DB;
 
@@ -26,7 +27,7 @@ class KeluargaController extends Controller
      */
     public function create()
     {
-        //
+        return view('master.keluarga.create');
     }
 
     /**
@@ -37,7 +38,22 @@ class KeluargaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kepala_keluarga_id' => 'required|exists:jemaat,id',
+            'kepala_keluarga' => 'required',
+            'no_keluarga' => 'required',
+            'sektor_id' => 'required',
+            'alamat_rumah' => 'required',
+        ]);
+        
+        $keluarga = Keluarga::create($request->all());
+        $keluarga->save();
+        $detailKeluarga = DetailKeluarga::findOrCreate($request->kepala_keluarga_id, 'jemaat_id');
+        $detailKeluarga->keluarga_id = $keluarga->refresh()->id;
+        $detailKeluarga->hubungan = $request->hubungan;
+        $detailKeluarga->save();
+        
+        return redirect('/keluarga/'.$keluarga->id)->with('succeed', "Keluarga dengan kepala $keluarga->kepala_keluarga tersimpan ke database");
     }
 
     /**
