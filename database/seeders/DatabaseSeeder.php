@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Jemaat;
+use App\Models\Keluarga;
+use App\Models\DetailKeluarga;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +23,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'hkidame@mail.com',
             'password' => Hash::make('password')
         ]);
-        \App\Models\Jemaat::factory(20)->create();
+        //\App\Models\Jemaat::factory(20)->create();
+        //Jemaat::factory()->has(DetailKeluarga::factory()->for(Keluarga::factory()))->create();
+
+        Keluarga::factory()->has( DetailKeluarga::factory()->has(Jemaat::factory())->count(4) )->count(2)->create();
     }
 }

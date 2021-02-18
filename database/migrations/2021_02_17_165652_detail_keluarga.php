@@ -18,7 +18,7 @@ class DetailKeluarga extends Migration
             $table->uuid('keluarga_id');
             $table->uuid('jemaat_id');
             $table->string('hubungan');
-            $table->integer('anak_ke');
+            $table->integer('anak_ke')->nullable();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJemaatsTable extends Migration
+class CreateJemaatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,8 +16,8 @@ class CreateJemaatsTable extends Migration
         Schema::create('jemaat', function (Blueprint $table) {
             $table->uuid('id');
             $table->string('no_anggota');
-            $table->integer('sektor_id');
-            $table->string('keluarga_id');
+            $table->foreignId('sektor_id');
+            $table->foreignId('keluarga_id');
             $table->string('nama');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('tempat_lahir');
