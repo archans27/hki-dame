@@ -16,12 +16,12 @@ class DetailKeluarga extends Model
 
     public function jemaat()
     {
-        return $this->belongsTo(Jemaat::class);
+        return $this->belongsTo(Jemaat::class, 'jemaat_id' , 'id');
     }
 
     public function keluarga()
     {
-        return $this->belongsTo(Keluarga::class);
+        return $this->belongsTo(Keluarga::class, 'keluarga_id' , 'id');
     }
 
 }

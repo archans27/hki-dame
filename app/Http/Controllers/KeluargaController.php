@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Keluarga;
 use Illuminate\Http\Request;
+use DB;
 
 class KeluargaController extends Controller
 {
@@ -47,7 +48,14 @@ class KeluargaController extends Controller
      */
     public function show(Keluarga $keluarga)
     {
-        //
+        $keluargas =  DB::table('keluarga')
+            ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
+            ->join('jemaat', 'jemaat.id' , '=', 'detail_keluarga.jemaat_id')
+            ->where('keluarga.id', '=', $keluarga->id)
+            ->orderBy('jemaat.tanggal_lahir', 'asc')
+            ->get();
+        
+        return view('master.keluarga.show', ['keluargas' => $keluargas]);
     }
 
     /**
