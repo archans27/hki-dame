@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 use App\Models\Keluarga;
 use App\Models\Jemaat;
 
@@ -24,12 +25,12 @@ class DetailKeluarga extends Model
         return $this->belongsTo(Keluarga::class, 'keluarga_id' , 'id');
     }
 
-    public static function findOrCreate($key, $col='id')
+    protected static function booted()
     {
-        $obj = static::where($key, '=', $col)->first();
-        $new = new static;
-        $new->$col = $key;
-        return $obj ?: $new;
+        parent::boot();
+        static::creating(function ($model) {
+            $model->id = Uuid::uuid4();
+        });
     }
 
 }

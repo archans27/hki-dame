@@ -43,7 +43,7 @@ class JemaatFactory extends Factory
             'pendidikan' => $pendidikan[$this->faker->numberBetween(0, 7)],
             'pekerjaan' => $this->faker->jobTitle,
             'tanggal_anggota' => $this->faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null),
-            'hidup' => $this->faker->numberBetween(0, 1),
+            'hidup' => 1,
             'foto' => ''
         ];
     }

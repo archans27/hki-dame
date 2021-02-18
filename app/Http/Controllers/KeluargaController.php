@@ -47,8 +47,12 @@ class KeluargaController extends Controller
         ]);
         
         $keluarga = Keluarga::create($request->all());
-        $keluarga->save();
-        $detailKeluarga = DetailKeluarga::findOrCreate($request->kepala_keluarga_id, 'jemaat_id');
+        //$keluarga->save();
+        $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $request->kepala_keluarga_id)->first();
+        if(!isset($detailKeluarga)){
+            $detailKeluarga = new DetailKeluarga();
+            $detailKeluarga->jemaat_id = $request->kepala_keluarga_id;
+        }
         $detailKeluarga->keluarga_id = $keluarga->refresh()->id;
         $detailKeluarga->hubungan = $request->hubungan;
         $detailKeluarga->save();

@@ -23,7 +23,7 @@
         <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
         
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased" id="body">
         <div class="min-h-screen bg-gray-100">
             <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
             <div class="md:flex flex-col md:flex-row md:min-h-screen w-full">
