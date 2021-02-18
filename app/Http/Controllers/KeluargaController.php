@@ -14,7 +14,8 @@ class KeluargaController extends Controller
      */
     public function index()
     {
-        //
+        $keluargas = Keluarga::all();
+        return view('master.keluarga.index', ['keluargas' => $keluargas]);
     }
 
     /**
