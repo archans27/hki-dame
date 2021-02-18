@@ -17,7 +17,6 @@ class CreateJemaatTable extends Migration
             $table->uuid('id');
             $table->string('no_anggota');
             $table->foreignId('sektor_id');
-            $table->foreignId('keluarga_id');
             $table->string('nama');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('tempat_lahir');

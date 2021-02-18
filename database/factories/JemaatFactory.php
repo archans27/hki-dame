@@ -31,7 +31,6 @@ class JemaatFactory extends Factory
             'id' => Uuid::uuid4(),
             'no_anggota' => 'AHD-'.$this->faker->numberBetween($min = 1000, $max = 9000),
             'sektor_id' => $this->faker->numberBetween(1, 13),
-            'keluarga_id' => Uuid::uuid4(), //Todo buat relasi dengan kepala keluarga
             'nama' => $this->faker->name,
             'jenis_kelamin' => $jenisKelamin[$this->faker->numberBetween(0, 1)],
             'tempat_lahir' => $this->faker->city,

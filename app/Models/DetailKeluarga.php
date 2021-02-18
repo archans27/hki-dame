@@ -14,6 +14,7 @@ class DetailKeluarga extends Model
 
     protected $table = 'detail_keluarga';
     public $incrementing = false;
+    protected $guarded = ['id'];
 
     public function jemaat()
     {
