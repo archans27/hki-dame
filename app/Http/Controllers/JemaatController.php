@@ -30,8 +30,9 @@ class JemaatController extends Controller
         $validated = $request->validated();
         $jemaat = new jemaat($validated);
         $jemaat->save();
-
-        return view('master.jemaat.show', ['jemaat' => $jemaat]);
+        $namaJemaat = $jemaat->refresh()->nama;
+        
+        return redirect('/jemaat/'.$jemaat->id)->with('succeed', "Jemaat dengan nama $namaJemaat sudah tersimpan ke database");
     }
 
     public function show(Request $request, Jemaat $jemaat)
