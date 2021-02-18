@@ -27,7 +27,7 @@ class DetailKeluargaFactory extends Factory
         $hubunganList = ['Suami', 'Istri', 'Anak', 'Menantu', 'Cucu', 'Orang Tua', 'Mertua', 'Famili Lain'];
         $hubungan = $hubunganList[$this->faker->numberBetween(0, 7)];
         return [
-            'id' => Uuid::uuid4(),
+            //'id' => Uuid::uuid4(),
             'keluarga_id' => Keluarga::factory(),
             'jemaat_id' => Jemaat::factory(),
             'hubungan' => $hubungan,

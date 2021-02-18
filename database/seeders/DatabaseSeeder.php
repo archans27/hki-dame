@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'hkidame@mail.com',
             'password' => Hash::make('password')
         ]);
-        //\App\Models\Jemaat::factory(20)->create();
+        //\App\Models\Jemaat::factory()->create();
         //Jemaat::factory()->has(DetailKeluarga::factory()->for(Keluarga::factory()))->create();
 
-        Keluarga::factory()->has( DetailKeluarga::factory()->has(Jemaat::factory())->count(4) )->count(2)->create();
+        Keluarga::factory()->has( DetailKeluarga::factory()->has(Jemaat::factory())->count(3) )->count(4)->create();
     }
 }
