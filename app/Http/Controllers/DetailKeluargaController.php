@@ -88,6 +88,8 @@ class DetailKeluargaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $id)->first();
+        $detailKeluarga->delete();
+        return redirect()->back();
     }
 }

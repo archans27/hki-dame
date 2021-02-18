@@ -129,6 +129,7 @@
                             <th class="px-5 py-2 text-left">Nama Anggota Keluarga</th>
                             <th class="px-5 py-2">Hubungan dalam Keluarga</th>
                             <th class="px-5 py-2">Jenis kelamin</th>
+                            <th class="px-5 py-2 text-left">Action</th>
                           </tr>
                         </thead>
                         <tbody class="bg-gray-200">
@@ -137,6 +138,24 @@
                                 <td class="px-5 py-2 text-left"> {{$keluarga->nama}}</td>
                                 <td class="px-5 py-2 text-center">{{$keluarga->hubungan}}</td>
                                 <td class="px-5 py-2 text-center">{{$keluarga->jenis_kelamin}}</td>
+                                <td class="px-5 py-2 text-center">
+
+                                    <form method="post" action="" class="float-left">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit"
+                                          onclick="event.preventDefault();
+                                            toggleModal('modal-delete');
+                                            deleteJemaat('{{url('/detailkeluarga/'.$keluarga->jemaat_id)}}')"
+                                        >
+                                          <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">
+                                            delete
+                                            </span>
+                                        </button>
+                                      </form>
+
+
+                                </td>
                               </tr>
                             @endforeach
                         </tbody>
@@ -146,7 +165,16 @@
             </div>
         </div>
     </div>
-    
+
+    <x-popup-confirm
+    :modalId="'modal-delete'"
+    :formId="'form-modal-delete'"
+    :title="'Delete Data'"
+    :message="'Apakah anda yakin akan menghapus data ini?'"
+    :action="'Hapus data'"
+    :actionUrl="url('/')"
+    :actionMethod="'DELETE'"
+  />
 
     <script>
     const matchList = document.getElementById("match-list");
@@ -190,6 +218,10 @@
             matchList.innerHTML = '';
         }
     });
+
+    function deleteJemaat(url){
+        document.getElementById('form-modal-delete').setAttribute('action', url);
+    }
 
     </script>
 </x-app-layout>
