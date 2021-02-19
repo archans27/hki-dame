@@ -14,7 +14,7 @@
                     <div class="container">
                         <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama Kepala Keluarga</label>
                         <input id="jemaat_sugestion" type="text" name="kepala_keluarga" value="{{old('kepala_keluarga')}}" placeholder="Nama kepala keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
-                        <div class="row z-10" id="match-list">
+                        <div class="row z-10" id="match-list"></div>
                         @error('kepala_keluarga')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
@@ -68,7 +68,7 @@
                     @enderror
 
                     <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat rumah</label>
-                    <input type="text" name="alamat_rumah" value="{{old('alamat_rumah')}}" placeholder="Tempat lahir jemaat" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                    <input type="text" name="alamat_rumah" value="{{old('alamat_rumah')}}" placeholder="Tempat lahir jemaat" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
                     @error('alamat_rumah')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror

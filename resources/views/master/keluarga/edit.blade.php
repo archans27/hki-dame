@@ -77,7 +77,7 @@
                     <div class="container">
                         <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama anggota keluarga</label>
                         <input id="jemaat_sugestion" type="text" name="kepala_keluarga" value="{{old('nama')}}" placeholder="Nama anggota keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
-                        <div class="row z-10" id="match-list">
+                        <div class="row z-10" id="match-list"></div>
                     </div>
 
                     <input name="keluarga_id" type="hidden" value="{{$keluargas[0]->keluarga_id}}">

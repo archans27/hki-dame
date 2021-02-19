@@ -79,6 +79,6 @@
 
 <script>
   function deleteJemaat(url){
-    document.getElementById('form-modal-delete').setAttribute('action', url);]
+    document.getElementById('form-modal-delete').setAttribute('action', url);
   }
 </script>
