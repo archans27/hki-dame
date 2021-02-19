@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\JemaatController;
-use App\Http\Controllers\KeluargaController;
-use App\Http\Controllers\DetailKeluargaController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,9 +23,10 @@ Route::get('/dashboard', function () {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resources([
-        'jemaat' => JemaatController::class,
-        'keluarga' => KeluargaController::class,
-        'detailkeluarga' => DetailKeluargaController::class
+        'jemaat' => \App\Http\Controllers\JemaatController::class,
+        'keluarga' => \App\Http\Controllers\KeluargaController::class,
+        'detailkeluarga' => \App\Http\Controllers\DetailKeluargaController::class,
+        'sektor' => \App\Http\Controllers\SektorController::class
     ]);
 });
 require __DIR__.'/auth.php';

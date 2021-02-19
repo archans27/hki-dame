@@ -9,6 +9,6 @@ class Sektor extends Model
 {
     use HasFactory;
 
-    public $incrementing = false;
+    protected $table = 'sektor';
     protected $guarded = ['id'];
 }

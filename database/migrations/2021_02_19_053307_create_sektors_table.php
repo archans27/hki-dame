@@ -13,7 +13,7 @@ class CreateSektorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sektors', function (Blueprint $table) {
+        Schema::create('sektor', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('wilayah')->nullable();
@@ -28,6 +28,6 @@ class CreateSektorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sektors');
+        Schema::dropIfExists('sektor');
     }
 }

@@ -14,7 +14,8 @@ class SektorController extends Controller
      */
     public function index()
     {
-        //
+        $sektors = Sektor::all();
+        return view('master.sektor.index', ['sektors' => $sektors]);
     }
 
     /**
@@ -24,7 +25,8 @@ class SektorController extends Controller
      */
     public function create()
     {
-        //
+        $sektor = new Sektor();
+        return view('master.sektor.create', ['sektor' => $sektor]);
     }
 
     /**
@@ -35,7 +37,15 @@ class SektorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sektor = new Sektor();
+        $request->validate([
+            'nama' => 'required',
+            'wilayah' => 'required',
+        ]);
+        $sektor->fill($request->all());
+        $sektor->save();
+
+        return redirect('/sektor/'.$sektor->id)->with('succeed', "Data $sektor->nama sudah tersimpan ke database");
     }
 
     /**
@@ -46,7 +56,7 @@ class SektorController extends Controller
      */
     public function show(Sektor $sektor)
     {
-        //
+        return view('master.sektor.show', ['sektor' => $sektor]);
     }
 
     /**
@@ -57,7 +67,7 @@ class SektorController extends Controller
      */
     public function edit(Sektor $sektor)
     {
-        //
+        return view('master.sektor.edit', ['sektor' => $sektor]);
     }
 
     /**
@@ -69,7 +79,14 @@ class SektorController extends Controller
      */
     public function update(Request $request, Sektor $sektor)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'wilayah' => 'required',
+        ]);
+
+        $sektor->fill($request->all());
+        $sektor->save();
+        return redirect('/sektor/'.$sektor->id)->with('succeed', "Data $sektor->nama sudah tersimpan ke database");
     }
 
     /**
@@ -80,6 +97,7 @@ class SektorController extends Controller
      */
     public function destroy(Sektor $sektor)
     {
-        //
+        $sektor->delete();
+        return redirect('/sektor/')->with('succeed', "Data $sektor->nama sudah dihapus dari database");
     }
 }
