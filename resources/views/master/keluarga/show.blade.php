@@ -11,14 +11,7 @@
     <div class="py-12" style="clear: both">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
-                <form action="{{url('keluarga')}}" class="float-right">
-                    <button type="submit" class='relative text-blue-500 border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
-                        <span class="material-icons">
-                            backspace
-                        </span>
-                        Kembali
-                    </button>
-                </form>
+                <x-back-button :class="'float-right'" />
                 <form action="{{url('/keluarga/'.$keluargas[0]->keluarga_id.'/edit')}}" class="float-right">
                     <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
                         <span class="material-icons">
@@ -47,7 +40,7 @@
                         <tbody class="bg-gray-200">
                             @foreach ($keluargas as $keluarga)
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
-                                <td class="px-5 py-2 text-left"> {{$keluarga->nama}}</td>
+                                <td class="px-5 py-2 text-left text-blue-500"><a href="{{url('/jemaat/'.$keluarga->jemaat_id)}}"> {{$keluarga->nama}}</a></td>
                                 <td class="px-5 py-2 text-center">{{$keluarga->hubungan}}</td>
                                 <td class="px-5 py-2 text-center">{{$keluarga->jenis_kelamin}}</td>
                                 <td class="px-5 py-2 text-center">{{$keluarga->tanggal_lahir}}</td>

@@ -40,9 +40,9 @@
                                       <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">
                                         mode_edit
                                       </span>
-                                    </button>|
+                                    </button>
                                   </form>
-                                  <form method="post" action="{{url('/keluarga/'.$keluarga->id)}}" class="float-left">
+                                  {{-- <form method="post" action="{{url('/keluarga/'.$keluarga->id)}}" class="float-left">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit"
@@ -54,7 +54,7 @@
                                         delete
                                         </span>
                                     </button>
-                                  </form>
+                                  </form> --}}
                                 </td>
                               </tr>
                             @endforeach
