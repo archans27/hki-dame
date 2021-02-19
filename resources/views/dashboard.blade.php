@@ -44,11 +44,11 @@
             var myDoughnutChart = new Chart(myChart2, {
                 type: 'doughnut',
                 data: {
-                    labels: ['SD', 'SMP', 'SMA', 'Kuliah', 'Bekerja'],
+                    labels: [ 'SMP', 'SMA', 'Kuliah', 'Bekerja'],
                     datasets: [{
                         label: 'My First dataset',
-                        backgroundColor: ['#19AADE','#DB4CB2','#1DE4BD', '#7D3AC1', '#EE9A3A'],
-                        data: [12, 10, 5, 2, 20]
+                        backgroundColor: ['#DB4CB2','#1DE4BD', '#7D3AC1', '#EE9A3A'],
+                        data: [ 10, 5, 2, 20]
                     }]
                 },
                options:{} 
