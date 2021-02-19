@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Keluarga;
 use App\Models\DetailKeluarga;
 use App\Models\Jemaat;
+use App\Models\Sektor;
 use Illuminate\Http\Request;
 use DB;
 
@@ -26,9 +27,11 @@ class KeluargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Sektor $sektor)
     {
-        return view('master.keluarga.create');
+        return view('master.keluarga.create', [
+            'sektors' => $sektor->all()
+        ]);
     }
 
     /**
@@ -85,7 +88,7 @@ class KeluargaController extends Controller
      * @param  \App\Models\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function edit(Keluarga $keluarga)
+    public function edit(Keluarga $keluarga, Sektor $sektor)
     {
         $keluargas =  DB::table('keluarga')
             ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
@@ -95,7 +98,10 @@ class KeluargaController extends Controller
             ->get()
         ;
 
-        return view('master.keluarga.edit', ['keluargas' => $keluargas]);
+        return view('master.keluarga.edit', [
+            'keluargas' => $keluargas,
+            'sektors' => $sektor->all()
+        ]);
     }
 
     /**

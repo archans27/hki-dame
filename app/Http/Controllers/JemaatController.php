@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jemaat;
+use App\Models\Sektor;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 
@@ -20,9 +21,12 @@ class JemaatController extends Controller
     }
 
 
-    public function create(Jemaat $jemaat)
+    public function create(Jemaat $jemaat, Sektor $sektor)
     {
-        return view('master.jemaat.create', ['jemaat' => $jemaat]);
+        return view('master.jemaat.create', [
+            'jemaat' => $jemaat,
+            'sektors' => $sektor->all()
+        ]);
     }
 
     public function store(\App\Http\Requests\StoreJemaatRequest $request)
@@ -40,9 +44,12 @@ class JemaatController extends Controller
         return view('master.jemaat.show', ['jemaat' => $jemaat]);
     }
 
-    public function edit(Jemaat $jemaat)
+    public function edit(Jemaat $jemaat, Sektor $sektor)
     {
-        return view('master.jemaat.edit', ['jemaat' => $jemaat]);
+        return view('master.jemaat.edit', [
+            'jemaat' => $jemaat,
+            'sektors' => $sektor->all()
+        ]);
     }
 
     public function update(\App\Http\Requests\StoreJemaatRequest $request, Jemaat $jemaat)

@@ -1,4 +1,4 @@
-@props(['jemaat', 'formAction', 'method'])
+@props(['jemaat', 'formAction', 'method', 'sektors'])
 
 <form action="{{$formAction}}" method="post">
     @method($method)
@@ -92,23 +92,11 @@
         <div class="text-red-500">{{ $message }}</div>
     @enderror
 
-    {{-- //todo ubah jadi dinamis tergantung sektornya --}}
     <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
     <select name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Regular input">
-        <option>-</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "1") {{"selected"}}@endif value='1' >Sektor 1</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "2") {{"selected"}}@endif value='2'>Sektor 2</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "3") {{"selected"}}@endif value='3'>Sektor 3</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "4") {{"selected"}}@endif value='4'>Sektor 4</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "5") {{"selected"}}@endif value='5'>Sektor 5</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "6") {{"selected"}}@endif value='6'>Sektor 6</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "7") {{"selected"}}@endif value='7'>Sektor 7</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "8") {{"selected"}}@endif value='8'>Sektor 8</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "9") {{"selected"}}@endif value='9'>Sektor 9</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "10") {{"selected"}}@endif value='10'>Sektor 10</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "11") {{"selected"}}@endif value='11'>Sektor 11</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "12") {{"selected"}}@endif value='12'>Sektor 12</option>
-        <option @if (old('sektor_id', $jemaat->sektor_id) == "13") {{"selected"}}@endif value='13'>Sektor 13</option>
+        @foreach ($sektors as $sektor)
+            <option @if (old('sektor_id', $jemaat->sektor_id) == $sektor->id) {{"selected"}}@endif value="{{$sektor->id}}" >{{$sektor->nama}}</option>
+        @endforeach
     </select>
     @error('sektor_id')
         <div class="text-red-500">{{ $message }}</div>
