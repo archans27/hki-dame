@@ -8,12 +8,12 @@
     <div class="py-12" style="clear: both">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
-                <form action="{{url('keluarga')}}" method="post">
-                    @method('POST')
+                <form action="{{url('keluarga/'.$keluargas[0]->keluarga_id)}}" method="post">
+                    @method('PUT')
                     @csrf
                     <div class="container">
                         <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama Kepala Keluarga</label>
-                        <input type="text" name="kepala_keluarga" value="{{$keluargas[0]->kepala_keluarga}}" placeholder="Nama kepala keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full" autocomplete="off" disabled/>
+                        <input type="text" name="kepala_keluarga" value="{{$keluargas[0]->kepala_keluarga}}" placeholder="Nama kepala keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed" autocomplete="off" readonly="readonly"/>
                         @error('kepala_keluarga')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
@@ -85,9 +85,6 @@
                         <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama anggota keluarga</label>
                         <input id="jemaat_sugestion" type="text" name="kepala_keluarga" value="{{old('nama')}}" placeholder="Nama anggota keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
                         <div class="row z-10" id="match-list">
-                        @error('kepala_keluarga')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
                     </div>
 
                     <input name="keluarga_id" type="hidden" value="{{$keluargas[0]->keluarga_id}}">

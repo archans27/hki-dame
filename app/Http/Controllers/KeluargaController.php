@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Keluarga;
 use App\Models\DetailKeluarga;
+use App\Models\Jemaat;
 use Illuminate\Http\Request;
 use DB;
 
@@ -104,9 +105,35 @@ class KeluargaController extends Controller
      * @param  \App\Models\Keluarga  $keluarga
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Keluarga $keluarga)
+    public function update(Request $request, Keluarga $keluarga, DetailKeluarga $detailKeluarga)
     {
-        //
+        //update kepala keluarga if not exist
+        $kepalaKeluargaId = $request->kepala_keluarga_id;
+        if (!count(DetailKeluarga::where('keluarga_id', '=', $keluarga->id)->where('jemaat_id', '=', $request->kepala_keluarga_id)->get())){
+            $kepalaKeluarga = $keluarga->jemaat()
+                ->where('keluarga_id', '=', $keluarga->id)
+                ->orderBy('tanggal_lahir', 'ASC')
+                ->first()
+            ;
+            $request->merge([
+                'kepala_keluarga_id' => $kepalaKeluarga->pivot->jemaat_id,
+                'kepala_keluarga' => $kepalaKeluarga->nama
+            ]);
+        }
+        
+        $request->validate([
+            'kepala_keluarga_id' => 'required|exists:jemaat,id',
+            'kepala_keluarga' => 'required',
+            'no_keluarga' => 'required',
+            'sektor_id' => 'required',
+            'alamat_rumah' => 'required',
+        ]);
+
+        $keluarga->fill($request->all());
+        $keluarga->save();
+
+        return redirect('/keluarga/'.$keluarga->id)->with('succeed', "Data keluarga $request->kepala_keluarga sudah tersimpan ke database");
+
     }
 
     /**
