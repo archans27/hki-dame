@@ -20,17 +20,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //USER
         User::create([
             'name' => 'Admin HKI',
             'email' => 'hkidame@mail.com',
             'password' => Hash::make('password')
         ]);
+
+        //Keluarga
         Keluarga::factory()->has( DetailKeluarga::factory()->has(Jemaat::factory())->count(3) )->count(4)->create();
 
-        for ($i=1; $i < 14 ; $i++) { 
+        //SEKTOR
+        for ($i=1; $i <= 13 ; $i++) { 
+            $nama = "Sektor ".$i;
+            if ($i < 10){
+                $nama = "Sektor 0".$i;
+            }
             Sektor::factory()->create([
                 'id' => $i,
-                'nama' => 'Sektor '.$i,
+                'nama' => $nama,
             ]);
         }
 
