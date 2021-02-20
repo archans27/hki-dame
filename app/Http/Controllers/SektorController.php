@@ -14,7 +14,7 @@ class SektorController extends Controller
      */
     public function index()
     {
-        $sektors = Sektor::all();
+        $sektors = Sektor::orderBy('nama', 'asc')->get();
         return view('master.sektor.index', ['sektors' => $sektors]);
     }
 

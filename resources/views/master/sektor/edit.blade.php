@@ -12,11 +12,6 @@
                 <form action="{{url('/sektor/'.$sektor->id)}}" method="post">
                     @method('PUT')
                     @csrf
-                    <div class="container">
-                        <label for="id" class="block text-black mt-3 font-bold">ID</label>
-                        <input type="text" name="id" value="{{$sektor->id}}" placeholder="Id" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed" readonly="readonly" disabled/>
-                        <div class="row z-10" id="match-list"></div>
-                    </div>
 
                     <label for="nama" class="block text-black mt-3 font-bold">Nama Sektor</label>
                     <input type="text" name="nama" value="{{old('nama',$sektor->nama)}}" placeholder="Nama Sekor" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>

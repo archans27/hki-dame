@@ -31,9 +31,12 @@
                           </tr>
                         </thead>
                         <tbody class="bg-gray-200">
+                            @php
+                                $number = 1;
+                            @endphp
                             @foreach ($sektors as $sektor)
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
-                                <td class="px-5 py-2 text-center" ><a href="{{url('/sektor/'.$sektor->id)}}">{{$sektor->id}}</a></td>
+                                <td class="px-5 py-2 text-center" ><a href="{{url('/sektor/'.$sektor->id)}}">{{$number++}}</a></td>
                                 <td class="px-5 py-2 text-left text-blue-500 cursor-pointer font-bold text-blue-500 hover:text-yellow-500"><a href="{{url('sektor/'.$sektor->id)}}">{{$sektor->nama}}</td>
                                 <td class="px-5 py-2 text-left">{{$sektor->wilayah}}</td>
                                 <td class="px-5 py-2 text-left align-middle" >
