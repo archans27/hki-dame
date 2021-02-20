@@ -26,6 +26,7 @@
                 <p class="text-md font-bold text-blue-500">No Keluarga</p><p>{{$keluargas[0]->no_keluarga}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Sektor</p><p>{{$keluargas[0]->nama_sektor}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Alamat</p><p>{{$keluargas[0]->alamat_keluarga}}</p><br/>
+                <p class="text-md font-bold text-blue-500">Status rumah</p><p>{{$keluargas[0]->status_rumah}}</p><br/>
                 {{-- Table Keluarga --}}
                 <div class="p-6 bg-white border-b border-gray-200 overflow-x-auto">
                     <table class="min-w-full table-auto">

@@ -54,6 +54,7 @@ class KeluargaController extends Controller
             'no_keluarga' => 'required',
             'sektor_id' => 'required',
             'alamat_rumah' => 'required',
+            'status_rumah' => 'required',
         ]);
         
         $keluarga = Keluarga::create($request->all());
@@ -144,6 +145,7 @@ class KeluargaController extends Controller
             'no_keluarga' => 'required',
             'sektor_id' => 'required',
             'alamat_rumah' => 'required',
+            'status_rumah' => 'required',
         ]);
 
         $keluarga->fill($request->all());

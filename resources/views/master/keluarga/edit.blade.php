@@ -46,6 +46,15 @@
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
 
+                    <label for="status_rumah" class="block text-black mt-3 font-bold">Status tempat tinggal</label>
+                    <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="status_rumah" value="Tetap" @if (old('status_rumah',$keluargas[0]->status_rumah) == "Tetap") {{"checked"}}@endif />
+                    <span class="ml-2 text-gray-700">Tetap</span>
+                    <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="status_rumah" value="Sementara" @if (old('status_rumah',$keluargas[0]->status_rumah) == "Sementara") {{"checked"}}@endif />
+                    <span class="ml-2 text-gray-700">Sementara</span>
+                    @error('status_rumah')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
                     <div class="clear-both my-5"></div>
 
                     <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 rounded overflow-hidden'>

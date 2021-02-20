@@ -19,6 +19,7 @@ class CreateKeluargaTable extends Migration
             $table->string('kepala_keluarga');
             $table->string('no_keluarga');
             $table->string('alamat_rumah');
+            $table->enum('status_rumah', ['Tetap', 'Sementara']);
             $table->integer('sektor_id');
             $table->timestamps();
         });
