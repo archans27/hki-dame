@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DetailKeluarga;
+use App\Models\Keluarga;
 
 class DetailKeluargaController extends Controller
 {
@@ -90,6 +91,13 @@ class DetailKeluargaController extends Controller
     {
         $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $id)->first();
         $detailKeluarga->delete();
+        $keluargasCount = DetailKeluarga::where('keluarga_id' , '=', $detailKeluarga->keluarga_id)->count();
+        
+        if (!$keluargasCount){
+            $keluargas = Keluarga::find($detailKeluarga->keluarga_id)->delete();
+            return redirect('/keluarga');
+        }
+
         return redirect()->back();
     }
 }

@@ -20,7 +20,9 @@ class KeluargaController extends Controller
     {
         $keluargas =  DB::table('keluarga')
             ->select('keluarga.*', 'sektor.nama as nama_sektor')
+            ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
             ->join('sektor', 'keluarga.sektor_id', '=', 'sektor.id')
+            ->distinct()
             ->get();
 
         return view('master.keluarga.index', ['keluargas' => $keluargas]);
