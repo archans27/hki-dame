@@ -55,7 +55,7 @@
                         Simpan perubahan
                     </button>
 
-                    <x-back-button />
+                    <x-back-button :link="url('/keluarga')"/>
 
                 </form>
                 <hr class="clear-both my-5 border-2"/>
@@ -94,7 +94,7 @@
 
                     <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 rounded overflow-hidden'>
                         <span class="material-icons">
-                            add
+                            save
                         </span>
                         Tambah anggota KK
                     </button>

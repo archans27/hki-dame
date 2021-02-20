@@ -34,7 +34,7 @@
                         Simpan perubahan
                     </button>
 
-                    <x-back-button />
+                    <x-back-button :link="url('/sektor')" />
 
                 </form>
 

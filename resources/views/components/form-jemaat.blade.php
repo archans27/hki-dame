@@ -49,7 +49,7 @@
         <div class="text-red-500">{{ $message }}</div>
     @enderror
 
-    <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat rumah</label>
+    {{-- <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat rumah</label>
     <input type="text" name="alamat_rumah" value="{{old('alamat_rumah', $jemaat->alamat_rumah)}}" placeholder="Tempat lahir jemaat" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('alamat_rumah')
         <div class="text-red-500">{{ $message }}</div>
@@ -62,7 +62,7 @@
     <span class="ml-2 text-gray-700">Sementara</span>
     @error('status_rumah')
         <div class="text-red-500">{{ $message }}</div>
-    @enderror
+    @enderror --}}
 
     <label for="nomor_telepon" class="block text-black mt-3 font-bold">Nomor telepon</label>
     <input type="text" name="nomor_telepon" value="{{old('no_telepon',$jemaat->nomor_telepon)}}" placeholder="Nomor telepon" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
@@ -92,7 +92,7 @@
         <div class="text-red-500">{{ $message }}</div>
     @enderror
 
-    <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
+    {{-- <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
     <select name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Regular input">
         @foreach ($sektors as $sektor)
             <option @if (old('sektor_id', $jemaat->sektor_id) == $sektor->id) {{"selected"}}@endif value="{{$sektor->id}}" >{{$sektor->nama}}</option>
@@ -100,7 +100,7 @@
     </select>
     @error('sektor_id')
         <div class="text-red-500">{{ $message }}</div>
-    @enderror
+    @enderror --}}
 
     <label for="tanggal_anggota" class="block text-black mt-3 font-bold">Tanggal menjadi anggota</label>
     <input type="text" name="tanggal_anggota" id="tanggal-anggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota)}}" class="bg-gray-100 rounded-md" autocomplete="off"/>
@@ -125,7 +125,7 @@
         Simpan perubahan
     </button>
 
-    <x-back-button />
+    <x-back-button :link="url('/jemaat')" />
     
 </form>
 
