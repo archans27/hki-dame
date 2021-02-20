@@ -23,7 +23,7 @@
     @enderror
 
     <label for="tanggal_lahir" class="block text-black mt-3 font-bold">Tanggal lahir</label>
-    <input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{old('tanggal_lahir',$jemaat->tanggal_lahir)}}" class="bg-gray-100 rounded-md" autocomplete="off" />
+    <input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{old('tanggal_lahir',$jemaat->tanggal_lahir)}}" placeholder="Tanggal lahir" class="bg-gray-100 rounded-md" autocomplete="off" />
     @error('tanggal_lahir')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
@@ -38,7 +38,7 @@
     @enderror
 
     <label class="block text-black mt-3 font-bold" for="golongan_darah">Golongan darah</label>
-    <select name="golongan_darah" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Regular input">
+    <select name="golongan_darah" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
         <option>-</option>
         <option @if (old('golongan_darah', $jemaat->golongan_darah) == "A") {{"selected"}}@endif>A</option>
         <option @if (old('golongan_darah', $jemaat->golongan_darah) == "B") {{"selected"}}@endif>B</option>
@@ -72,7 +72,7 @@
 
 
     <label for="pendidikan" class="block text-black mt-3 font-bold">Pendidikan</label>
-    <select name="pendidikan" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Regular input">
+    <select name="pendidikan" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Pendidikan Jemaat">
         <option>-</option>
         <option @if (old('pendidikan', $jemaat->pendidikan) == "SD") {{"selected"}}@endif value="SD">SD</option>
         <option @if (old('pendidikan', $jemaat->pendidikan) == "SMP") {{"selected"}}@endif value="SMP">SMP</option>
@@ -103,7 +103,7 @@
     @enderror --}}
 
     <label for="tanggal_anggota" class="block text-black mt-3 font-bold">Tanggal menjadi anggota</label>
-    <input type="text" name="tanggal_anggota" id="tanggal-anggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota)}}" class="bg-gray-100 rounded-md" autocomplete="off"/>
+    <input type="text" name="tanggal_anggota" id="tanggal-anggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota)}}" class="bg-gray-100 rounded-md" autocomplete="off" placeholder="Tanggal menjadi anggota"/>
     @error('tanggal_anggota')
         <div class="text-red-500">{{ $message }}</div>
     @enderror

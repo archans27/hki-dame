@@ -26,7 +26,7 @@
                     @enderror
 
                     <label for="hubungan" class="block text-black mt-3 font-bold">Hubungan dalam keluarga</label>
-                    <select name="hubungan" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Regular input">
+                    <select name="hubungan" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Hubungan dalam keluarga">
                         <option @if (old('hubungan') == "Suami") {{"selected"}}@endif value='Suami' >Suami</option>
                         <option @if (old('hubungan') == "Istri") {{"selected"}}@endif value='Istri'>Istri</option>
                         <option @if (old('hubungan') == "Anak") {{"selected"}}@endif value='Anak'>Anak</option>
@@ -47,7 +47,7 @@
                     @enderror
 
                     <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
-                    <select name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Regular input">
+                    <select name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Sektor">
                         @foreach ($sektors as $sektor)
                             <option @if (old('sektor_id') == $sektor->id) {{"selected"}}@endif value="{{$sektor->id}}" >{{$sektor->nama}}</option>
                         @endforeach
@@ -57,7 +57,7 @@
                     @enderror
 
                     <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat rumah</label>
-                    <input type="text" name="alamat_rumah" value="{{old('alamat_rumah')}}" placeholder="Tempat lahir jemaat" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
+                    <input type="text" name="alamat_rumah" value="{{old('alamat_rumah')}}" placeholder="Alamat rumah" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
                     @error('alamat_rumah')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror

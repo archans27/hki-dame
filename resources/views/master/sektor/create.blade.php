@@ -19,8 +19,8 @@
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
 
-                    <label for="wilayah" class="block text-black mt-3 font-bold">Nama Sektor</label>
-                    <input type="text" name="wilayah" value="{{old('wilayah',$sektor->wilayah)}}" placeholder="Nama wilayah" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                    <label for="wilayah" class="block text-black mt-3 font-bold">Wilayah Sektor</label>
+                    <input type="text" name="wilayah" value="{{old('wilayah',$sektor->wilayah)}}" placeholder="Wilayah sektor" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
                     @error('wilayah')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
