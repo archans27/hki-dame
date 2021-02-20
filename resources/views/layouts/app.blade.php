@@ -40,7 +40,20 @@
                     <main>
                         {{ $slot }}
                     </main>
+
+                    <section class="container mx-auto text-left py-3 bg-gray-300">
+                        <div class="flex flex-wrap text-gray-700">
+                          <div class="w-full px-6 text-center">
+                            <p class="text-xl bold">HKI Dame</p> 
+                            <p>Alamat: Jl. Soekarno-Hatta No.543, Gumuruh,<br />
+                              Kec. Batununggal, Kota Bandung,Jawa Barat 40275</p>
+                              <span class="material-icons cursor-pointer hover:text-blue-500 align-middle">phone</span> (022) 611-2030
+                              <span class="material-icons cursor-pointer hover:text-blue-500 align-middle">mail</span> hkidame@mail.com
+                          </div>
+                        </div>
+                      </section>
                 </div>
+
             </div>
         </div>
     </body>
