@@ -63,8 +63,7 @@ class JemaatController extends Controller
 
     public function destroy(Jemaat $jemaat, DetailKeluarga $detailKeluarga)
     {
-        $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $jemaat->id)->first();
-        $detailKeluarga->delete();
+        $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $jemaat->id)->delete();
         $jemaat->delete();
         return redirect('/jemaat')->with('succeed', "Jemaat dengan nama $jemaat->nama sudah dihapus dari database");
     }
