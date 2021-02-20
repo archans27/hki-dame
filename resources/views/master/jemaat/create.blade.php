@@ -13,35 +13,5 @@
 
             </div>
         </div>
-        <script>
-            const picker = new Pikaday({
-                field: document.getElementById('datepicker'),
-                onSelect: date => {
-                    const year = date.getFullYear(),
-                    month = date.getMonth() + 1,
-                    day = date.getDate(),
-                    formattedDate = [
-                        year,
-                        month < 10 ? '0' + month : month,
-                        day < 10 ? '0' + day : day,
-                    ].join('-')
-                    document.getElementById('datepicker').value = formattedDate
-                }
-            })
-            const picker2 = new Pikaday({
-                field: document.getElementById('tanggalAnggota'),
-                onSelect: date => {
-                    const year = date.getFullYear(),
-                    month = date.getMonth() + 1,
-                    day = date.getDate(),
-                    formattedDate = [
-                        year,
-                        month < 10 ? '0' + month : month,
-                        day < 10 ? '0' + day : day,
-                    ].join('-')
-                    document.getElementById('tanggalAnggota').value = formattedDate
-                }
-            })
-        </script>
     </div>
 </x-app-layout>
