@@ -36,6 +36,11 @@ class DetailKeluargaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'jemaat_id' => 'required|exists:jemaat,id',
+            'hubungan' => 'required'
+        ]);
+
         $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $request->jemaat_id)->first();
         if(!isset($detailKeluarga)){
             $detailKeluarga = new DetailKeluarga();

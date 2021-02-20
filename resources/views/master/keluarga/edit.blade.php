@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Data Jemaat') }}
+            {{ __('Edit Data Keluarga') }}
         </h2>
     </x-slot>
 
@@ -58,7 +58,7 @@
                     <x-back-button :link="url('/keluarga')"/>
 
                 </form>
-                <hr class="clear-both my-5 border-2"/>
+                <hr class="clear-both my-5 border-2 border-gray-500 bg-gray-500"/>
 
                 <form action="{{url('detailkeluarga')}}" method="post">
                     @method('POST')
@@ -68,11 +68,14 @@
                         <input id="jemaat_sugestion" type="text" name="kepala_keluarga" value="{{old('nama')}}" placeholder="Nama anggota keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
                         <div class="row z-10" id="match-list"></div>
                     </div>
-
-                    <input name="keluarga_id" type="hidden" value="{{$keluargas[0]->keluarga_id}}">
-                    <input name="jemaat_id" id="jemaat_id" type="hidden" value="">
-                    @error('id')
+                    @error('kepala_keluarga')
                         <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
+                    <input name="keluarga_id" type="hidden" value="{{$keluargas[0]->keluarga_id}}" required>
+                    <input name="jemaat_id" id="jemaat_id" type="hidden" value="">
+                    @error('jemaat_id')
+                        <div class="text-red-500">{{ 'Isian tidak diisi / tidak menggunakan auto sugestion.' }}</div>
                     @enderror
 
                     <label for="hubungan" class="block text-black mt-3 font-bold">Hubungan dalam keluarga</label>
