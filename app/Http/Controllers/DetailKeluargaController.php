@@ -95,7 +95,9 @@ class DetailKeluargaController extends Controller
     public function destroy($id)
     {
         $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $id)->first();
-        $detailKeluarga->delete();
+        if ($detailKeluarga) {
+            $detailKeluarga->delete();
+        }
         $keluargasCount = DetailKeluarga::where('keluarga_id' , '=', $detailKeluarga->keluarga_id)->count();
         
         if (!$keluargasCount){
