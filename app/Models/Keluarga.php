@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 use App\Models\DetailKeluarga;
 use App\Models\Jemaat;
+use App\Models\Sektor;
 
 class Keluarga extends Model
 {
@@ -26,6 +27,11 @@ class Keluarga extends Model
     public function detailKeluarga()
     {
         return $this->hasMany(DetailKeluarga::class);
+    }
+
+    public function sektor()
+    {
+        return $this->hasMany(Sektor::class);
     }
 
     public function jemaat()

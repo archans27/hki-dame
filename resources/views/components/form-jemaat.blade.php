@@ -23,7 +23,7 @@
     @enderror
 
     <label for="tanggal_lahir" class="block text-black mt-3 font-bold">Tanggal lahir</label>
-    <input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{old('jemaat',$jemaat->tanggal_lahir)}}" class="bg-gray-100 rounded-md" autocomplete="off" />
+    <input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{old('tanggal_lahir',$jemaat->tanggal_lahir)}}" class="bg-gray-100 rounded-md" autocomplete="off" />
     @error('tanggal_lahir')
         <div class="text-red-500">{{ $message }}</div>
     @enderror

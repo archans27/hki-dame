@@ -33,8 +33,7 @@ class JemaatController extends Controller
     public function store(\App\Http\Requests\StoreJemaatRequest $request)
     {
         $validated = $request->validated();
-        $jemaat = new jemaat($validated);
-        $jemaat->save();
+        $jemaat = Jemaat::create($request->all());
         $namaJemaat = $jemaat->refresh()->nama;
         
         return redirect('/jemaat/'.$jemaat->id)->with('succeed', "Jemaat dengan nama $namaJemaat sudah tersimpan ke database");

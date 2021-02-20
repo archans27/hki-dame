@@ -18,7 +18,11 @@ class KeluargaController extends Controller
      */
     public function index()
     {
-        $keluargas = Keluarga::all();
+        $keluargas =  DB::table('keluarga')
+            ->select('keluarga.*', 'sektor.nama as nama_sektor')
+            ->join('sektor', 'keluarga.sektor_id', '=', 'sektor.id')
+            ->get();
+
         return view('master.keluarga.index', ['keluargas' => $keluargas]);
     }
 
@@ -73,11 +77,14 @@ class KeluargaController extends Controller
     public function show(Keluarga $keluarga)
     {
         $keluargas =  DB::table('keluarga')
+            ->select('keluarga.*', 'keluarga.alamat_rumah as alamat_keluarga' , 'detail_keluarga.*' , 'jemaat.*', 'sektor.nama as nama_sektor')
             ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
             ->join('jemaat', 'jemaat.id' , '=', 'detail_keluarga.jemaat_id')
+            ->join('sektor', 'keluarga.sektor_id' , '=', 'sektor.id')
             ->where('keluarga.id', '=', $keluarga->id)
             ->orderBy('jemaat.tanggal_lahir', 'asc')
-            ->get();
+            ->get()
+        ;
         
         return view('master.keluarga.show', ['keluargas' => $keluargas]);
     }
@@ -91,8 +98,10 @@ class KeluargaController extends Controller
     public function edit(Keluarga $keluarga, Sektor $sektor)
     {
         $keluargas =  DB::table('keluarga')
+            ->select('keluarga.*', 'keluarga.alamat_rumah as alamat_keluarga' , 'detail_keluarga.*' , 'jemaat.*', 'sektor.nama as nama_sektor')
             ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
             ->join('jemaat', 'jemaat.id' , '=', 'detail_keluarga.jemaat_id')
+            ->join('sektor', 'keluarga.sektor_id' , '=', 'sektor.id')
             ->where('keluarga.id', '=', $keluarga->id)
             ->orderBy('jemaat.tanggal_lahir', 'asc')
             ->get()

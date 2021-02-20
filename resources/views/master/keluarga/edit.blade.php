@@ -41,7 +41,7 @@
                     @enderror
 
                     <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat rumah</label>
-                    <input type="text" name="alamat_rumah" value="{{old('alamat_rumah', $keluargas[0]->alamat_rumah)}}" placeholder="Alamt rumah" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                    <input type="text" name="alamat_rumah" value="{{old('alamat_rumah', $keluargas[0]->alamat_keluarga)}}" placeholder="Alamt rumah" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
                     @error('alamat_rumah')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
