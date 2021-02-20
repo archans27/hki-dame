@@ -133,18 +133,12 @@
     const picker = new Pikaday({
         field: document.getElementById('tanggal-lahir'),
         yearRange: [1900, 2100],
-        onOpen: function () {
-            this.gotoYear(1990);
-        },
         format: 'YYYY-MM-DD',
     })
     picker.getMoment()
     const picker2 = new Pikaday({
         field: document.getElementById('tanggal-anggota'),
         yearRange: [1900, 2100],
-        onOpen: function () {
-            this.gotoYear(new Date().getFullYear());
-        },
         format: 'YYYY-MM-DD',
     })
 </script>
