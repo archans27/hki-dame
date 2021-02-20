@@ -27,7 +27,10 @@
       
       <div class="relative">
         <a href="{{url('dashboard')}}">
-          <button class="text-right flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-gray-500 text-white rounded-md dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+          <button class="{{ (request()->segment(1) == 'dashboard') ? 'active' : '' }} text-right align-middle flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-gray-500 text-white rounded-md dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+            <span class="float-left material-icons text-md align-middle mr-2">
+              dashboard
+              </span> &nbsp; 
             <span class="float-left font-bold text-lg">Dashboard</span>
           </button>
         </a>
@@ -35,6 +38,9 @@
 
       <div class="relative" x-data="{ open: true }">
         <button @click="open = !open" class="text-right flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-gray-500 text-white rounded-md dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+            <span class="float-left material-icons text-md align-middle mr-2">
+              stars
+            </span> &nbsp; 
           <span class="float-left font-bold text-lg">Data Master</span>
           <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </button>
@@ -51,6 +57,9 @@
 
       <div class="relative" x-data="{ open: true }">
         <button @click="open = !open" class="text-right flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-gray-500 text-white rounded-md dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+          <span class="float-left material-icons text-md align-middle mr-2">
+            swap_horizontal_circle
+          </span> &nbsp; 
           <span class="float-left font-bold text-lg">Data Transaksi</span>
           <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </button>
@@ -72,6 +81,9 @@
 
       <div class="relative">
         <button class="text-right flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-gray-500 text-white rounded-md dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+          <span class="float-left material-icons text-md align-middle mr-2">
+            description
+          </span> &nbsp; 
           <span class="float-left font-bold text-lg">Laporan</span>
         </button>
       </div>
@@ -90,8 +102,8 @@
     />
 
     <style>
-       nav a.active{
-        background-color: black;
+       nav a.active, nav button.active{
+        background-color: #3c82f6;
         color: white;
       }
     </style>
