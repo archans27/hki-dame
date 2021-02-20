@@ -19,9 +19,9 @@ class Jemaat extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope('hidup', function (Builder $builder) {
-            $builder->where('hidup', '=', true);
-        });
+        // static::addGlobalScope('hidup', function (Builder $builder) {
+        //     $builder->where('hidup', '=', true);
+        // });
 
         static::creating(function ($model) {
             $model->id = Uuid::uuid4();

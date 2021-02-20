@@ -55,7 +55,7 @@ class JemaatController extends Controller
     public function update(\App\Http\Requests\StoreJemaatRequest $request, Jemaat $jemaat)
     {
         $validated = $request->validated();
-        $jemaat->fill($validated);
+        $jemaat->fill($request->all());
         $jemaat->save();
 
         return redirect('/jemaat/'.$jemaat->id)->with('succeed', "Jemaat dengan nama $jemaat->nama sudah tersimpan ke database");
