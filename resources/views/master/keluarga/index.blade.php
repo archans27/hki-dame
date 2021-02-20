@@ -32,7 +32,7 @@
                         <tbody class="bg-gray-200">
                             @foreach ($keluargas as $keluarga)
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
-                                <td class="px-16 py-2 flex flex-row text-left cursor-pointer" ><a href="{{url('/keluarga/'.$keluarga->id)}}">{{$keluarga->kepala_keluarga}}</a></td>
+                                <td class="px-16 py-2 flex flex-row text-left cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/keluarga/'.$keluarga->id)}}">{{$keluarga->kepala_keluarga}}</a></td>
                                 <td class="px-16 py-2 text-center"> {{$keluarga->nama_sektor}}</td>
                                 <td class="px-16 py-2 text-left align-middle" >
                                   <form action="{{url('keluarga/'.$keluarga->id.'/edit')}}" class="float-left">

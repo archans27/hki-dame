@@ -25,7 +25,7 @@
                         <thead class="justify-between">
                           <tr class="bg-gray-800 text-white">
                             <th class="px-5 py-2">id</th>
-                            <th class="px-5 py-2">Nama Sektor</th>
+                            <th class="px-5 py-2 text-left">Nama Sektor</th>
                             <th class="px-5 py-2 text-left">Wilayah</th>
                             <th class="px-5 py-2 text-left">Aksi</th>
                           </tr>
@@ -33,8 +33,8 @@
                         <tbody class="bg-gray-200">
                             @foreach ($sektors as $sektor)
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
-                                <td class="px-5 py-2 text-center cursor-pointer" ><a href="{{url('/sektor/'.$sektor->id)}}">{{$sektor->id}}</a></td>
-                                <td class="px-5 py-2 text-center text-blue-500"><a href="{{url('sektor/'.$sektor->id)}}">{{$sektor->nama}}</td>
+                                <td class="px-5 py-2 text-center" ><a href="{{url('/sektor/'.$sektor->id)}}">{{$sektor->id}}</a></td>
+                                <td class="px-5 py-2 text-left text-blue-500 cursor-pointer font-bold text-blue-500 hover:text-yellow-500"><a href="{{url('sektor/'.$sektor->id)}}">{{$sektor->nama}}</td>
                                 <td class="px-5 py-2 text-left">{{$sektor->wilayah}}</td>
                                 <td class="px-5 py-2 text-left align-middle" >
                                   <form action="{{url('sektor/'.$sektor->id.'/edit')}}" class="float-left">
