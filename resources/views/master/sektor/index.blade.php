@@ -24,7 +24,7 @@
                     <table class="min-w-full table-auto">
                         <thead class="justify-between">
                           <tr class="bg-gray-800 text-white">
-                            <th class="px-5 py-2">id</th>
+                            <th class="px-5 py-2">No.</th>
                             <th class="px-5 py-2 text-left">Nama Sektor</th>
                             <th class="px-5 py-2 text-left">Wilayah</th>
                             <th class="px-5 py-2 text-left">Aksi</th>
