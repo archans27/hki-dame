@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Jemaat;
 use App\Models\Keluarga;
@@ -21,10 +20,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //USER
-        User::create([
-            'name' => 'Admin HKI',
-            'email' => 'hkidame@mail.com',
-            'password' => Hash::make('password')
+        $this->call([
+            UserSeeder::class,
         ]);
 
         //Keluarga
