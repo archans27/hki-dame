@@ -62,6 +62,8 @@
                             @endforeach
                         </tbody>
                       </table>
+                      <br/>
+                      {{ $jemaats->links() }}
                 </div>
             </div>
         </div>

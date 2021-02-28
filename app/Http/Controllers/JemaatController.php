@@ -17,7 +17,7 @@ class JemaatController extends Controller
      */
     public function index()
     {
-        $jemaats = Jemaat::all();
+        $jemaats = Jemaat::paginate(5);
         return view('master.jemaat.index', ['jemaats' => $jemaats]);
     }
 
