@@ -1,7 +1,17 @@
 TODO
+Mengerjakan Data Master Keluarga F|P
+Mengerjakan Data Master Jemaat F
+Mengerjakan Data Master Sintua C|R|U|D|F|P
+Mengerjakan Data Master User C|R|U|D|F|P
+Mengerjakan Data Transaksi Baptis/Sidi C|R|U|D|F|P
+Mengerjakan Data Transaksi Jemaat baru C|R|U|D|F|P
+Mengerjakan Data Transaksi Jemaat lahir C|R|U|D|F|P
+Pengkodean kodeJemaat Autocreate by app
 
+DONE
 1. Periksa menu dan cocokan dengan yang ada di proposal
 2. Rubah menu sesuai dengan proposal
-3. Mengerjakan Data Master Sintua
-4. Mengerjakan Data Master User
-5. Mengerjakan Data Transaksi
+3. Sugestion pakerjaan api/pekerjaan
+4. Mengerjakan Pagination => Jemaat
+5. Mengerjakan Data Master Sektor C|R|U|D
+6. Mengerjakan Data Master Jemaat C|R|U|D||P
