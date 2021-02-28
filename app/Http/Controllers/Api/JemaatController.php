@@ -9,59 +9,135 @@ use Response;
 
 class JemaatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $limit = 5;
+
     public function index(Request $request)
     {
-        $jemaat=Jemaat::where('nama', 'like', "%$request->hint%")->limit(5)->get();
+        $jemaat=Jemaat::where('nama', 'like', "%$request->hint%")->limit($this->limit)->get();
 	    return Response::json($jemaat,200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         //
+    }
+
+    
+    public function pekerjaan(Request $request)
+    {
+        $listPekerjaan = [
+            'Belum / Tidak Bekerja',
+            'Mengurus Rumah Tangga',
+            'Pelajar / Mahasiswa',
+            'Pensiunan',
+            'Pegawai Negeri Sipil',
+            'Tentara Nasional Indonesia',
+            'Kepolisian RI',
+            'Perdagangan',
+            'Petani / Pekebun',
+            'Peternak',
+            'Nelayan / Perikanan',
+            'Industri',
+            'Konstruksi',
+            'Transportasi',
+            'Karyawan Swasta',
+            'Karyawan BUMN',
+            'Karyawan BUMD',
+            'Karyawan Honorer',
+            'Buruh Harian Lepas',
+            'Buruh Tani / Perkebunan',
+            'Buruh Nelayan / Perikanan',
+            'Buruh Peternakan',
+            'Pembantu Rumah Tangga',
+            'Tukang Cukur',
+            'Tukang Listrik',
+            'Tukang Batu',
+            'Tukang Kayu',
+            'Tukang Sol Sepatu',
+            'Tukang Las / Pandai Besi',
+            'Tukang Jahit',
+            'Penata Rambut',
+            'Penata Rias',
+            'Penata Busana',
+            'Mekanik',
+            'Tukang Gigi',
+            'Seniman',
+            'Tabib',
+            'Paraji',
+            'Perancang Busana',
+            'Penterjemah',
+            'Imam Masjid',
+            'Pendeta',
+            'Pastur',
+            'Wartawan',
+            'Ustadz / Mubaligh',
+            'Juru Masak',
+            'Promotor Acara',
+            'Anggota DPR-RI',
+            'Anggota DPD',
+            'Anggota BPK',
+            'Presiden',
+            'Wakil Presiden',
+            'Anggota Mahkamah Konstitusi',
+            'Anggota Kabinet / Kementerian',
+            'Duta Besar',
+            'Gubernur',
+            'Wakil Gubernur',
+            'Bupati',
+            'Wakil Bupati',
+            'Walikota',
+            'Wakil Walikota',
+            'Anggota DPRD Propinsi',
+            'Anggota DPRD Kabupaten / Kota',
+            'Dosen',
+            'Guru',
+            'Pilot',
+            'Pengacara',
+            'Notaris',
+            'Arsitek',
+            'Akuntan',
+            'Konsultan',
+            'Dokter',
+            'Bidan',
+            'Perawat',
+            'Apoteker',
+            'Psikiater / Psikolog',
+            'Penyiar Televisi',
+            'Penyiar Radio',
+            'Pelaut',
+            'Peneliti',
+            'Sopir',
+            'Pialang',
+            'Paranormal',
+            'Pedagang',
+            'Perangkat Desa',
+            'Kepala Desa',
+            'Biarawati',
+            'Wiraswasta'
+        ];
+
+        $result = preg_grep('~' . $request->hint . '~i', $listPekerjaan);
+        $limitOutout = array_slice($result, 0, $this->limit);
+        return response()->json($limitOutout);
     }
 }
