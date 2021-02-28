@@ -13,6 +13,8 @@ return [
     |
     */
 
+    'simpel_url' => env('SIMPEL_URL', ''),
+
     'name' => env('APP_NAME', 'SIMPEL HKI DAME'),
 
     /*
