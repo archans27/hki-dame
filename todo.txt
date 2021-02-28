@@ -1,0 +1,7 @@
+TODO
+
+1. Periksa menu dan cocokan dengan yang ada di proposal
+2. Rubah menu sesuai dengan proposal
+3. Mengerjakan Data Master Sintua
+4. Mengerjakan Data Master User
+5. Mengerjakan Data Transaksi

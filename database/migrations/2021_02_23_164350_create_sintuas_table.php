@@ -13,7 +13,7 @@ class CreateSintuasTable extends Migration
      */
     public function up()
     {
-        Schema::create('sintuas', function (Blueprint $table) {
+        Schema::create('sintua', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateSintuasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sintuas');
+        Schema::dropIfExists('sintua');
     }
 }
