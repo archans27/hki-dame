@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sintua;
+use App\Models\Sektor;
 use Illuminate\Http\Request;
 use DB;
 
@@ -24,9 +25,11 @@ class SintuaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, Sektor $sektor)
     {
-        //
+        return view('master.sintua.create', [
+            'sektors' => $sektor->all()
+        ]);
     }
 
     /**
@@ -37,7 +40,9 @@ class SintuaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'jemaat_id' => 'required|exists:jemaat,id',
+        ]);
     }
 
     /**
@@ -73,7 +78,9 @@ class SintuaController extends Controller
      */
     public function update(Request $request, Sintua $sintua)
     {
-        //
+        $request->validate([
+            'jemaat_id' => 'required|exists:jemaat,id',
+        ]);
     }
 
     /**
