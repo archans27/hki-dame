@@ -26,7 +26,8 @@ Route::group(['middleware' => 'auth'], function() {
         'jemaat' => \App\Http\Controllers\JemaatController::class,
         'keluarga' => \App\Http\Controllers\KeluargaController::class,
         'detailkeluarga' => \App\Http\Controllers\DetailKeluargaController::class,
-        'sektor' => \App\Http\Controllers\SektorController::class
+        'sektor' => \App\Http\Controllers\SektorController::class,
+        'sintua' => \App\Http\Controllers\SintuaController::class
     ]);
 });
 require __DIR__.'/auth.php';

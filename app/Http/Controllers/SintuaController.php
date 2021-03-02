@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sintua;
 use Illuminate\Http\Request;
+use DB;
 
 class SintuaController extends Controller
 {
@@ -14,7 +15,17 @@ class SintuaController extends Controller
      */
     public function index()
     {
-        //
+        $sintuas = DB::table('sintua')
+            ->select('jemaat.nama AS nama', 'sektor.nama AS nama_sektor', 'sintua.id')
+            ->join('jemaat', 'sintua.jemaat_id' , '=', 'jemaat.id')
+            ->join('sektor', 'sintua.sektor_id' , '=', 'sektor.id')
+            ->orderBy('sektor.nama', 'asc')
+            ->get()
+        ;
+
+        //dd($sintuas);
+
+        return view('master.sintua.index', ['sintuas' => $sintuas]);
     }
 
     /**
