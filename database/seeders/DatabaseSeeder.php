@@ -8,6 +8,7 @@ use App\Models\Jemaat;
 use App\Models\Keluarga;
 use App\Models\DetailKeluarga;
 use App\Models\Sektor;
+use App\Models\Sintua;
 
 
 class DatabaseSeeder extends Seeder
@@ -24,9 +25,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
         ]);
 
-        //Keluarga
-        Keluarga::factory()->has( DetailKeluarga::factory()->has(Jemaat::factory())->count(3) )->count(4)->create();
-
         //SEKTOR
         for ($i=1; $i <= 13 ; $i++) { 
             $nama = "Sektor ".$i;
@@ -38,6 +36,14 @@ class DatabaseSeeder extends Seeder
                 'nama' => $nama,
             ]);
         }
+    
+        //Keluarga & Jemaat (hanya bisa dibuat setelah membuat sektor)
+        Keluarga::factory()->has( DetailKeluarga::factory()->has(Jemaat::factory())->count(3) )->count(13)->create();
+
+        //SINTUA (hanya bisa dilakukan setelah membuat keluarga & sektor)
+        $this->call([
+            SintuaSeeder::class,
+        ]);
 
     }
 }
