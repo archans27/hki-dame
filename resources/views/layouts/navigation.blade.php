@@ -49,7 +49,7 @@
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'keluarga') ? 'active' : '' }}" :active="0" href="{{url('/keluarga')}}">Keluarga</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'jemaat') ? 'active' : '' }}" :active="0" href="{{url('/jemaat')}}">Jemaat</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'sektor') ? 'active' : '' }}" :active="0" href="{{url('/sektor')}}">Sektor</x-responsive-nav-link>
-            <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Sintua</x-responsive-nav-link>
+            <x-responsive-nav-link class="{{ (request()->segment(1) == 'sintua') ? 'active' : '' }}" :active="0" href="{{url('/sintua')}}">Sintua</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">User</x-responsive-nav-link>
           </div>
         </div>
