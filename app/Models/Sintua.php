@@ -14,7 +14,7 @@ class Sintua extends Model
 
     public static function customGet($id = null){
         $sintuas = DB::table('sintua')
-            ->select('jemaat.nama AS nama', 'sektor.nama AS nama_sektor', 'sintua.id')
+            ->select('jemaat.nama AS nama', 'sektor.nama AS nama_sektor', 'sintua.*', 'jemaat.id AS jemaat_id')
             ->join('jemaat', 'sintua.jemaat_id' , '=', 'jemaat.id')
             ->join('sektor', 'sintua.sektor_id' , '=', 'sektor.id')
             ->orderBy('sektor.nama', 'asc')

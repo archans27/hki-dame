@@ -21,14 +21,18 @@
                     @enderror
 
 
-                    <input name="jemaat_id" id="jemaat_id" type="hidden" value="">
+                    <input name="jemaat_id" id="jemaat_id" type="hidden" value="{{$sintua->jemaat_id}}">
                     @error('jemaat_id')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
 
-                    <label for="wilayah" class="block text-black mt-3 font-bold">Nama Sektor</label>
-                    <input type="text" name="wilayah" value="{{old('wilayah',$sintua->nama_sektor)}}" placeholder="Nama Sektor" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-                    @error('wilayah')
+                    <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
+                    <select name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Sektor">
+                        @foreach ($sektors as $sektor)
+                            <option @if (old('sektor_id',$sintua->sektor_id) == $sektor->id) {{"selected"}}@endif value="{{$sektor->id}}" >{{$sektor->nama}}</option>
+                        @endforeach
+                    </select>
+                    @error('sektor_id')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
 

@@ -63,10 +63,10 @@ class SintuaController extends Controller
      * @param  \App\Models\Sintua  $sintua
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sintua $sintua)
+    public function edit(Sintua $sintua, Sektor $sektor)
     {
         $sintua = $sintua->customGet($sintua->id);
-        return view('master.sintua.edit', ['sintua' => $sintua]);
+        return view('master.sintua.edit', ['sintua' => $sintua, 'sektors' => $sektor->all()]);
     }
 
     /**
@@ -80,7 +80,11 @@ class SintuaController extends Controller
     {
         $request->validate([
             'jemaat_id' => 'required|exists:jemaat,id',
+            'sektor_id' => 'required|exists:sektor,id',
         ]);
+        $sintua->fill($request->all());
+        $sintua->save();
+        return redirect('/sintua/'.$sintua->id)->with('succeed', "Data $request->nama sudah tersimpan ke database");
     }
 
     /**
@@ -91,6 +95,7 @@ class SintuaController extends Controller
      */
     public function destroy(Sintua $sintua)
     {
-        //
+        $sintua->delete();
+        return redirect('/sintua/')->with('succeed', "Data sintua sudah dihapus dari database");
     }
 }
