@@ -15,6 +15,8 @@ class CreateSintuasTable extends Migration
     {
         Schema::create('sintua', function (Blueprint $table) {
             $table->id();
+            $table->string('jemaat_id');
+            $table->string('sektor_id');
             $table->timestamps();
         });
     }
