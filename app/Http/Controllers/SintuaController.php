@@ -15,16 +15,7 @@ class SintuaController extends Controller
      */
     public function index()
     {
-        $sintuas = DB::table('sintua')
-            ->select('jemaat.nama AS nama', 'sektor.nama AS nama_sektor', 'sintua.id')
-            ->join('jemaat', 'sintua.jemaat_id' , '=', 'jemaat.id')
-            ->join('sektor', 'sintua.sektor_id' , '=', 'sektor.id')
-            ->orderBy('sektor.nama', 'asc')
-            ->get()
-        ;
-
-        //dd($sintuas);
-
+        $sintuas = Sintua::customGet();
         return view('master.sintua.index', ['sintuas' => $sintuas]);
     }
 
@@ -57,7 +48,8 @@ class SintuaController extends Controller
      */
     public function show(Sintua $sintua)
     {
-        //
+        $sintua = $sintua->customGet($sintua->id);
+        return view('master.sintua.show', ['sintua' => $sintua]);
     }
 
     /**
@@ -68,7 +60,8 @@ class SintuaController extends Controller
      */
     public function edit(Sintua $sintua)
     {
-        //
+        $sintua = $sintua->customGet($sintua->id);
+        return view('master.sintua.edit', ['sintua' => $sintua]);
     }
 
     /**
