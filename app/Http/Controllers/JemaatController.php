@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jemaat;
 use App\Models\Sektor;
 use App\Models\DetailKeluarga;
+use App\Models\Sintua;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 
@@ -61,9 +62,10 @@ class JemaatController extends Controller
         return redirect('/jemaat/'.$jemaat->id)->with('succeed', "Jemaat dengan nama $jemaat->nama sudah tersimpan ke database");
     }
 
-    public function destroy(Jemaat $jemaat, DetailKeluarga $detailKeluarga)
+    public function destroy(Jemaat $jemaat)
     {
-        $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $jemaat->id)->delete();
+        DetailKeluarga::where('jemaat_id', '=', $jemaat->id)->delete();
+        Sintua::where('jemaat_id', '=', $jemaat->id)->delete();
         $jemaat->delete();
         return redirect('/jemaat')->with('succeed', "Jemaat dengan nama $jemaat->nama sudah dihapus dari database");
     }
