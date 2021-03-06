@@ -23,11 +23,14 @@ Route::get('/dashboard', function () {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resources([
+        //DATA MASTER
         'jemaat' => \App\Http\Controllers\JemaatController::class,
         'keluarga' => \App\Http\Controllers\KeluargaController::class,
         'detailkeluarga' => \App\Http\Controllers\DetailKeluargaController::class,
         'sektor' => \App\Http\Controllers\SektorController::class,
-        'sintua' => \App\Http\Controllers\SintuaController::class
+        'sintua' => \App\Http\Controllers\SintuaController::class,
+        //DATA TRANSAKSIONAL
+        'jemaatBaru' => \App\Http\Controllers\JemaatBaruController::class
     ]);
 });
 require __DIR__.'/auth.php';
