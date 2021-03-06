@@ -14,14 +14,17 @@ class Jemaat extends Model
 
     public $incrementing = false;
     protected $table = 'jemaat';
-    protected $attributes = ['hidup' => true];
     protected $guarded = ['id'];
+    protected $attributes = [
+        'hidup' => true,
+        'temporary' => false,
+    ];
 
     protected static function booted()
     {
-        // static::addGlobalScope('hidup', function (Builder $builder) {
-        //     $builder->where('hidup', '=', true);
-        // });
+        static::addGlobalScope('temporary', function (Builder $builder) {
+            $builder->where('temporary', '=', false);
+        });
 
         static::creating(function ($model) {
             $model->id = Uuid::uuid4();

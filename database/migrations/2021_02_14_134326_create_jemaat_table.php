@@ -26,6 +26,7 @@ class CreateJemaatTable extends Migration
             $table->string('pekerjaan');
             $table->date('tanggal_anggota');
             $table->boolean('hidup');
+            $table->boolean('temporary');
             $table->string('foto')->nullable();
             $table->timestamps();
             //$table->foreignId('sektor_id');
