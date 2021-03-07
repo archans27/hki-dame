@@ -21,7 +21,7 @@ class CreateJemaatTable extends Migration
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
             $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
-            $table->string('nomor_telepon');
+            $table->string('nomor_telepon')->nullable();
             $table->enum('pendidikan', ['-', 'SD', 'SMP', 'SMA/SMK', 'DIPLOMA (D1, D2, D3)', 'SARJANA (D4, S1)', 'MAGISTER (S2)', 'DOKTORAL (S3)']);
             $table->string('pekerjaan');
             $table->date('tanggal_anggota');
@@ -29,9 +29,6 @@ class CreateJemaatTable extends Migration
             $table->boolean('temporary');
             $table->string('foto')->nullable();
             $table->timestamps();
-            //$table->foreignId('sektor_id');
-            //$table->string('alamat_rumah');
-            //$table->enum('status_rumah', ['Tetap', 'Sementara']);
         });
     }
 
