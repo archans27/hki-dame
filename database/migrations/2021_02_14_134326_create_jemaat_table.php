@@ -14,7 +14,7 @@ class CreateJemaatTable extends Migration
     public function up()
     {
         Schema::create('jemaat', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->string('no_anggota');
             $table->string('nama');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);

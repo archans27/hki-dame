@@ -14,7 +14,7 @@ class DetailKeluarga extends Migration
     public function up()
     {
         Schema::create('detail_keluarga', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->foreignId('keluarga_id');
             $table->foreignId('jemaat_id');
             $table->enum('hubungan', ['Suami', 'Istri', 'Anak', 'Menantu', 'Cucu', 'Orang Tua', 'Mertua', 'Famili Lain'])->nullable();

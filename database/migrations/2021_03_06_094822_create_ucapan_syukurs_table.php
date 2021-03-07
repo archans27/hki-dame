@@ -14,14 +14,14 @@ class CreateUcapanSyukursTable extends Migration
     public function up()
     {
         Schema::create('ucapan_syukur', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('acara');
-            $table->integer('record');
-            $table->integer('gereja ')->nullable();
-            $table->integer('pendeta')->nullable();
-            $table->integer('majelis')->nullable();
-            $table->integer('guru_huria')->nullable();
-            $table->integer('pengembangan')->nullable();
+            $table->uuid('record');
+            $table->integer('tk_gereja ')->nullable();
+            $table->integer('tk_pendeta')->nullable();
+            $table->integer('tk_majelis')->nullable();
+            $table->integer('tk_guru_huria')->nullable();
+            $table->integer('tk_pengembangan')->nullable();
             $table->date('tanggal');
             $table->timestamps();
         });

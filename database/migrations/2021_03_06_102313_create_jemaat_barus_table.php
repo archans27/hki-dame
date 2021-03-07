@@ -14,9 +14,9 @@ class CreateJemaatBarusTable extends Migration
     public function up()
     {
         Schema::create('jemaat_baru', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->uuid('jemaat_id');
-            $table->unsignedBigInteger('ucapan_syukur_id');
+            $table->uuid('ucapan_syukur_id');
             $table->string('gereja_terakhir')->nullable();
             $table->string('gereja_lama_lain')->nullable();
             $table->integer('persembahan_tahunan')->nullable();
