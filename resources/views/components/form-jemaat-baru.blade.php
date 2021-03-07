@@ -1,41 +1,65 @@
 @props(['jemaat'])
 
-<label for="alamat_jemaat_baru" class="block text-black mt-3 font-bold">Alamat:</label>
-<input type="text" name="alamat_jemaat_baru" value="{{old('alamat_jemaat_baru',$jemaat->alamat_jemaat_baru  ?? '')}}" placeholder="Alamat jemaat baru" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-@error('alamat_jemaat_baru')
-    <div class="text-red-500">{{ $message }}</div>
-@enderror
+<fieldset class="border-solid border-blue-500 border-2 px-4 pb-4 mt-5">
+    <legend class="px-2 text-lg">Data permohonan jemaat baru:</legend>
 
-<label for="gereja_terkahir" class="block text-black mt-3 font-bold">Terakhir sebagai Anggota/Majelis di Gereja:</label>
-<input type="text" name="gereja_terkahir" value="{{old('gereja_terkahir',$jemaat->gereja_terkahir  ?? '')}}" placeholder="Gereja terakhir" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-@error('gereja_terkahir')
-    <div class="text-red-500">{{ $message }}</div>
-@enderror
+    <label for="alamat_jemaat_baru" class="block text-black mt-3 font-bold">Alamat:</label>
+    <input type="text" name="alamat_jemaat_baru" value="{{old('alamat_jemaat_baru',$jemaat->alamat_jemaat_baru  ?? '')}}" placeholder="Alamat jemaat baru" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('alamat_jemaat_baru')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
 
-<label for="gereja_lama_lain" class="block text-black mt-3 font-bold">Pernah menjadi Anggota/Majelis di Gereja:</label>
-<input type="text" name="gereja_lama_lain" value="{{old('gereja_lama_lain',$jemaat->gereja_lama_lain  ?? '')}}" placeholder="Gereja lain" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-@error('gereja_lama_lain')
-    <div class="text-red-500">{{ $message }}</div>
-@enderror
+    <label for="gereja_terakhir" class="block text-black mt-3 font-bold">Terakhir sebagai Anggota/Majelis di Gereja:</label>
+    <input type="text" name="gereja_terakhir" value="{{old('gereja_terakhir',$jemaat->gereja_terakhir  ?? '')}}" placeholder="Gereja terakhir" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('gereja_terakhir')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
 
-<label for="persembahan_tahunan" class="block text-black mt-3 font-bold">Bersedia memberikan persembahan tahunan minimal:</label>
-<input type="text" name="persembahan_tahunan" value="{{old('persembahan_tahunan',$jemaat->persembahan_tahunan  ?? '')}}" placeholder="Persembahan tahunan minimal (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-@error('persembahan_tahunan')
-    <div class="text-red-500">{{ $message }}</div>
-@enderror
+    <label for="gereja_lama_lain" class="block text-black mt-3 font-bold">Pernah menjadi Anggota/Majelis di Gereja:</label>
+    <input type="text" name="gereja_lama_lain" value="{{old('gereja_lama_lain',$jemaat->gereja_lama_lain  ?? '')}}" placeholder="Gereja lain" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('gereja_lama_lain')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
 
-{{-- SUDAH ADA DI DATA UTAMA JEMAAT
-    <label for="tanggal_jemaat_baru" class="block text-black mt-3 font-bold">Menjadi anggota HKI dengan sukarela serta berdasarkan keyakinan sendiri pada tanggal:</label>
-<input type="text" id="tanggal_jemaat_baru" name="tanggal_jemaat_baru  ?? ''" value="{{old('tanggal_jemaat_baru',$jemaat->tanggal_jemaat_baru)}}" placeholder="Tanggal lahir" class="bg-gray-100 rounded-md" autocomplete="off" />
-@error('tanggal_jemaat_baru')
-    <div class="text-red-500">{{ $message }}</div>
-@enderror
-<script>
-    const pickerTanggalJemaatBaru = new Pikaday({
-        field: document.getElementById('tanggal_jemaat_baru'),
-        yearRange: [1900, 2100],
-        format: 'DD-MM-YYYY',
-    })
-    pickerTanggalJemaatBaru.getMoment()
-</script>
---}}
+    <label for="persembahan_tahunan" class="block text-black mt-3 font-bold">Bersedia memberikan persembahan tahunan minimal:</label>
+    <input type="text" name="persembahan_tahunan" value="{{old('persembahan_tahunan',$jemaat->persembahan_tahunan  ?? '')}}" placeholder="Persembahan tahunan minimal (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('persembahan_tahunan')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+</fieldset>
+
+<fieldset class="border-solid border-blue-500 border-2 px-4 pb-4 mt-5">
+    <legend class="px-2 text-lg">Data ucapan syukur jemaat baru:</legend>
+
+    <label for="tk_gereja" class="block text-black mt-3 font-bold">Ucapan syukur untuk Gereja:</label>
+    <input type="text" name="tk_gereja" value="{{old('tk_gereja',$jemaat->tk_gereja  ?? '')}}" placeholder="Ucapan syukur untuk Gereja (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('tk_gereja')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
+    <label for="tk_pendeta" class="block text-black mt-3 font-bold">Ucapan syukur untuk Pendeta:</label>
+    <input type="text" name="tk_pendeta" value="{{old('tk_pendeta',$jemaat->tk_pendeta  ?? '')}}" placeholder="Ucapan syukur untuk Pendeta (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('tk_pendeta')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
+    <label for="tk_majelis" class="block text-black mt-3 font-bold">Ucapan syukur untuk Majelis:</label>
+    <input type="text" name="tk_majelis" value="{{old('tk_majelis',$jemaat->tk_majelis  ?? '')}}" placeholder="Ucapan syukur untuk Majelis (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('tk_majelis')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
+    <label for="tk_guru_huria" class="block text-black mt-3 font-bold">Ucapan syukur untuk Guru Huria:</label>
+    <input type="text" name="tk_guru_huria" value="{{old('tk_guru_huria',$jemaat->tk_guru_huria  ?? '')}}" placeholder="Ucapan syukur untuk Guru Huria (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('tk_guru_huria')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
+    <label for="tk_pengembangan" class="block text-black mt-3 font-bold">Ucapan syukur untuk pengembangan:</label>
+    <input type="text" name="tk_pengembangan" value="{{old('tk_pengembangan',$jemaat->tk_pengembangan  ?? '')}}" placeholder="Ucapan syukur untuk pengembangan (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('tk_pengembangan')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
+</fieldset>
+
