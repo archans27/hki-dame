@@ -11,6 +11,7 @@ class JemaatBaru extends Model
     use HasFactory;
     protected $table = 'jemaat_baru';
     protected $guarded = [''];
+    public $incrementing = false;
 
     public function jemaat()
     {

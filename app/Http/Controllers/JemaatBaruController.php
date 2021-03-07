@@ -23,7 +23,6 @@ class JemaatBaruController extends Controller
             ->distinct()
             ->paginate(5)
         ;
-        //dd($jemaatBarus);
         return view('master.jemaatBaru.index', ['jemaatBarus' => $jemaatBarus]);
     }
 
@@ -39,13 +38,41 @@ class JemaatBaruController extends Controller
 
     public function store(\App\Http\Requests\StoreJemaatBaruRequest $request)
     {
-        //dd($request);
         $validated = $request->validated();
-        //dd($validated);
 
-        $saved = $this->saveJemaatBaru($validated);
-        return redirect('/jemaatBaru/'.$saved['jemaatBaru']->idJemaatBaru)
-            ->with('succeed', "Jemaat Baru dengan nama ".$saved['jemaat']->nama." sudah tersimpan ke database")
+        $uuid = array(
+            'jemaatBaruId' => (string) Str::orderedUuid(),
+            'ucapanSyukurId' => (string) Str::orderedUuid(),
+        );
+
+        $jemaat = new Jemaat();
+        $jemaat = $jemaat->fill($validated);
+        $jemaat->save();
+
+        $ucapanSyukur = UcapanSyukur::create([
+            "id" => $uuid['ucapanSyukurId'],
+            "acara" => 'jemaatBaru',
+            "record" => $uuid['jemaatBaruId'],
+            "tk_gereja" => $validated['tk_gereja'],
+            "tk_pendeta" => $validated['tk_pendeta'],
+            "tk_majelis" => $validated['tk_majelis'],
+            "tk_guru_huria" => $validated['tk_guru_huria'],
+            "tk_pengembangan" => $validated['tk_pengembangan'],
+            "tanggal" => $validated['tanggal_anggota']
+        ]);
+
+        $jemaatBaru = JemaatBaru::create([
+            "id" => $uuid['jemaatBaruId'],
+            "jemaat_id" => $jemaat['id'],
+            "ucapan_syukur_id" => $uuid['ucapanSyukurId'],
+            "alamat_jemaat_baru" => $validated['alamat_jemaat_baru'],
+            "gereja_terakhir" => $validated['gereja_terakhir'],
+            "gereja_lama_lain" => $validated['gereja_lama_lain'],
+            "persembahan_tahunan" => $validated['persembahan_tahunan'],
+        ]);
+
+        return redirect('/jemaatBaru/')
+            ->with('succeed', "Jemaat Baru dengan nama ".$jemaat->nama." sudah tersimpan ke database")
         ;
     }
 
@@ -60,7 +87,6 @@ class JemaatBaruController extends Controller
     public function edit($id, Sektor $sektor)
     {
         $jemaatBaru = JemaatBaru::customGet($id);
-
         return view('master.jemaatBaru.edit', [
             'jemaat' => $jemaatBaru,
             'sektors' => $sektor->all()
@@ -72,10 +98,15 @@ class JemaatBaruController extends Controller
     {
         $validated = $request->validated();
 
-        dd(new UcapanSyukur);
-        $saved = $this->saveJemaatBaru($validated);
-        return redirect('/jemaatBaru/'.$saved['jemaatBaru']->idJemaatBaru)
-            ->with('succeed', "Perubahan Jemaat baru dengan nama ".$saved['jemaat']->nama." sudah tersimpan ke database")
+        $jemaatBaru = JemaatBaru::find($id)->fill($validated);
+        $jemaatBaru->save();
+        $jemaat = Jemaat::find($jemaatBaru->jemaat_id)->fill($validated);
+        $jemaat->save();
+        $ucapanSyukur = UcapanSyukur::find($jemaatBaru->ucapan_syukur_id)->fill($validated);
+        $ucapanSyukur->save();
+
+        return redirect("/jemaatBaru/$id")
+            ->with('succeed', "Perubahan Jemaat baru dengan nama ".$jemaat->nama." sudah tersimpan ke database")
         ;
     }
 
@@ -94,12 +125,16 @@ class JemaatBaruController extends Controller
         ;
     }
 
-    private function saveJemaatBaru($validated, $ucapanSyukurId = null, $jemaatBaruId = null)
+    private function saveJemaatBaru($validated, $jemaatBaruId = null)
     {
         $uuid = array(
-            'ucapanSyukurId' => $ucapanSyukurId ?? (string) Str::orderedUuid(),
-            'jemaatBaruId' => $jemaatBaruId ?? (string) Str::orderedUuid(),
+            'jemaatBaruId' => (string) Str::orderedUuid(),
+            'ucapanSyukurId' => (string) Str::orderedUuid(),
         );
+
+        $jemaat = new Jemaat();
+        $jemaat = $jemaat->fill($validated);
+        $jemaat->save();
 
         $ucapanSyukur = UcapanSyukur::create([
             "id" => $uuid['ucapanSyukurId'],
