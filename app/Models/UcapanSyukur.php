@@ -10,4 +10,5 @@ class UcapanSyukur extends Model
     use HasFactory;
     protected $table = 'ucapan_syukur';
     protected $guarded = [''];
+    public $incrementing = false;
 }
