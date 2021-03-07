@@ -17,7 +17,7 @@ class CreateUcapanSyukursTable extends Migration
             $table->uuid('id')->primary();
             $table->string('acara');
             $table->uuid('record');
-            $table->integer('tk_gereja ')->nullable();
+            $table->integer('tk_gereja')->nullable();
             $table->integer('tk_pendeta')->nullable();
             $table->integer('tk_majelis')->nullable();
             $table->integer('tk_guru_huria')->nullable();
