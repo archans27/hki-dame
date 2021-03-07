@@ -39,8 +39,10 @@ class JemaatBaruController extends Controller
 
     public function store(\App\Http\Requests\StoreJemaatBaruRequest $request)
     {
-        dd($request['tk_gereja']);
+        //dd($request);
         $validated = $request->validated();
+        //dd($validated);
+
         $saved = $this->saveJemaatBaru($validated);
         return redirect('/jemaatBaru/'.$saved['jemaatBaru']->idJemaatBaru)
             ->with('succeed', "Jemaat Baru dengan nama ".$saved['jemaat']->nama." sudah tersimpan ke database")
@@ -98,19 +100,6 @@ class JemaatBaruController extends Controller
             'ucapanSyukurId' => $ucapanSyukurId ?? (string) Str::orderedUuid(),
             'jemaatBaruId' => $jemaatBaruId ?? (string) Str::orderedUuid(),
         );
-        $jemaat = Jemaat::create([
-            "nama" => $validated['nama'],
-            "no_anggota" => $validated['no_anggota'],
-            "jenis_kelamin" => $validated['jenis_kelamin'],
-            "tempat_lahir" => $validated['tempat_lahir'],
-            "tanggal_lahir" =>  $validated['tanggal_lahir'],
-            "golongan_darah" => $validated['golongan_darah'],
-            "pendidikan" => $validated['pendidikan'],
-            "pekerjaan" => $validated['pekerjaan'],
-            "tanggal_anggota" => $validated['tanggal_anggota'],
-            "hidup" => $validated['hidup'],
-            "nomor_telepon" => $validated['nomor_telepon'],
-        ]);
 
         $ucapanSyukur = UcapanSyukur::create([
             "id" => $uuid['ucapanSyukurId'],
