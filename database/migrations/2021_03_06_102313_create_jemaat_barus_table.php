@@ -17,9 +17,8 @@ class CreateJemaatBarusTable extends Migration
             $table->id();
             $table->uuid('jemaat_id');
             $table->unsignedBigInteger('ucapan_syukur_id');
-            $table->string('asal_gereja')->nullable();
             $table->string('gereja_terakhir')->nullable();
-            $table->date('tanggal');
+            $table->string('gereja_lama_lain')->nullable();
             $table->integer('persembahan_tahunan')->nullable();
             $table->timestamps();
 

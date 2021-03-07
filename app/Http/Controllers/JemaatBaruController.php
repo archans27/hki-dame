@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\JemaatBaru;
+use App\Models\Jemaat;
+use App\Models\Sektor;
 use Illuminate\Http\Request;
 
 class JemaatBaruController extends Controller
@@ -22,9 +24,12 @@ class JemaatBaruController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Jemaat $jemaat, Sektor $sektor)
     {
-        //
+        return view('master.jemaatBaru.create', [
+            'jemaat' => $jemaat,
+            'sektors' => $sektor->all()
+        ]);
     }
 
     /**
@@ -35,7 +40,7 @@ class JemaatBaruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
