@@ -45,6 +45,7 @@ class StoreJemaatBaruRequest extends FormRequest
             "tk_majelis" => 'nullable|numeric|min:0',
             "tk_guru_huria" => 'nullable|numeric|min:0',
             "tk_pengembangan" => 'nullable|numeric|min:0',
+            'temporary' => ['nullable', 'boolean'],
         ];
     }
 }

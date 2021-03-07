@@ -63,3 +63,14 @@
 
 </fieldset>
 
+@if (Auth::user()->role == 'super')
+    <label for="temporary" class="block text-black mt-3 font-bold">Verifikasi</label>
+    <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="temporary" value="1" @if (old('temporary', $jemaat->temporary) == true) {{"checked"}}@endif />
+    <span class="ml-2 text-gray-700">Belum terferifikasi</span>
+    <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="temporary" value="0" @if (old('temporary',$jemaat->temporary) == false) {{"checked"}}@endif />
+    <span class="ml-2 text-gray-700">Terferifikasi</span>
+    @error('hidup')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+@endif
+
