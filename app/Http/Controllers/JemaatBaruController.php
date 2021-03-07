@@ -9,6 +9,7 @@ use App\Models\UcapanSyukur;
 use App\Models\DetailKeluarga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 
@@ -44,6 +45,9 @@ class JemaatBaruController extends Controller
             'jemaatBaruId' => (string) Str::orderedUuid(),
             'ucapanSyukurId' => (string) Str::orderedUuid(),
         );
+        if (Auth::user()->role != 'super') {
+            $validated['temporary'] = true;
+        }
 
         $jemaat = new Jemaat();
         $jemaat = $jemaat->fill($validated);
@@ -97,10 +101,9 @@ class JemaatBaruController extends Controller
     public function update(\App\Http\Requests\StoreJemaatBaruRequest $request, $id)
     {
         $validated = $request->validated();
-
         $jemaatBaru = JemaatBaru::find($id)->fill($validated);
         $jemaatBaru->save();
-        $jemaat = Jemaat::find($jemaatBaru->jemaat_id)->fill($validated);
+        $jemaat = Jemaat::withoutGlobalScope('temporary')->find($jemaatBaru->jemaat_id)->fill($validated);
         $jemaat->save();
         $ucapanSyukur = UcapanSyukur::find($jemaatBaru->ucapan_syukur_id)->fill($validated);
         $ucapanSyukur->save();
@@ -117,7 +120,7 @@ class JemaatBaruController extends Controller
         $jemaatBaru->delete();
         UcapanSyukur::destroy($jemaatBaru->ucapan_syukur_id);
         DetailKeluarga::where('jemaat_id', '=', $jemaatId)->delete();
-        $jemaat = Jemaat::find($jemaatId);
+        $jemaat = Jemaat::withoutGlobalScope('temporary')->find($jemaatId);
         $jemaat->delete();
 
         return redirect('/jemaatBaru/')
