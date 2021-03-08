@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function() {
         'detailkeluarga' => \App\Http\Controllers\DetailKeluargaController::class,
         'sektor' => \App\Http\Controllers\SektorController::class,
         'sintua' => \App\Http\Controllers\SintuaController::class,
+        'user' => \App\Http\Controllers\UserController::class,
         //DATA TRANSAKSIONAL
         'jemaatBaru' => \App\Http\Controllers\JemaatBaruController::class
     ]);
