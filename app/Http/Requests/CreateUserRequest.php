@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreUserRequest extends FormRequest
+class CreateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,11 @@ class StoreUserRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('user')->id;
         return [
             'name' => ['required','min:3', 'max:50'],
             'email' => ['email','unique:users,email,'.$id],
             'role' => ['required', Rule::in(['super', 'admin'])],
-            'password' => ['nullable', 'confirmed', 'min:6']
+            'password' => ['required', 'confirmed', 'min:6']
         ];
     }
 }
