@@ -24,13 +24,13 @@ class JemaatBaruController extends Controller
             ->distinct()
             ->paginate(5)
         ;
-        return view('master.jemaatBaru.index', ['jemaatBarus' => $jemaatBarus]);
+        return view('transaksi.jemaatBaru.index', ['jemaatBarus' => $jemaatBarus]);
     }
 
 
     public function create(Jemaat $jemaat, Sektor $sektor)
     {
-        return view('master.jemaatBaru.create', [
+        return view('transaksi.jemaatBaru.create', [
             'jemaat' => $jemaat,
             'sektors' => $sektor->all()
         ]);
@@ -84,14 +84,14 @@ class JemaatBaruController extends Controller
     public function show($id)
     {
         $jemaatBaru = JemaatBaru::customGet($id);
-        return view('master.jemaatBaru.show', [ 'jemaatBaru' => $jemaatBaru ]);
+        return view('transaksi.jemaatBaru.show', [ 'jemaatBaru' => $jemaatBaru ]);
     }
 
 
     public function edit($id, Sektor $sektor)
     {
         $jemaatBaru = JemaatBaru::customGet($id);
-        return view('master.jemaatBaru.edit', [
+        return view('transaksi.jemaatBaru.edit', [
             'jemaat' => $jemaatBaru,
             'sektors' => $sektor->all()
         ]);
