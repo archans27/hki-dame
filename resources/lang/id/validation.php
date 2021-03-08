@@ -77,9 +77,9 @@ return [
         'array' => 'The :attribute must not have more than :value items.',
     ],
     'max' => [
-        'numeric' => 'The :attribute may not be greater than :max.',
+        'numeric' => 'Isian :attribute tidak boleh lebih besar dari :max.',
         'file' => 'The :attribute may not be greater than :max kilobytes.',
-        'string' => 'The :attribute may not be greater than :max characters.',
+        'string' => 'Isian :attribute tidak dapat mengandung lebih daru :max karakter.',
         'array' => 'The :attribute may not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -87,7 +87,7 @@ return [
     'min' => [
         'numeric' => 'Isisn :attribute tidak boleh lebih kecil dari :min.',
         'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'string' => 'Isian :attribute setidaknya mengandung :min karakter.',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'multiple_of' => 'The :attribute must be a multiple of :value.',
