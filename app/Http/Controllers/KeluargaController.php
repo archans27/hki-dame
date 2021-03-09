@@ -165,4 +165,15 @@ class KeluargaController extends Controller
     {
         //
     }
+
+    public function gantiKepalaKeluarga(Request $request)
+    {
+        $jemaat = Jemaat::find($request->calon_kepala_keluarga_id);
+
+        $keluarga = Keluarga::find($request->calon_keluarga_id);
+        $keluarga->kepala_keluarga_id = $jemaat->id;
+        $keluarga->kepala_keluarga = $jemaat->nama;
+        $keluarga->save();
+        return redirect()->back()->with('succeed', "Data kepala keluarga telah diubah menjadi $jemaat->nama ");
+    }
 }
