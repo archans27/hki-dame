@@ -17,7 +17,14 @@
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
     <style>
       .gradient {
+        background: linear-gradient(90deg, #990066 0%, #9900ff 100%);
+        /* background: linear-gradient(90deg, #0820fc 0%, #00d6ff 100%); */
+      }
+      .gradient-blue {
         background: linear-gradient(90deg, #0820fc 0%, #00d6ff 100%);
+      }
+      .center{
+        display: block; margin-left: auto; margin-right: auto;
       }
     </style>
   </head>
@@ -28,8 +35,8 @@
       <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div class="pl-4 flex items-center">
           <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
-            <!--Icon from: http://www.potlabicons.com/ -->
-            HKI Dame - Bandung
+            <img src="{{ asset('storage/rounded-logo.png')}}" width="30px" class="center float-left mt-1" alt="rounded-logo-hki-dame">
+            &nbsp; HKI Dame - Bandung
           </a>
         </div>
         <div class="block lg:hidden pr-4">
@@ -74,9 +81,9 @@
           </button> --}}
         </div>
         <!--Right Col-->
-        {{-- <div class="w-full md:w-3/5 py-6 text-center">
-          <img class="w-full md:w-4/5 z-50" src="hero.png" />
-        </div> --}}
+        <div class="w-full md:w-3/5 py-6 text-center align-center">
+          <img class="center" src="{{asset('storage/logo.png')}}" width="100" alt="logo-gereja-hki-dame">
+        </div>
       </div>
     </div>
     <div class="relative -mt-12 lg:-mt-24">
@@ -165,6 +172,7 @@
       </div>
     </section>
     <!-- Change the colour #f8fafc to match the previous section colour -->
+    <div class="gradient-blue">
     <svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g transform="translate(-1.000000, -14.000000)" fill-rule="nonzero">
@@ -186,7 +194,7 @@
         </g>
       </g>
     </svg>
-    <section class="container mx-auto text-left py-3 mb-6">
+    <section class="container mx-auto text-left py-3">
       <div class="flex flex-wrap">
         <div class="w-5/6 sm:w-1/2 p-6">
           <br/><br />
@@ -204,6 +212,7 @@
         </div>
       </div>
     </section>
+    </div>
     
     <script>
       var scrollpos = window.scrollY;
