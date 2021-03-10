@@ -16,15 +16,16 @@ class JemaatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jemaats = Jemaat::paginate(20);
-        return view('master.jemaat.index', ['jemaats' => $jemaats]);
+        $search = $request->search ?? '';
+        $jemaats = Jemaat::where('nama', 'like', "%$search%")->paginate(20)->appends($request->all());
+        return view('master.jemaat.index', ['jemaats' => $jemaats, 'filter' => $request]);
     }
 
 
     public function create(Jemaat $jemaat, Sektor $sektor)
-    {
+    {   
         return view('master.jemaat.create', [
             'jemaat' => $jemaat,
             'sektors' => $sektor->all()

@@ -7,9 +7,15 @@
     
     <x-succeed-flash />
 
-    <div class="py-5" style="clear: both">
+    <div class="py-5" style="clear:both">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+              
+              <form action="{{route('jemaat.index')}}" method="get" class="float-left m-5">
+                <label for="search" class="block text-black mt-3 font-bold float-left mr-2">Pencarian</label>
+                <input type="text" name="search" value="{{old('search',$filter->search)}}" placeholder="Pencarian" class="float-right rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-60 sm:w-full"/>                
+              </form>
+
               
               <form action="{{route('jemaat.create')}}" method="get" class="float-right m-5">
                 <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
