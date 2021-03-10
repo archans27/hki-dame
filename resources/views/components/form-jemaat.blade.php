@@ -45,21 +45,6 @@
     <div class="text-red-500">{{ $message }}</div>
 @enderror
 
-{{-- <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat rumah</label>
-<input type="text" name="alamat_rumah" value="{{old('alamat_rumah', $jemaat->alamat_rumah)}}" placeholder="Tempat lahir jemaat" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-@error('alamat_rumah')
-    <div class="text-red-500">{{ $message }}</div>
-@enderror
-
-<label for="status_rumah" class="block text-black mt-3 font-bold">Status tempat tinggal</label>
-<input type="radio" class="form-radio h-5 w-5 text-gray-600" name="status_rumah" value="Tetap" @if (old('status_rumah',$jemaat->status_rumah) == "Tetap") {{"checked"}}@endif />
-<span class="ml-2 text-gray-700">Tetap</span>
-<input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="status_rumah" value="Sementara" @if (old('status_rumah',$jemaat->status_rumah) == "Sementara") {{"checked"}}@endif />
-<span class="ml-2 text-gray-700">Sementara</span>
-@error('status_rumah')
-    <div class="text-red-500">{{ $message }}</div>
-@enderror --}}
-
 <label for="nomor_telepon" class="block text-black mt-3 font-bold">Nomor telepon</label>
 <input type="text" name="nomor_telepon" value="{{old('no_telepon',$jemaat->nomor_telepon)}}" placeholder="Nomor telepon" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
 @error('nomor_telepon')
@@ -81,22 +66,28 @@
 @error('pendidikan')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
+{{-- ======================================= --}}
 
-<label for="pekerjaan" class="block text-black mt-3 font-bold">Pekerjaan</label>
-<input type="text" name="pekerjaan" value="{{old('pekerjaan', $jemaat->pekerjaan)}}" placeholder="Pekerjaan" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+<div class="container">
+    <label for="pekerjaan" class="block text-black mt-3 font-bold">Pekerjaan</label>
+    <input id="pekerjaan" type="text" name="pekerjaan" value="{{old('pekerjaan')}}" placeholder="Pekerjaan (auto sugestion)" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
+    <div class="row z-10" id="match-list"></div>
+    @error('pekerjaan')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+    @error('pekerjaan_api')
+        <div class="text-red-500">data pekerjaan tidak diambil dari auto sugest</div>
+    @enderror
+</div>
+<input name="pekerjaan_api" id="pekerjaan_api" type="hidden" value="">
+
+{{-- <label for="pekerjaan" class="block text-black mt-3 font-bold">Pekerjaan</label>
+<input type="text" id="pekerjaan" name="pekerjaan" value="{{old('pekerjaan', $jemaat->pekerjaan)}}" placeholder="Pekerjaan" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
 @error('pekerjaan')
     <div class="text-red-500">{{ $message }}</div>
-@enderror
-
-{{-- <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
-<select name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Regular input">
-    @foreach ($sektors as $sektor)
-        <option @if (old('sektor_id', $jemaat->sektor_id) == $sektor->id) {{"selected"}}@endif value="{{$sektor->id}}" >{{$sektor->nama}}</option>
-    @endforeach
-</select>
-@error('sektor_id')
-    <div class="text-red-500">{{ $message }}</div>
 @enderror --}}
+
+{{-- ======================================= --}}
 
 <label for="tanggal_anggota" class="block text-black mt-3 font-bold">Tanggal menjadi anggota</label>
 <input type="text" name="tanggal_anggota" id="tanggal-anggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota)}}" class="bg-gray-100 rounded-md" autocomplete="off" placeholder="Tanggal menjadi anggota"/>
@@ -125,4 +116,50 @@
         yearRange: [1900, 2100],
         format: 'YYYY-MM-DD',
     })
+    picker2.getMoment()
+
+    const matchList = document.getElementById("match-list");
+    const searchInput = document.getElementById("pekerjaan");
+    const pekerjaanApi = document.getElementById("pekerjaan_api");
+
+    const url = window.location.origin + '/api/pekerjaan/'
+    searchInput.oninput = async ()=> {
+        getPekerjaan();
+        pekerjaanApi.value = '';
+    }
+
+    const setSearchValue = (jemaatNama) => {
+        searchInput.value = jemaatNama;
+        pekerjaanApi.value = true;
+        matchList.innerHTML = '';
+    }
+    
+    //============================================================
+    const outputHtml = matches => {
+        if (matches.length>0){
+            const htmlFetched = matches.map(match => `
+                <div onclick="setSearchValue('${match}')" class="cursor-pointer p-2 bg-gray-200 hover:bg-gray-300 border border-gray-400">
+                    <p><strong>${match}</strong></p>
+                </div>
+            `).join('');
+            matchList.innerHTML = htmlFetched;
+        } else matchList.innerHTML = '';
+    }
+
+    async function getPekerjaan(){
+        var x = document.getElementById("pekerjaan");
+        if(x.value.length > 1){
+            x.value = x.value.toLowerCase();
+            const response = await fetch(url+x.value);
+            outputHtml(await response.json());
+        }
+        else matchList.innerHTML = '';
+    }
+
+    window.addEventListener('click', function(e){   
+        if (!document.getElementById('body').contains(e.target)){
+            matchList.innerHTML = '';
+        }
+    });
+
 </script>
