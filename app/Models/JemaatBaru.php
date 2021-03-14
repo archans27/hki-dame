@@ -21,9 +21,8 @@ class JemaatBaru extends Model
     public static function customGet($id = null)
     {
         $jemaatBaru = DB::table('jemaat_baru')
-            ->select('jemaat.*', 'ucapan_syukur.*', 'jemaat_baru.*', 'jemaat_baru.id AS idJemaatBaru')
+            ->select('jemaat.*', 'jemaat_baru.*', 'jemaat_baru.id AS idJemaatBaru')
             ->join('jemaat', 'jemaat.id', '=', 'jemaat_baru.jemaat_id')
-            ->join('ucapan_syukur', 'ucapan_syukur.id', '=', 'jemaat_baru.ucapan_syukur_id')
             ->distinct()
         ;
 

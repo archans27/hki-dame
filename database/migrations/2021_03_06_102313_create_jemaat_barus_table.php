@@ -24,7 +24,6 @@ class CreateJemaatBarusTable extends Migration
             $table->timestamps();
 
             $table->foreign('jemaat_id')->references('id')->on('jemaat');
-            $table->foreign('ucapan_syukur_id')->references('id')->on('ucapan_syukur');
         });
     }
 
