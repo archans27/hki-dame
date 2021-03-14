@@ -70,7 +70,7 @@
 
 <div class="container">
     <label for="pekerjaan" class="block text-black mt-3 font-bold">Pekerjaan</label>
-    <input id="pekerjaan" type="text" name="pekerjaan" value="{{old('pekerjaan')}}" placeholder="Pekerjaan (auto sugestion)" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
+    <input id="pekerjaan" type="text" name="pekerjaan" value="{{old('pekerjaan',$jemaat->pekerjaan)}}" placeholder="Pekerjaan (auto sugestion)" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
     <div class="row z-10" id="match-list"></div>
     @error('pekerjaan')
         <div class="text-red-500">{{ $message }}</div>
@@ -79,7 +79,14 @@
         <div class="text-red-500">data pekerjaan tidak diambil dari auto sugest</div>
     @enderror
 </div>
-<input name="pekerjaan_api" id="pekerjaan_api" type="hidden" value="">
+@php
+    $pekerjaanApi = false;
+    if($jemaat->pekerjaan)
+    {
+        $pekerjaanApi = true;
+    }
+@endphp
+<input name="pekerjaan_api" id="pekerjaan_api" type="hidden" value="{{$pekerjaanApi}}">
 
 {{-- <label for="pekerjaan" class="block text-black mt-3 font-bold">Pekerjaan</label>
 <input type="text" id="pekerjaan" name="pekerjaan" value="{{old('pekerjaan', $jemaat->pekerjaan)}}" placeholder="Pekerjaan" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
