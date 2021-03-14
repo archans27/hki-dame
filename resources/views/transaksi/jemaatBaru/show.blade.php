@@ -53,11 +53,11 @@
                     </fieldset>
                     <fieldset class="border-solid border-blue-500 border-2 px-4 rounded-md">
                         <legend class="px-2 text-lg">Ucapan Syukur:</legend>
-                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Gereja:</p><p>{{$jemaatBaru->tk_gereja}}</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Pendeta:</p><p>{{$jemaatBaru->tk_pendeta}}</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Majelis:</p><p>{{$jemaatBaru->tk_majelis}}</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Guru Huria:</p><p>{{$jemaatBaru->tk_guru_huria}}</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk pengembangan:</p><p>{{$jemaatBaru->tk_pengembangan}}</p><br/>
+                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Gereja:</p><p>{{$ucapanSyukur['gereja']}}</p><br/>
+                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Pendeta:</p><p>{{$ucapanSyukur['pendeta']}}</p><br/>
+                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Majelis:</p><p>{{$ucapanSyukur['majelis']}}</p><br/>
+                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Guru Huria:</p><p>{{$ucapanSyukur['guru_huria']}}</p><br/>
+                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk pengembangan:</p><p>{{$ucapanSyukur['pengembangan']}}</p><br/>
                     </fieldset>
                 </div>
                 <div class="clear-both my-5"></div>

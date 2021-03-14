@@ -27,7 +27,7 @@
                         <legend class="px-2 text-lg">Data utama Jemaat:</legend>
                         <x-form-jemaat :jemaat="$jemaat" :sektors="$sektors" />
                     </fieldset>
-                    <x-form-jemaat-baru :jemaat="$jemaat" />
+                    <x-form-jemaat-baru :jemaat="$jemaat" :ucapanSyukur="$ucapanSyukur"/>
 
                     
 
