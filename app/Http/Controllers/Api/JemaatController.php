@@ -21,7 +21,7 @@ class JemaatController extends Controller
     public function kepalaKeluarga (Request $request)
     {
         $keluarga =  DB::table('keluarga')
-            ->select('keluarga.id', 'keluarga.kepala_keluarga_id', 'keluarga.kepala_keluarga' )
+            ->select('keluarga.id', 'keluarga.kepala_keluarga_id', 'keluarga.kepala_keluarga', 'keluarga.alamat_rumah' )
             ->where('keluarga.kepala_keluarga', 'like', "%$request->hint%")
             ->orderBy('keluarga.kepala_keluarga', 'asc')
             ->distinct()
