@@ -26,7 +26,7 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name' => ['required','min:3', 'max:50'],
-            'email' => ['email','unique:users,email,'.$id],
+            'email' => ['email','unique:users,email'],
             'role' => ['required', Rule::in(['super', 'admin'])],
             'password' => ['required', 'confirmed', 'min:6']
         ];

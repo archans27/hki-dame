@@ -19,7 +19,7 @@ class CreateUcapanSyukursTable extends Migration
             $table->string('untuk');
             $table->string('dari_acara');
             $table->uuid('record');
-            $table->integer('besaran');
+            $table->integer('besaran')->default('0')->nullable();
             $table->date('tanggal');
             $table->timestamps();
         });

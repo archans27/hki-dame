@@ -45,7 +45,7 @@
                         Simpan perubahan
                     </button>
 
-                    <x-back-button :link="url('/sektor')" />
+                    <x-back-button :link="url('/sintua')" />
 
                 </form>
 

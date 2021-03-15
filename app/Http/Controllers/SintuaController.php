@@ -43,6 +43,10 @@ class SintuaController extends Controller
         $request->validate([
             'jemaat_id' => 'required|exists:jemaat,id',
         ]);
+        $sintua = Sintua::create($request->all());
+        $namaSintua = $request->input('nama');
+        
+        return redirect('/sintua/'.$sintua->id)->with('succeed', "Sintua dengan nama $namaSintua sudah tersimpan ke database");
     }
 
     /**
