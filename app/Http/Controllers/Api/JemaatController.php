@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jemaat;
 use Response;
+use DB;
 
 class JemaatController extends Controller
 {
@@ -17,29 +18,18 @@ class JemaatController extends Controller
 	    return Response::json($jemaat,200);
     }
 
-
-    public function store(Request $request)
+    public function kepalaKeluarga (Request $request)
     {
-        //
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    
-    public function destroy($id)
-    {
-        //
+        $keluarga =  DB::table('keluarga')
+            ->select('keluarga.id', 'keluarga.kepala_keluarga_id', 'keluarga.kepala_keluarga' )
+            ->where('keluarga.kepala_keluarga', 'like', "%$request->hint%")
+            ->orderBy('keluarga.kepala_keluarga', 'asc')
+            ->distinct()
+            ->limit($this->limit)
+            ->get()
+        ;
+        
+        return Response::json($keluarga,200);
     }
 
     
