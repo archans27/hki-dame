@@ -1,30 +1,30 @@
 @props(['jemaat', 'sektors'])
 
-<label for="nama" class="block text-black mt-3 font-bold">Nama lengkap</label>
-<input type="text" name="nama" value="{{old('nama',$jemaat->nama)}}" placeholder="Nama lengkap jemaat" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+<label for="nama" class="block text-black mt-3 font-bold">Nama Lengkap</label>
+<input type="text" name="nama" value="{{old('nama',$jemaat->nama)}}" placeholder="Arif C. Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
 @error('nama')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
 
-<label for="no_anggota" class="block text-black mt-3 font-bold">No anggota</label>
-<input type="text" name="no_anggota" value="{{old('no_anggota',$jemaat->no_anggota)}}" placeholder="No anggota jemaat" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+<label for="no_anggota" class="block text-black mt-3 font-bold">No. Anggota</label>
+<input type="text" name="no_anggota" value="{{old('no_anggota',$jemaat->no_anggota)}}" placeholder="mis : 819410081909650001" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
 @error('no_anggota')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
 
-<label for="tempat_lahir" class="block text-black mt-3 font-bold">Tempat lahir</label>
-<input type="text" name="tempat_lahir" value="{{old('tempat_lahir',$jemaat->tempat_lahir)}}" placeholder="Tempat lahir jemaat" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+<label for="tempat_lahir" class="block text-black mt-3 font-bold">Tempat Lahir</label>
+<input type="text" name="tempat_lahir" value="{{old('tempat_lahir',$jemaat->tempat_lahir)}}" placeholder="Bandung" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
 @error('tempat_lahir')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
 
-<label for="tanggal_lahir" class="block text-black mt-3 font-bold">Tanggal lahir</label>
-<input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{old('tanggal_lahir',$jemaat->tanggal_lahir)}}" placeholder="Tanggal lahir" class="bg-gray-100 rounded-md" autocomplete="off" />
+<label for="tanggal_lahir" class="block text-black mt-3 font-bold">Tanggal Lahir</label>
+<input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{old('tanggal_lahir',$jemaat->tanggal_lahir)}}" placeholder="yyyy-mm-dd" class="bg-gray-100 rounded-md" autocomplete="off" />
 @error('tanggal_lahir')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
 
-<label class="block text-black mt-3 font-bold" for="jenis_kelamin">Jenis kelamin</label>
+<label class="block text-black mt-3 font-bold" for="jenis_kelamin">Jenis Kelamin</label>
 <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="jenis_kelamin" value="Laki-laki" @if (old('jenis_kelamin',$jemaat->jenis_kelamin) == "Laki-laki") {{"checked"}}@endif />
 <span class="ml-2 text-gray-700">Laki-laki</span>
 <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="jenis_kelamin" value="Perempuan"@if ( old('jenis_kelamin',$jemaat->jenis_kelamin) == "Perempuan") {{"checked"}}@endif />
@@ -33,7 +33,7 @@
     <div class="text-red-500">{{ $message }}</div>
 @enderror
 
-<label class="block text-black mt-3 font-bold" for="golongan_darah">Golongan darah</label>
+<label class="block text-black mt-3 font-bold" for="golongan_darah">Golongan Darah</label>
 <select name="golongan_darah" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
     <option>-</option>
     <option @if (old('golongan_darah', $jemaat->golongan_darah) == "A") {{"selected"}}@endif>A</option>
@@ -45,8 +45,8 @@
     <div class="text-red-500">{{ $message }}</div>
 @enderror
 
-<label for="nomor_telepon" class="block text-black mt-3 font-bold">Nomor telepon</label>
-<input type="text" name="nomor_telepon" value="{{old('no_telepon',$jemaat->nomor_telepon)}}" placeholder="Nomor telepon" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+<label for="nomor_telepon" class="block text-black mt-3 font-bold">No. Telepon</label>
+<input type="text" name="nomor_telepon" value="{{old('no_telepon',$jemaat->nomor_telepon)}}" placeholder="0859xxxxxxxxx" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
 @error('nomor_telepon')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
@@ -70,13 +70,13 @@
 
 <div class="container">
     <label for="pekerjaan" class="block text-black mt-3 font-bold">Pekerjaan</label>
-    <input id="pekerjaan" type="text" name="pekerjaan" value="{{old('pekerjaan',$jemaat->pekerjaan)}}" placeholder="Pekerjaan (auto sugestion)" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
+    <input id="pekerjaan" type="text" name="pekerjaan" value="{{old('pekerjaan',$jemaat->pekerjaan)}}" placeholder="Pekerjaan (auto suggestion)" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
     <div class="row z-10" id="match-list"></div>
     @error('pekerjaan')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
     @error('pekerjaan_api')
-        <div class="text-red-500">data pekerjaan tidak diambil dari auto sugest</div>
+        <div class="text-red-500">data pekerjaan tidak diambil dari auto suggest</div>
     @enderror
 </div>
 @php
@@ -96,17 +96,17 @@
 
 {{-- ======================================= --}}
 
-<label for="tanggal_anggota" class="block text-black mt-3 font-bold">Tanggal menjadi anggota</label>
-<input type="text" name="tanggal_anggota" id="tanggal-anggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota)}}" class="bg-gray-100 rounded-md" autocomplete="off" placeholder="Tanggal menjadi anggota"/>
+<label for="tanggal_anggota" class="block text-black mt-3 font-bold">Tanggal Menjadi Anggota</label>
+<input type="text" name="tanggal_anggota" id="tanggal-anggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota)}}" class="bg-gray-100 rounded-md" autocomplete="off" placeholder="yyyy-mm-dd"/>
 @error('tanggal_anggota')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
 
-<label for="hidup" class="block text-black mt-3 font-bold">Status jemaat</label>
+<label for="hidup" class="block text-black mt-3 font-bold">Status Jemaat</label>
 <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="hidup" value="1" @if (old('hidup', $jemaat->hidup) == true) {{"checked"}}@endif />
-<span class="ml-2 text-gray-700">Masih hidup</span>
+<span class="ml-2 text-gray-700">Masih Hidup</span>
 <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="hidup" value="0" @if (old('hidup',$jemaat->hidup) == false) {{"checked"}}@endif />
-<span class="ml-2 text-gray-700">Sudah menginggal</span>
+<span class="ml-2 text-gray-700">Sudah Meninggal</span>
 @error('hidup')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
