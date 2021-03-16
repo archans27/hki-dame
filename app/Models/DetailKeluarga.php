@@ -16,6 +16,10 @@ class DetailKeluarga extends Model
     public $incrementing = false;
     protected $guarded = ['id'];
 
+    protected $attributes = [
+        'temporary' => false,
+    ];
+
     public function jemaat()
     {
         return $this->belongsTo(Jemaat::class, 'jemaat_id' , 'id');
@@ -31,6 +35,10 @@ class DetailKeluarga extends Model
         parent::boot();
         static::creating(function ($model) {
             $model->id = Uuid::uuid4();
+        });
+
+        static::addGlobalScope('temporary', function (Builder $builder) {
+            $builder->where('temporary', '=', false);
         });
     }
 

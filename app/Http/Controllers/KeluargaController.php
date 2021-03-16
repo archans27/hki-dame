@@ -85,6 +85,7 @@ class KeluargaController extends Controller
             ->join('jemaat', 'jemaat.id' , '=', 'detail_keluarga.jemaat_id')
             ->join('sektor', 'keluarga.sektor_id' , '=', 'sektor.id')
             ->where('keluarga.id', '=', $keluarga->id)
+            ->where('detail_keluarga.temporary', '=', false)
             ->orderBy('jemaat.tanggal_lahir', 'asc')
             ->get()
         ;
@@ -106,6 +107,7 @@ class KeluargaController extends Controller
             ->join('jemaat', 'jemaat.id' , '=', 'detail_keluarga.jemaat_id')
             ->join('sektor', 'keluarga.sektor_id' , '=', 'sektor.id')
             ->where('keluarga.id', '=', $keluarga->id)
+            ->where('detail_keluarga.temporary', '=', false)
             ->orderBy('jemaat.tanggal_lahir', 'asc')
             ->get()
         ;
