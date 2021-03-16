@@ -15,8 +15,9 @@ class CreateJemaatLahirsTable extends Migration
     {
         Schema::create('jemaat_lahir', function (Blueprint $table) {
             $table->id();
-            $table->uuid('keluarga_id');
-            $table->uuid('jemaat_id');
+            $table->uuid('detail_keluarga_id');
+            $table->uuid('ucapan_syukur_id');
+            $table->enum('status_anak', ['Kandung', 'Angkat']);
             $table->timestamps();
         });
     }

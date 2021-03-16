@@ -9,15 +9,27 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
 
-                <form action="{{route('jemaatBaru.store')}}" method="post">
+                <form action="{{route('jemaatLahir.store')}}" method="post">
                     @method('POST')
                     @csrf
 
                     <fieldset class="border-solid border-blue-500 border-2 px-4 pb-4">
-                        <legend class="px-2 text-lg">Data utama Jemaat:</legend>
-                        <x-form-jemaat :jemaat="$jemaat" :sektors="$sektors" />
+                        <legend class="px-2 text-lg">Data Keluarga:</legend>
+                        <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama Kepala Keluarga</label>
+                        <input id="kepala_keluarga" type="text" name="kepala_keluarga" value="{{old('kepala_keluarga',$jemaat->kepala_keluarga)}}" placeholder="Arif C. Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
+                        <div class="row z-10" id="match-list"></div>
+                        @error('kepala_keluarga')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
+                        @error('keluarga_api')
+                            <div class="text-red-500">Data tidak diambil dari auto suggest</div>
+                        @enderror
+                        <input name="keluarga_api" id="keluarga_api" type="hidden" value="{{old('keluarga_api',$jemaat->keluarga_id ?? '')}}" />
+
+                        <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat Rumah</label>
+                        <input id="alamat_rumah" type="text" name="alamat_rumah" value="{{old('alamat_rumah',$jemaat->alamat_rumah)}}" placeholder="Autofill" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed mt-3"/>
                     </fieldset>
-                    <x-form-jemaat-baru :jemaat="$jemaat" />
+                    <x-form-jemaat-lahir :jemaat="$jemaat" />
 
                     
 
@@ -36,3 +48,58 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    const matchList = document.getElementById("match-list");
+    const searchInput = document.getElementById("kepala_keluarga");
+    const keluargaApi = document.getElementById("keluarga_api");
+    const alamatRumah = document.getElementById("alamat_rumah");
+    
+
+    const url = window.location.origin + '/api/keluarga/'
+    let res = [];
+
+    searchInput.oninput = async ()=> {
+        getKeluarga();
+        keluargaApi.value = '';
+        alamatRumah.value = '';
+    }
+
+    const setSearchValue = (index) => {
+        searchInput.value = res[index].kepala_keluarga;
+        alamatRumah.value = res[index].alamat_rumah;
+        keluargaApi.value = res[index].id;
+        matchList.innerHTML = '';
+    }
+
+    
+    //============================================================
+    const outputHtml = matches => {
+        if (matches.length>0){
+            res = matches;
+            i = 0;
+            const htmlFetched = matches.map(match => `
+                <div onclick="setSearchValue('${i++}')" class="cursor-pointer p-2 bg-gray-200 hover:bg-gray-300 border border-gray-400">
+                    <p><strong>${match.kepala_keluarga}</strong></p>
+                </div>
+            `).join('');
+            matchList.innerHTML = htmlFetched;
+        } else matchList.innerHTML = '';
+    }
+
+    async function getKeluarga(){
+        var x = document.getElementById("kepala_keluarga");
+        if(x.value.length > 1){
+            x.value = x.value.toLowerCase();
+            const response = await fetch(url+x.value);
+            outputHtml(await response.json());
+        }
+        else matchList.innerHTML = '';
+    }
+
+    window.addEventListener('click', function(e){   
+        if (!document.getElementById('body').contains(e.target)){
+            matchList.innerHTML = '';
+        }
+    });
+</script>

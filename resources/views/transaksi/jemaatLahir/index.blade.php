@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               
-              <form action="{{route('jemaatBaru.create')}}" method="get" class="float-right m-5">
+              <form action="{{route('jemaatLahir.create')}}" method="get" class="float-right m-5">
                 <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
                     <span class="material-icons">
                         add
@@ -24,39 +24,39 @@
                     <table class="min-w-full table-auto">
                         <thead class="justify-between">
                           <tr class="bg-gray-800 text-white">
-                            <th class="px-16 py-2">Nama jemaat</th>
-                            <th class="px-16 py-2">Tanggal lahir</th>
+                            <th class="px-16 py-2">Nama Kepala Keluarga</th>
+                            <th class="px-16 py-2">Nama Anak</th>
                             <th class="px-16 py-2">Status</th>
                             <th class="px-16 py-2 text-left">Aksi</th>
                           </tr>
                         </thead>
                         <tbody class="bg-gray-200">
-                            @foreach ($jemaatBarus as $jemaatBaru)
+                            @foreach ($jemaatLahirs as $jemaatLahir)
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
-                                <td class="px-16 py-2 flex flex-row text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/jemaatBaru/'.$jemaatBaru->idJemaatBaru)}}">{{$jemaatBaru->nama}}</a></td>
-                                <td class="px-16 py-2 text-center">{{$jemaatBaru->tanggal_lahir}}</td>
+                                <td class="px-16 py-2 flex flex-row text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/jemaatLahir/'.$jemaatLahir->idJemaatLahir)}}">{{$jemaatLahir->nama_kepala_keluarga}}</a></td>
+                                <td class="px-16 py-2 text-center">{{$jemaatLahir->nama}}</td>
                                 <td class="px-16 py-2 text-center">
-                                  @if ($jemaatBaru->temporary)
+                                  @if ($jemaatLahir->temporary)
                                     <span class="bg-red-400 border-red-600 p-1.5 rounded font-bold text-white">Tidak Terverifikasi</span>
                                   @else
                                   <span class="bg-green-500 border-green-600 p-1.5 rounded font-bold text-white">Terverifikasi</span>
                                   @endif
                                 </td>
                                 <td class="px-16 py-2 text-left align-middle" >
-                                  <form action="{{url('jemaatBaru/'.$jemaatBaru->idJemaatBaru.'/edit')}}" class="float-left">
+                                  <form action="{{url('jemaatLahir/'.$jemaatLahir->idJemaatLahir.'/edit')}}" class="float-left">
                                     <button type="submit">
                                       <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">
                                         mode_edit
                                       </span>
                                     </button>|
                                   </form>
-                                  <form method="post" action="{{url('/jemaatBaru/'.$jemaatBaru->idJemaatBaru)}}" class="float-left">
+                                  <form method="post" action="{{url('/jemaatLahir/'.$jemaatLahir->idJemaatLahir)}}" class="float-left">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit"
                                       onclick="event.preventDefault();
                                         toggleModal('modal-delete');
-                                        deleteJemaatBaru('{{url('/jemaatBaru/'.$jemaatBaru->idJemaatBaru)}}')"
+                                        deletejemaatLahir('{{url('/jemaatLahir/'.$jemaatLahir->idJemaatLahir)}}')"
                                     >
                                       <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">
                                         delete
@@ -69,7 +69,7 @@
                         </tbody>
                       </table>
                       <br/>
-                      {{ $jemaatBarus->links() }}
+                      {{ $jemaatLahirs->links() }}
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
 </x-app-layout>
 
 <script>
-  function deleteJemaatBaru(url){
+  function deletejemaatLahir(url){
     document.getElementById('form-modal-delete').setAttribute('action', url);
   }
 </script>

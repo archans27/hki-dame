@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class JemaatLahir extends Model
 {
     use HasFactory;
-    protected $table = 'keluarga';
+    protected $table = 'jemaat_lahir';
+    protected $guarded = ['id'];
+
+    protected $attributes = [
+    ];
 }
