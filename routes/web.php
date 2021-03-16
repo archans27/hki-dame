@@ -27,7 +27,8 @@ Route::group(['middleware' => 'auth'], function() {
         'sintua' => \App\Http\Controllers\SintuaController::class,
         'user' => \App\Http\Controllers\UserController::class,
         //DATA TRANSAKSIONAL
-        'jemaatBaru' => \App\Http\Controllers\JemaatBaruController::class
+        'jemaatBaru' => \App\Http\Controllers\JemaatBaruController::class,
+        'jemaatLahir' => \App\Http\Controllers\JemaatLahirController::class,
     ]);
 });
 require __DIR__.'/auth.php';

@@ -67,7 +67,7 @@
           <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Baptis/Sidi</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'jemaatBaru') ? 'active' : '' }}" :active="0" href="{{url('/jemaatBaru')}}">Jemaat Baru</x-responsive-nav-link>
-            <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Jemaat Lahir</x-responsive-nav-link>
+            <x-responsive-nav-link class="{{ (request()->segment(1) == 'jemaatLahir') ? 'active' : '' }}" :active="0" href="{{url('/jemaatLahir')}}">Jemaat Lahir</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Pernikahan</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Meninggal</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Pindah</x-responsive-nav-link>
