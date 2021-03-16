@@ -213,6 +213,17 @@ class JemaatLahirController extends Controller
 
     public function destroy(JemaatLahir $jemaatLahir)
     {
-        //
+        $jemaatLahir->delete();
+        UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)->delete();
+        $detailKeluarga = DetailKeluarga::withoutGlobalScope('temporary')->where('id', '=', $jemaatLahir->detail_keluarga_id);
+        $jemaat = Jemaat::withoutGlobalScope('temporary')->find($detailKeluarga->first()->jemaat_id);
+        
+        $nama = $jemaat->nama;
+        $detailKeluarga->delete();
+        $jemaat->delete();
+
+        return redirect('/jemaatLahir/')
+            ->with('succeed', "Jemaat dengan nama ".$nama." telah dihapus dari database")
+    ;
     }
 }
