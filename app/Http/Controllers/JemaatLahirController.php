@@ -33,7 +33,7 @@ class JemaatLahirController extends Controller
 
     public function create(Jemaat $jemaat)
     {
-        return view('transaksi.jemaatLahir.create',['jemaat' => $jemaat,]);
+        return view('transaksi.jemaatLahir.create',['jemaat' => $jemaat]);
     }
 
     public function store(\App\Http\Requests\StoreJemaatLahirRequest $request, Jemaat $jemaat)
@@ -131,12 +131,84 @@ class JemaatLahirController extends Controller
 
     public function edit(JemaatLahir $jemaatLahir)
     {
-        //
+        $jemaatLahir = DB::table('jemaat_lahir')
+            ->select('jemaat.*', 'keluarga.*', 'jemaat_lahir.id as idJemaatLahir', 'jemaat_lahir.*')
+            ->join('detail_keluarga', 'detail_keluarga.id', '=', 'jemaat_lahir.detail_keluarga_id')
+            ->join('jemaat', 'jemaat.id', '=', 'detail_keluarga.jemaat_id')
+            ->join('keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
+            ->first()
+        ;
+        $ucapanSyukurs = UcapanSyukur::where('ucapan_syukur_id', '=', $jemaatLahir->ucapan_syukur_id)->get();
+        foreach($ucapanSyukurs as $ucapanSyukur)
+        {
+            $ucapanSyukurToArray[$ucapanSyukur->untuk] = $ucapanSyukur->besaran;
+        }
+
+        //dd($ucapanSyukurToArray);
+        return view('transaksi.jemaatLahir.edit', [
+            'jemaat' => $jemaatLahir,
+            'ucapanSyukur' => $ucapanSyukurToArray
+        ]);
     }
 
     public function update(Request $request, JemaatLahir $jemaatLahir)
     {
-        //
+        $detailKeluarga = DetailKeluarga::withoutGlobalScope('temporary')->find($jemaatLahir->detail_keluarga_id);
+        $jemaat = Jemaat::withoutGlobalScope('temporary')->find($detailKeluarga->jemaat_id);
+
+        $jemaat->fill($request->all());
+        $jemaat->save();
+        $detailKeluarga->fill([
+            'temporary' => $request['temporary']
+        ]);
+        $detailKeluarga->save();
+        $jemaatLahir->fill([
+            'status_anak' => $request->status_anak,
+        ]);
+        $jemaatLahir->save();
+
+        $tk_gereja = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
+            ->where('untuk', '=', 'gereja')
+            ->first()
+        ;
+        $tk_gereja->besaran = $request['tk_gereja'];
+        $tk_gereja->save();
+        $tk_pendeta = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
+            ->where('untuk', '=', 'pendeta')
+            ->first()
+        ;
+        $tk_pendeta->besaran = $request['tk_pendeta'];
+        $tk_pendeta->save();
+        $tk_pendeta_diperbantukan = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
+            ->where('untuk', '=', 'pendeta_diperbantukan')
+            ->first()
+        ;
+        $tk_pendeta_diperbantukan->besaran = $request['tk_pendeta_diperbantukan'];
+        $tk_pendeta_diperbantukan->save();
+
+        $tk_majelis = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
+            ->where('untuk', '=', 'majelis')
+            ->first()
+        ;
+        $tk_majelis->besaran = $request['tk_majelis'];
+        $tk_majelis->save();
+        $tk_guru_huria = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
+            ->where('untuk', '=', 'guru_huria')
+            ->first()
+        ;
+        $tk_guru_huria->besaran = $request['tk_guru_huria'];
+        $tk_guru_huria->save();
+        $tk_lain_lain = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
+            ->where('untuk', '=', 'lain_lain')
+            ->first()
+        ;
+        $tk_lain_lain->besaran = $request['tk_lain_lain'];
+        $tk_lain_lain->save();
+
+        return redirect("/jemaatLahir/$jemaatLahir->id")
+            ->with('succeed', "Perubahan data jemaat dengan nama ".$jemaat->nama." sudah tersimpan ke database")
+        ;
+
     }
 
     public function destroy(JemaatLahir $jemaatLahir)
