@@ -27,7 +27,7 @@
                         <input name="keluarga_api" id="keluarga_api" type="hidden" value="{{old('keluarga_api',$jemaat->keluarga_id ?? '')}}" />
 
                         <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat Rumah</label>
-                        <input id="alamat_rumah" type="text" name="alamat_rumah" value="{{old('alamat_rumah',$jemaat->alamat_rumah)}}" placeholder="Autofill" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed mt-3"/>
+                        <input id="alamat_rumah" type="text" name="alamat_rumah" value="{{old('alamat_rumah',$jemaat->alamat_rumah)}}" placeholder="Autofill" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed mt-3" readonly="readonly"/>
                     </fieldset>
                     <x-form-jemaat-lahir :jemaat="$jemaat" />
 
