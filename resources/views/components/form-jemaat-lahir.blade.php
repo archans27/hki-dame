@@ -56,7 +56,7 @@
     <legend class="px-2 text-lg">Data ucapan syukur jemaat baru:</legend>
 
     <label for="tk_gereja" class="block text-black mt-3 font-bold">Ucapan Syukur Kepada Gereja:</label>
-    <input type="text" name="tk_gereja" value="{{old('tk_pendeta',$ucapanSyukur['gereja']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    <input type="text" name="tk_gereja" value="{{old('tk_gereja',$ucapanSyukur['gereja']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('tk_gereja')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
@@ -97,9 +97,9 @@
 @if (Auth::user()->role == 'super')
     <label for="temporary" class="block text-black mt-3 font-bold">Verifikasi</label>
     <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="temporary" value="1" @if (old('temporary', $jemaat->temporary) == true) {{"checked"}}@endif />
-    <span class="ml-2 text-gray-700">Belum terferifikasi</span>
+    <span class="ml-2 text-gray-700">Belum terverifikasi</span>
     <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="temporary" value="0" @if (old('temporary',$jemaat->temporary) == false) {{"checked"}}@endif />
-    <span class="ml-2 text-gray-700">Terferifikasi</span>
+    <span class="ml-2 text-gray-700">Terverifikasi</span>
     @error('hidup')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
