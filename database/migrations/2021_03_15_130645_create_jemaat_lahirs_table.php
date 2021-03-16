@@ -13,8 +13,10 @@ class CreateJemaatLahirsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jemaat_lahirs', function (Blueprint $table) {
+        Schema::create('jemaat_lahir', function (Blueprint $table) {
             $table->id();
+            $table->uuid('keluarga_id');
+            $table->uuid('jemaat_id');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateJemaatLahirsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jemaat_lahirs');
+        Schema::dropIfExists('jemaat_lahir');
     }
 }

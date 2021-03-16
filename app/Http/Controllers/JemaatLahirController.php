@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jemaat_lahir;
+use App\Models\JemaatLahir;
+use App\Models\JemaatBaru;
+use App\Models\Jemaat;
 use Illuminate\Http\Request;
+use DB;
 
 class JemaatLahirController extends Controller
 {
@@ -12,9 +15,15 @@ class JemaatLahirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(JemaatBaru $jemaatBaru)
     {
-        //
+        $jemaatBarus = DB::table('jemaat_baru')
+            ->select('jemaat_baru.*', 'jemaat.*', 'jemaat_baru.id AS idJemaatBaru', )
+            ->join('jemaat', 'jemaat.id', '=', 'jemaat_baru.jemaat_id')
+            ->distinct()
+            ->paginate(5)
+        ;
+        return view('transaksi.jemaatLahir.index', ['jemaatLahirs' => $jemaatBarus]);
     }
 
     /**
@@ -22,9 +31,9 @@ class JemaatLahirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Jemaat $jemaat)
     {
-        //
+        return view('transaksi.jemaatLahir.create',['jemaat' => $jemaat,]);
     }
 
     /**
