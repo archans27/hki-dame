@@ -19,6 +19,7 @@ class DetailKeluarga extends Migration
             $table->foreignId('jemaat_id');
             $table->enum('hubungan', ['Suami', 'Istri', 'Anak', 'Menantu', 'Cucu', 'Orang Tua', 'Mertua', 'Famili Lain'])->nullable();
             $table->integer('anak_ke')->nullable();
+            $table->boolean('temporary')->nullable();
             $table->timestamps();
         });
     }
