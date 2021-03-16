@@ -31,7 +31,7 @@
     <legend class="px-2 text-lg">Data ucapan syukur jemaat baru:</legend>
 
     <label for="tk_gereja" class="block text-black mt-3 font-bold">Ucapan syukur untuk Gereja:</label>
-    <input type="text" name="tk_gereja" value="{{old('tk_pendeta',$ucapanSyukur['gereja']  ?? '')}}" placeholder="Ucapan syukur untuk Gereja (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    <input type="text" name="tk_gereja" value="{{old('tk_gereja',$ucapanSyukur['gereja']  ?? '')}}" placeholder="Ucapan syukur untuk Gereja (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('tk_gereja')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
