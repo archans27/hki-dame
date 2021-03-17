@@ -123,7 +123,7 @@ class JemaatController extends Controller
             'Perangkat Desa',
             'Kepala Desa',
             // 'Biarawati',
-            'Wiraswasta'.
+            'Wiraswasta',
             'Lainnya'
         ];
 

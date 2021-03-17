@@ -34,7 +34,7 @@ class StoreJemaatRequest extends FormRequest
             'pekerjaan' => ['required'],
             'pekerjaan_api' => ['required'],
             // 'tanggal_anggota' => ['required','date'],
-            // 'hidup' => ['required', 'boolean'],
+            'hidup' => ['required', 'boolean'],
             // 'nomor_telepon' => [],
             // 'foto' => [],
         ];

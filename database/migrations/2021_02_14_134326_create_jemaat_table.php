@@ -20,7 +20,7 @@ class CreateJemaatTable extends Migration
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
-            $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
+            $table->enum('golongan_darah', ['-','A', 'B', 'AB', 'O'])->nullable();
             $table->string('nomor_telepon')->nullable();
             $table->enum('pendidikan', ['-', 'SD', 'SMP', 'SMA/SMK', 'DIPLOMA (D1, D2, D3)', 'SARJANA (D4, S1)', 'MAGISTER (S2)', 'DOKTORAL (S3)'])->nullable();
             $table->string('pekerjaan')->nullable();

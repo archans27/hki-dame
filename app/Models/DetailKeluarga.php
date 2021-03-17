@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 use App\Models\Keluarga;
 use App\Models\Jemaat;
+use Illuminate\Database\Eloquent\Builder;
 
 class DetailKeluarga extends Model
 {
