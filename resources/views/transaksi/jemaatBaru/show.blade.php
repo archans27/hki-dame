@@ -26,7 +26,7 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <p class="text-md font-bold text-blue-500">Nama lengkap</p><p>{{$jemaatBaru->nama}}</p><br/>
-                            <p class="text-md font-bold text-blue-500">Tanggak lahir</p><p>{{$jemaatBaru->tempat_lahir}}</p><br/>
+                            <p class="text-md font-bold text-blue-500">Tanggal lahir</p><p>{{date("d-m-Y",strToTime($jemaatBaru->tanggal_lahir))}}</p><br/>
                             <p class="text-md font-bold text-blue-500">Jenis kelamin</p><p>{{$jemaatBaru->jenis_kelamin}}</p><br/>
                             <p class="text-md font-bold text-blue-500">Nomor telepon</p><p>{{$jemaatBaru->nomor_telepon}}</p><br/>
                             <p class="text-md font-bold text-blue-500">Pekerjaan</p><p>{{$jemaatBaru->pekerjaan}}</p><br/>
@@ -34,10 +34,10 @@
                         </div>
                         <div>
                             <p class="text-md font-bold text-blue-500">Nomor anggota</p><p>{{$jemaatBaru->no_anggota}}</p><br/>
-                            <p class="text-md font-bold text-blue-500">Tempat lahir</p><p>{{$jemaatBaru->tanggal_lahir}}</p><br/>
+                            <p class="text-md font-bold text-blue-500">Tempat lahir</p><p>{{$jemaatBaru->tempat_lahir}}</p><br/>
                             <p class="text-md font-bold text-blue-500">Golongan darah</p><p>{{$jemaatBaru->golongan_darah}}</p><br/>
                             <p class="text-md font-bold text-blue-500">Pendidikan</p><p>{{$jemaatBaru->pendidikan}}</p><br/>
-                            <p class="text-md font-bold text-blue-500">Tanggal menjadi anggota</p><p>{{$jemaatBaru->tanggal_anggota}}</p><br/>
+                            <p class="text-md font-bold text-blue-500">Tanggal menjadi anggota</p><p>{{date("d-m-Y",strToTime($jemaatBaru->tanggal_anggota))}}</p><br/>
                         </div>
                     
                     </div>

@@ -34,7 +34,7 @@
                             @foreach ($jemaatBarus as $jemaatBaru)
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
                                 <td class="px-16 py-2 flex flex-row text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/jemaatBaru/'.$jemaatBaru->idJemaatBaru)}}">{{$jemaatBaru->nama}}</a></td>
-                                <td class="px-16 py-2 text-center">{{$jemaatBaru->tanggal_lahir}}</td>
+                                <td class="px-16 py-2 text-center">{{date("d-m-Y",strToTime($jemaatBaru->tanggal_lahir))}}</td>
                                 <td class="px-16 py-2 text-center">
                                   @if ($jemaatBaru->temporary)
                                     <span class="bg-red-400 border-red-600 p-1.5 rounded font-bold text-white">Tidak Terverifikasi</span>

@@ -39,7 +39,8 @@ class JemaatBaruController extends Controller
 
     public function store(\App\Http\Requests\StoreJemaatBaruRequest $request)
     {
-        $validated = $request->validated();
+        $request['tanggal_lahir'] = date("Y-m-d",strToTime($request['tanggal_lahir']));
+        $request['tanggal_anggota'] = date("Y-m-d",strToTime($request['tanggal_anggota']));
 
         $uuid = array(
             'jemaatBaruId' => (string) Str::orderedUuid(),
@@ -164,41 +165,43 @@ class JemaatBaruController extends Controller
 
     public function update(\App\Http\Requests\StoreJemaatBaruRequest $request, $id)
     {
-        $validated = $request->validated();
-        $jemaatBaru = JemaatBaru::find($id)->fill($validated);
+        $request['tanggal_lahir'] = date("Y-m-d",strToTime($request['tanggal_lahir']));
+        $request['tanggal_anggota'] = date("Y-m-d",strToTime($request['tanggal_anggota']));
+
+        $jemaatBaru = JemaatBaru::find($id)->fill($request->all());
         $jemaatBaru->save();
-        $jemaat = Jemaat::withoutGlobalScope('temporary')->find($jemaatBaru->jemaat_id)->fill($validated);
+        $jemaat = Jemaat::withoutGlobalScope('temporary')->find($jemaatBaru->jemaat_id)->fill($request->all());
         $jemaat->save();
 
         $tk_gereja = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
             ->where('untuk', '=', 'gereja')
             ->first()
         ;
-        $tk_gereja->besaran = $validated['tk_gereja'];
+        $tk_gereja->besaran = $request['tk_gereja'];
         $tk_gereja->save();
         $tk_pendeta = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
             ->where('untuk', '=', 'pendeta')
             ->first()
         ;
-        $tk_pendeta->besaran = $validated['tk_pendeta'];
+        $tk_pendeta->besaran = $request['tk_pendeta'];
         $tk_pendeta->save();
         $tk_majelis = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
             ->where('untuk', '=', 'majelis')
             ->first()
         ;
-        $tk_majelis->besaran = $validated['tk_majelis'];
+        $tk_majelis->besaran = $request['tk_majelis'];
         $tk_majelis->save();
         $tk_guru_huria = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
             ->where('untuk', '=', 'guru_huria')
             ->first()
         ;
-        $tk_guru_huria->besaran = $validated['tk_guru_huria'];
+        $tk_guru_huria->besaran = $request['tk_guru_huria'];
         $tk_guru_huria->save();
         $tk_pengembangan = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
             ->where('untuk', '=', 'pengembangan')
             ->first()
         ;
-        $tk_pengembangan->besaran = $validated['tk_pengembangan'];
+        $tk_pengembangan->besaran = $request['tk_pengembangan'];
         $tk_pengembangan->save();
 
         return redirect("/jemaatBaru/$id")
