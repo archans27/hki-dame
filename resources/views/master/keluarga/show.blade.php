@@ -44,7 +44,7 @@
                                 <td class="px-5 py-2 text-left text-blue-500"><a href="{{url('/jemaat/'.$keluarga->jemaat_id)}}"> {{$keluarga->nama}}</a></td>
                                 <td class="px-5 py-2 text-center">{{$keluarga->hubungan}}</td>
                                 <td class="px-5 py-2 text-center">{{$keluarga->jenis_kelamin}}</td>
-                                <td class="px-5 py-2 text-center">{{$keluarga->tanggal_lahir}}</td>
+                                <td class="px-5 py-2 text-center">{{date("d-m-Y",strToTime($keluarga->tanggal_lahir))}}</td>
                               </tr>
                             @endforeach
                         </tbody>
