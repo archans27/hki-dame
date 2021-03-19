@@ -40,7 +40,7 @@
                             @foreach ($jemaats as $jemaat)
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
                                 <td class="px-16 py-2 flex flex-row text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/jemaat/'.$jemaat->id)}}">{{$jemaat->nama}}</a></td>
-                                <td class="px-16 py-2 text-center">{{$jemaat->tanggal_lahir}}</td>
+                                <td class="px-16 py-2 text-center">{{date("d-m-Y",strToTime($jemaat->tanggal_lahir))}}</td>
                                 <td class="px-16 py-2 text-center">{{$jemaat->jenis_kelamin}}</td>
                                 <td class="px-16 py-2 text-left align-middle" >
                                   <form action="{{url('jemaat/'.$jemaat->id.'/edit')}}" class="float-left">

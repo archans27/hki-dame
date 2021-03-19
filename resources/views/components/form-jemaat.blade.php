@@ -19,7 +19,7 @@
 @enderror
 
 <label for="tanggal_lahir" class="block text-black mt-3 font-bold">Tanggal Lahir</label>
-<input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{old('tanggal_lahir',$jemaat->tanggal_lahir)}}" placeholder="yyyy-mm-dd" class="bg-gray-100 rounded-md" autocomplete="off" />
+<input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{old('tanggal_lahir', $jemaat->tanggal_lahir ? date("d-m-Y",strToTime($jemaat->tanggal_lahir)) : '')}}" placeholder="dd-mm-yyyy" class="bg-gray-100 rounded-md" autocomplete="off" />
 @error('tanggal_lahir')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
@@ -97,7 +97,7 @@
 {{-- ======================================= --}}
 
 <label for="tanggal_anggota" class="block text-black mt-3 font-bold">Tanggal Menjadi Anggota</label>
-<input type="text" name="tanggal_anggota" id="tanggal-anggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota)}}" class="bg-gray-100 rounded-md" autocomplete="off" placeholder="yyyy-mm-dd"/>
+<input type="text" name="tanggal_anggota" id="tanggal-anggota" value="{{old('tanggal_anggota', $jemaat->tanggal_anggota ? date("d-m-Y",strToTime($jemaat->tanggal_anggota)) : '')}}" class="bg-gray-100 rounded-md" autocomplete="off" placeholder="dd-mm-yyyy"/>
 @error('tanggal_anggota')
     <div class="text-red-500">{{ $message }}</div>
 @enderror
@@ -115,13 +115,13 @@
     const picker = new Pikaday({
         field: document.getElementById('tanggal-lahir'),
         yearRange: [1900, 2100],
-        format: 'YYYY-MM-DD',
+        format: 'DD-MM-YYYY',
     })
     picker.getMoment()
     const picker2 = new Pikaday({
         field: document.getElementById('tanggal-anggota'),
         yearRange: [1900, 2100],
-        format: 'YYYY-MM-DD',
+        format: 'DD-MM-YYYY',
     })
     picker2.getMoment()
 

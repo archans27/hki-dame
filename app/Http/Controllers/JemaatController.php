@@ -35,7 +35,9 @@ class JemaatController extends Controller
 
     public function store(\App\Http\Requests\StoreJemaatRequest $request)
     {
-        $validated = $request->validated();
+        $request['tanggal_lahir'] = date("Y-m-d",strToTime($request['tanggal_lahir']));
+        $request['tanggal_anggota'] = date("Y-m-d",strToTime($request['tanggal_anggota']));
+
         $jemaat = Jemaat::create($request->all());
         $namaJemaat = $jemaat->refresh()->nama;
         
@@ -57,7 +59,9 @@ class JemaatController extends Controller
 
     public function update(\App\Http\Requests\StoreJemaatRequest $request, Jemaat $jemaat)
     {
-        $validated = $request->validated();
+        $request['tanggal_lahir'] = date("Y-m-d",strToTime($request['tanggal_lahir']));
+        $request['tanggal_anggota'] = date("Y-m-d",strToTime($request['tanggal_anggota']));
+
         $jemaat->fill($request->all());
         $jemaat->save();
 

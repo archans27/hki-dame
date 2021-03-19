@@ -25,13 +25,13 @@
                 <p class="text-md font-bold text-blue-500">Nama Lengkap</p><p>{{$jemaat->nama}}</p><br/>
                 <p class="text-md font-bold text-blue-500">No. Anggota</p><p>{{$jemaat->no_anggota}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Tanggal Lahir</p><p>{{$jemaat->tempat_lahir}}</p><br/>
-                <p class="text-md font-bold text-blue-500">Tempat Lahir</p><p>{{$jemaat->tanggal_lahir}}</p><br/>
+                <p class="text-md font-bold text-blue-500">Tempat Lahir</p><p>{{date("d-m-Y",strToTime($jemaat->tanggal_lahir))}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Jenis Kelamin</p><p>{{$jemaat->jenis_kelamin}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Golongan Darah</p><p>{{$jemaat->golongan_darah}}</p><br/>
                 <p class="text-md font-bold text-blue-500">No. Telepon</p><p>{{$jemaat->nomor_telepon}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Pendidikan</p><p>{{$jemaat->pendidikan}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Pekerjaan</p><p>{{$jemaat->pekerjaan}}</p><br/>
-                <p class="text-md font-bold text-blue-500">Tanggal Menjadi Anggota</p><p>{{$jemaat->tanggal_anggota}}</p><br/>
+                <p class="text-md font-bold text-blue-500">Tanggal Menjadi Anggota</p><p>{{date("d-m-Y",strToTime($jemaat->tanggal_anggota))}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Status Jemaat</p><p>{{$jemaat->hidup ? "Masih Hidup" : "Meninggal Dunia"}}</p><br/>
                 {{-- <p class="text-md font-bold text-blue-500">Alamat Rumah</p><p>{{$jemaat->alamat_rumah}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Status Rumah</p><p>{{$jemaat->status_rumah}}</p><br/>
