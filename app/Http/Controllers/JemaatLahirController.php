@@ -38,6 +38,7 @@ class JemaatLahirController extends Controller
 
     public function store(\App\Http\Requests\StoreJemaatLahirRequest $request, Jemaat $jemaat)
     {
+        $request['tanggal_lahir'] = date("Y-m-d",strToTime($request['tanggal_lahir']));
         if (Auth::user()->role != 'super') {
             $request['temporary'] = true;
         }
@@ -153,6 +154,7 @@ class JemaatLahirController extends Controller
 
     public function update(Request $request, JemaatLahir $jemaatLahir)
     {
+        $request['tanggal_lahir'] = date("Y-m-d",strToTime($request['tanggal_lahir']));
         $detailKeluarga = DetailKeluarga::withoutGlobalScope('temporary')->find($jemaatLahir->detail_keluarga_id);
         $jemaat = Jemaat::withoutGlobalScope('temporary')->find($detailKeluarga->jemaat_id);
 

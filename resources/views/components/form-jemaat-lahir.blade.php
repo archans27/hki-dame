@@ -9,7 +9,7 @@
     @enderror
 
     <label for="tanggal_lahir" class="block text-black mt-3 font-bold">Tanggal Lahir:</label>
-    <input id="tanggal_lahir" type="text" name="tanggal_lahir" value="{{old('tanggal_lahir',$jemaat->tanggal_lahir  ?? '')}}" placeholder="yyyy-mm-dd" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
+    <input id="tanggal_lahir" type="text" name="tanggal_lahir" value="{{old('tanggal_lahir',$jemaat->tanggal_lahir ? date("d-m-Y",strToTime($jemaat->tanggal_lahir)) : '')}}" placeholder="dd-mm-yyyy" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
     @error('tanggal_lahir')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
@@ -110,7 +110,7 @@
     const picker = new Pikaday({
         field: document.getElementById('tanggal_lahir'),
         yearRange: [1900, 2100],
-        format: 'YYYY-MM-DD',
+        format: 'DD-MM-YYYY',
     })
     picker.getMoment()
 </script>

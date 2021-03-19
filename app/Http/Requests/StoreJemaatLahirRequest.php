@@ -29,7 +29,7 @@ class StoreJemaatLahirRequest extends FormRequest
             'nama' => ['required'],
             'jenis_kelamin' => ['required', Rule::in(['Laki-laki', 'Perempuan'])],
             'tempat_lahir' => ['required'],
-            'tanggal_lahir' => ['required'],
+            'tanggal_lahir' => ['required', 'date_format:"d-m-Y"'],
             'golongan_darah' => [ Rule::in(['-','A', 'B', 'AB', 'O']) ],
             'status_anak' => ['required', Rule::in(['Kandung', 'Angkat'])],
             "tk_gereja" => 'nullable|numeric|min:0',
