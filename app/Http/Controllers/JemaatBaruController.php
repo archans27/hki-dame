@@ -39,6 +39,7 @@ class JemaatBaruController extends Controller
 
     public function store(\App\Http\Requests\StoreJemaatBaruRequest $request)
     {
+        //dd($lampiran);
         $request['tanggal_lahir'] = date("Y-m-d",strToTime($request['tanggal_lahir']));
         $request['tanggal_anggota'] = date("Y-m-d",strToTime($request['tanggal_anggota']));
 
@@ -117,6 +118,7 @@ class JemaatBaruController extends Controller
             "id" => $uuid['jemaatBaruId'],
             "jemaat_id" => $jemaat['id'],
             "ucapan_syukur_id" => $uuid['ucapanSyukurId'],
+            "lampiran" => $request['lampiran'],
             "alamat_jemaat_baru" => $request['alamat_jemaat_baru'],
             "gereja_terakhir" => $request['gereja_terakhir'],
             "gereja_lama_lain" => $request['gereja_lama_lain'],
@@ -148,6 +150,7 @@ class JemaatBaruController extends Controller
     public function edit($id, Sektor $sektor)
     {
         $jemaatBaru = JemaatBaru::customGet($id);
+        //dd($jemaatBaru);
         $ucapanSyukurs = UcapanSyukur::where('ucapan_syukur_id', '=', $jemaatBaru->ucapan_syukur_id)->get();
         $ucapanSyukurToArray = array();
         foreach($ucapanSyukurs as $ucapanSyukur)

@@ -2,6 +2,12 @@
 <fieldset class="border-solid border-blue-500 border-2 px-4 pb-4 mt-5">
     <legend class="px-2 text-lg">Data permohonan jemaat baru:</legend>
 
+    <label for="lampiran" class="block text-black mt-3 font-bold">Melampiran Copy/Asli:</label>
+    <input type="text" name="lampiran" value="{{old('lampiran',$jemaat->lampiran  ?? '')}}" placeholder="Kartu Keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('lampiran')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
     <label for="alamat_jemaat_baru" class="block text-black mt-3 font-bold">Alamat:</label>
     <input type="text" name="alamat_jemaat_baru" value="{{old('alamat_jemaat_baru',$jemaat->alamat_jemaat_baru  ?? '')}}" placeholder="Alamat jemaat baru" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('alamat_jemaat_baru')

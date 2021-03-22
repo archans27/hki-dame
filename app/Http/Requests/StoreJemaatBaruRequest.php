@@ -37,6 +37,7 @@ class StoreJemaatBaruRequest extends FormRequest
             'hidup' => ['required', 'boolean'],
             'nomor_telepon' => [],
             'alamat_jemaat_baru' => ['required'],
+            'lampiran' => ['required'],
             'gereja_terakhir' => [],
             'gereja_lama_lain' => [],
             'persembahan_tahunan' => ['required','numeric','min:0'],
