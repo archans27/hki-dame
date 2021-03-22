@@ -47,11 +47,11 @@ class JemaatBaruController extends Controller
             'ucapanSyukurId' => (string) Str::orderedUuid(),
         );
         if (Auth::user()->role != 'super') {
-            $validated['temporary'] = true;
+            $request['temporary'] = true;
         }
 
         $jemaat = new Jemaat();
-        $jemaat = $jemaat->fill($validated);
+        $jemaat = $jemaat->fill($request->all());
         $jemaat->save();
 
         /**
@@ -73,42 +73,42 @@ class JemaatBaruController extends Controller
         $tk_gereja = new UcapanSyukur();
         $tk_gereja->ucapan_syukur_id = $uuid['ucapanSyukurId'];
         $tk_gereja->untuk = "gereja";
-        $tk_gereja->besaran = $validated['tk_gereja'];
+        $tk_gereja->besaran = $request['tk_gereja'];
         $tk_gereja->dari_acara = "jemaatBaru";
         $tk_gereja->record = $uuid['jemaatBaruId'];
-        $tk_gereja->tanggal = $validated['tanggal_anggota'];
+        $tk_gereja->tanggal = $request['tanggal_anggota'];
         $tk_gereja->save();
         $tk_pendeta = new UcapanSyukur();
         $tk_pendeta->ucapan_syukur_id = $uuid['ucapanSyukurId'];
         $tk_pendeta->untuk = "pendeta";
-        $tk_pendeta->besaran = $validated['tk_pendeta'];
+        $tk_pendeta->besaran = $request['tk_pendeta'];
         $tk_pendeta->dari_acara = "jemaatBaru";
         $tk_pendeta->record = $uuid['jemaatBaruId'];
-        $tk_pendeta->tanggal = $validated['tanggal_anggota'];
+        $tk_pendeta->tanggal = $request['tanggal_anggota'];
         $tk_pendeta->save();
         $tk_majelis = new UcapanSyukur();
         $tk_majelis->ucapan_syukur_id = $uuid['ucapanSyukurId'];
         $tk_majelis->untuk = "majelis";
-        $tk_majelis->besaran = $validated['tk_majelis'];
+        $tk_majelis->besaran = $request['tk_majelis'];
         $tk_majelis->dari_acara = "jemaatBaru";
         $tk_majelis->record = $uuid['jemaatBaruId'];
-        $tk_majelis->tanggal = $validated['tanggal_anggota'];
+        $tk_majelis->tanggal = $request['tanggal_anggota'];
         $tk_majelis->save();
         $tk_guru_huria = new UcapanSyukur();
         $tk_guru_huria->ucapan_syukur_id = $uuid['ucapanSyukurId'];
         $tk_guru_huria->untuk = "guru_huria";
-        $tk_guru_huria->besaran = $validated['tk_guru_huria'];
+        $tk_guru_huria->besaran = $request['tk_guru_huria'];
         $tk_guru_huria->dari_acara = "jemaatBaru";
         $tk_guru_huria->record = $uuid['jemaatBaruId'];
-        $tk_guru_huria->tanggal = $validated['tanggal_anggota'];
+        $tk_guru_huria->tanggal = $request['tanggal_anggota'];
         $tk_guru_huria->save();
         $tk_pengembangan = new UcapanSyukur();
         $tk_pengembangan->ucapan_syukur_id = $uuid['ucapanSyukurId'];
         $tk_pengembangan->untuk = "pengembangan";
-        $tk_pengembangan->besaran = $validated['tk_pengembangan'];
+        $tk_pengembangan->besaran = $request['tk_pengembangan'];
         $tk_pengembangan->dari_acara = "jemaatBaru";
         $tk_pengembangan->record = $uuid['jemaatBaruId'];
-        $tk_pengembangan->tanggal = $validated['tanggal_anggota'];
+        $tk_pengembangan->tanggal = $request['tanggal_anggota'];
         $tk_pengembangan->save();
 
         
@@ -117,10 +117,10 @@ class JemaatBaruController extends Controller
             "id" => $uuid['jemaatBaruId'],
             "jemaat_id" => $jemaat['id'],
             "ucapan_syukur_id" => $uuid['ucapanSyukurId'],
-            "alamat_jemaat_baru" => $validated['alamat_jemaat_baru'],
-            "gereja_terakhir" => $validated['gereja_terakhir'],
-            "gereja_lama_lain" => $validated['gereja_lama_lain'],
-            "persembahan_tahunan" => $validated['persembahan_tahunan'],
+            "alamat_jemaat_baru" => $request['alamat_jemaat_baru'],
+            "gereja_terakhir" => $request['gereja_terakhir'],
+            "gereja_lama_lain" => $request['gereja_lama_lain'],
+            "persembahan_tahunan" => $request['persembahan_tahunan'],
         ]);
 
         return redirect('/jemaatBaru/')
@@ -224,42 +224,42 @@ class JemaatBaruController extends Controller
         ;
     }
 
-    private function saveJemaatBaru($validated, $jemaatBaruId = null)
-    {
-        $uuid = array(
-            'jemaatBaruId' => (string) Str::orderedUuid(),
-            'ucapanSyukurId' => (string) Str::orderedUuid(),
-        );
+    // private function saveJemaatBaru($validated, $jemaatBaruId = null)
+    // {
+    //     $uuid = array(
+    //         'jemaatBaruId' => (string) Str::orderedUuid(),
+    //         'ucapanSyukurId' => (string) Str::orderedUuid(),
+    //     );
 
-        $jemaat = new Jemaat();
-        $jemaat = $jemaat->fill($validated);
-        $jemaat->save();
+    //     $jemaat = new Jemaat();
+    //     $jemaat = $jemaat->fill($validated);
+    //     $jemaat->save();
 
-        $ucapanSyukur = UcapanSyukur::create([
-            "id" => $uuid['ucapanSyukurId'],
-            "acara" => 'jemaatBaru',
-            "record" => $uuid['jemaatBaruId'],
-            "tk_gereja" => $validated['tk_gereja'],
-            "tk_pendeta" => $validated['tk_pendeta'],
-            "tk_majelis" => $validated['tk_majelis'],
-            "tk_guru_huria" => $validated['tk_guru_huria'],
-            "tk_pengembangan" => $validated['tk_pengembangan'],
-            "tanggal" => $validated['tanggal_anggota']
-        ]);
+    //     $ucapanSyukur = UcapanSyukur::create([
+    //         "id" => $uuid['ucapanSyukurId'],
+    //         "acara" => 'jemaatBaru',
+    //         "record" => $uuid['jemaatBaruId'],
+    //         "tk_gereja" => $validated['tk_gereja'],
+    //         "tk_pendeta" => $validated['tk_pendeta'],
+    //         "tk_majelis" => $validated['tk_majelis'],
+    //         "tk_guru_huria" => $validated['tk_guru_huria'],
+    //         "tk_pengembangan" => $validated['tk_pengembangan'],
+    //         "tanggal" => $validated['tanggal_anggota']
+    //     ]);
 
-        $jemaatBaru = JemaatBaru::create([
-            "id" => $uuid['jemaatBaruId'],
-            "jemaat_id" => $jemaat['id'],
-            "ucapan_syukur_id" => $uuid['ucapanSyukurId'],
-            "alamat_jemaat_baru" => $validated['alamat_jemaat_baru'],
-            "gereja_terakhir" => $validated['gereja_terakhir'],
-            "gereja_lama_lain" => $validated['gereja_lama_lain'],
-            "persembahan_tahunan" => $validated['persembahan_tahunan'],
-        ]);
+    //     $jemaatBaru = JemaatBaru::create([
+    //         "id" => $uuid['jemaatBaruId'],
+    //         "jemaat_id" => $jemaat['id'],
+    //         "ucapan_syukur_id" => $uuid['ucapanSyukurId'],
+    //         "alamat_jemaat_baru" => $validated['alamat_jemaat_baru'],
+    //         "gereja_terakhir" => $validated['gereja_terakhir'],
+    //         "gereja_lama_lain" => $validated['gereja_lama_lain'],
+    //         "persembahan_tahunan" => $validated['persembahan_tahunan'],
+    //     ]);
 
-        return array(
-            'jemaat' => $jemaat,
-            'jemaatBaru' => $jemaatBaru
-        );
-    }
+    //     return array(
+    //         'jemaat' => $jemaat,
+    //         'jemaatBaru' => $jemaatBaru
+    //     );
+    // }
 }
