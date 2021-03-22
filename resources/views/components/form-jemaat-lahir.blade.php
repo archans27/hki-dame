@@ -14,6 +14,9 @@
         <div class="text-red-500">{{ $message }}</div>
     @enderror
 
+    <label for="jam_lahir" class="block text-black mt-3 font-bold">Lahir pada pukul:</label>
+    <input type="time" id="jam_lahir" name="jam_lahir" value="{{old('jam_lahir',$jemaat->jam_lahir ?? '')}}" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/6 sm:w-full" required>
+
     <label for="tempat_lahir" class="block text-black mt-3 font-bold">Tempat Lahir:</label>
     <input type="text" name="tempat_lahir" value="{{old('tempat_lahir',$jemaat->tempat_lahir  ?? '')}}" placeholder="Bandung" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('tempat_lahir')

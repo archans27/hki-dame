@@ -51,8 +51,9 @@ class JemaatLahirController extends Controller
             'temporary' => $request['temporary']
         ]);
         $jemaatLahir = JemaatLahir::create([
+            'jam_lahir' => $request['jam_lahir'],
             'detail_keluarga_id' => $detailKeluarga->id,
-            'status_anak' => $request->status_anak,
+            'status_anak' => $request['status_anak'],
             'ucapan_syukur_id' => $ucapanSyukurId
         ]);
 
@@ -145,7 +146,6 @@ class JemaatLahirController extends Controller
             $ucapanSyukurToArray[$ucapanSyukur->untuk] = $ucapanSyukur->besaran;
         }
 
-        //dd($ucapanSyukurToArray);
         return view('transaksi.jemaatLahir.edit', [
             'jemaat' => $jemaatLahir,
             'ucapanSyukur' => $ucapanSyukurToArray
@@ -165,7 +165,8 @@ class JemaatLahirController extends Controller
         ]);
         $detailKeluarga->save();
         $jemaatLahir->fill([
-            'status_anak' => $request->status_anak,
+            'status_anak' => $request['status_anak'],
+            'jam_lahir' => $request['jam_lahir']
         ]);
         $jemaatLahir->save();
 

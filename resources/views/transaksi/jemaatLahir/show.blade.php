@@ -46,6 +46,7 @@
                         <p class="text-md font-bold text-blue-500">Alamat Orang Tua</p><p>{{$jemaatLahir->alamat_rumah}}</p><br/>
                         <p class="text-md font-bold text-blue-500">Nama Lengkap</p><p>{{$jemaatLahir->nama}}</p><br/>
                         <p class="text-md font-bold text-blue-500">Tanggal Lahir</p><p>{{date("d-m-Y",strToTime($jemaatLahir->tanggal_lahir))}}</p><br/>
+                        <p class="text-md font-bold text-blue-500">Lahir Pada Pukul</p><p>{{$jemaatLahir->jam_lahir}}</p><br/>
                         <p class="text-md font-bold text-blue-500">Tempat Lahir</p><p>{{$jemaatLahir->tempat_lahir}}</p><br/>
                         <p class="text-md font-bold text-blue-500">Jenis Kelamin</p><p>{{$jemaatLahir->jenis_kelamin}}</p><br/>
                         <p class="text-md font-bold text-blue-500">Golongan darah</p><p>{{$jemaatLahir->golongan_darah}}</p><br/>
