@@ -7,7 +7,7 @@
 @enderror
 
 <label for="no_anggota" class="block text-black mt-3 font-bold">No. Anggota</label>
-<input type="text" name="no_anggota" value="{{old('no_anggota',$jemaat->no_anggota)}}" placeholder="mis : 819410081909650001" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+<input type="text" name="no_anggota" value="{{old('no_anggota',$jemaat->no_anggota)}}" placeholder="mis : 81941008001001" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
 @error('no_anggota')
     <div class="text-red-500">{{ $message }}</div>
 @enderror

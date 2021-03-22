@@ -147,7 +147,7 @@
             <div class="align-middle">
               <br/><br/>
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Pegumuman gereja
+                Pengumuman gereja
               </h3>
               <p class="text-gray-600 mb-8">
                 Pengumuman mingguan gereja untuk diperhatikan oleh <br />Bapak-Ibu jemaat sekalian.
