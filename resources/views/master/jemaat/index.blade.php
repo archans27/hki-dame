@@ -26,8 +26,9 @@
                 </button>
               </form>
 
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <table class="min-w-full table-auto">
+                <div class="p-6 bg-white border-b border-gray-200">    
+                    <table class="min-w-full table-auto text-left">
+                      <caption><p class="text-left pb-2">Terdapat {{$jemaats->total()}} hasil dari data jemaat<br /></p></caption>
                         <thead class="justify-between">
                           <tr class="bg-gray-800 text-white">
                             <th class="px-16 py-2">Nama jemaat</th>
