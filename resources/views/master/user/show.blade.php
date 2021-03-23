@@ -29,6 +29,12 @@
                 <p class="text-md font-bold text-blue-500">Nama User</p><p>{{$user->name}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Email</p><p>{{$user->email}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Role</p><p>{{strtoupper($user->role)}}</p><br/>
+                <p class="text-md font-bold text-blue-500">Foto</p>
+                @if ($user->foto_profile)
+                    <img src="{{asset("storage/image/$user->foto_profile")}}" alt="Foto profile" width="200" height="200" class="my-2" >
+                @else
+                    Belum mengupload foto
+                @endif
             </div>
         </div>
     </div>
