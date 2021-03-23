@@ -19,8 +19,20 @@ class JemaatController extends Controller
      */
     public function index(Request $request)
     {
+        $month = $request->month ?? false;
+        $year = $request->year ?? false;
+        $golongan_darah = $request->golongan_darah ?? false;
         $search = $request->search ?? '';
-        $jemaats = Jemaat::where('nama', 'like', "%$search%")->paginate(20)->appends($request->all());
+        $orderFrom = $request->order_from ?? 'nama';
+        $orderBy = $request->order_by ?? 'asc';
+
+
+
+        $query = Jemaat::where('nama', 'like', "%$search%");
+        if($year){$query->whereYear('tanggal_lahir', '=', $year);}
+        if($month){$query->whereMonth('tanggal_lahir', '=', $month);}
+        if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
+        $jemaats = $query->orderBy($orderFrom, $orderBy)->paginate(20)->appends($request->all());
         return view('master.jemaat.index', ['jemaats' => $jemaats, 'filter' => $request]);
     }
 
