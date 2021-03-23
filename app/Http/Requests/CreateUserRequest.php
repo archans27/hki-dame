@@ -28,7 +28,8 @@ class CreateUserRequest extends FormRequest
             'name' => ['required','min:3', 'max:50'],
             'email' => ['email','unique:users,email'],
             'role' => ['required', Rule::in(['super', 'admin'])],
-            'password' => ['required', 'confirmed', 'min:6']
+            'password' => ['required', 'confirmed', 'min:6'],
+            'foto_profile' => ['image']
         ];
     }
 }

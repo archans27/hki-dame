@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -37,6 +38,8 @@ class UserController extends Controller
      */
     public function store(\App\Http\Requests\CreateUserRequest $request)
     {
+
+        
         $user = new User();
         $user = $user->fill($request->all());
         $user->save();
@@ -75,10 +78,18 @@ class UserController extends Controller
      */
     public function update(\App\Http\Requests\StoreUserRequest $request, User $user)
     {
+        //dd($request->file('foto_profile'));
+        if ($request->hasFile('foto_profile')) {
+            $image = $request->file('foto_profile');
+            $imageName = "foto_profile_$user->id.".$image->extension();
+            $path = $request->file('foto_profile')->storeAs('public/image/',$imageName);
+        }
+        $imageName = $imageName ?? '';
         if($request['email'] == "hkidame@mail.com"){  return redirect('/user')->with('succeed', "Jemaat default tidak boleh ubah");}
         if($request['password']){
             $user->password = Hash::make($request['password']);
-        }        
+        }
+        $user->foto_profile = $imageName;
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->role = $request['role'];
