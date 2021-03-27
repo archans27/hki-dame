@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function() {
         //DATA TRANSAKSIONAL
         'jemaatBaru' => \App\Http\Controllers\JemaatBaruController::class,
         'jemaatLahir' => \App\Http\Controllers\JemaatLahirController::class,
+        'pernikahan' => \App\Http\Controllers\PernikahanController::class,
     ]);
 });
 require __DIR__.'/auth.php';

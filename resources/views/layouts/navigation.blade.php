@@ -68,7 +68,7 @@
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Baptis/Sidi</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'jemaatBaru') ? 'active' : '' }}" :active="0" href="{{url('/jemaatBaru')}}">Jemaat Baru</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'jemaatLahir') ? 'active' : '' }}" :active="0" href="{{url('/jemaatLahir')}}">Jemaat Lahir</x-responsive-nav-link>
-            <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Pernikahan</x-responsive-nav-link>
+            <x-responsive-nav-link class="{{ (request()->segment(1) == 'pernikahan') ? 'active' : '' }}" :active="0" href="{{url('/pernikahan')}}">Pernikahan</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Meninggal</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Pindah</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Revisi Jemaat</x-responsive-nav-link>
