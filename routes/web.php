@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
         'sintua' => \App\Http\Controllers\SintuaController::class,
         'user' => \App\Http\Controllers\UserController::class,
         //DATA TRANSAKSIONAL
+        'baptisSidi' => \App\Http\Controllers\BaptisSidiController::class,
         'jemaatBaru' => \App\Http\Controllers\JemaatBaruController::class,
         'jemaatLahir' => \App\Http\Controllers\JemaatLahirController::class,
         'pernikahan' => \App\Http\Controllers\PernikahanController::class,
