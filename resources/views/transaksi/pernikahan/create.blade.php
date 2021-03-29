@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Buat Data Kelahiran/Angkat Anak') }}
+            {{ __('Buat Data Pernikahan') }}
         </h2>
     </x-slot>
 
@@ -40,7 +40,7 @@
                         Simpan perubahan
                     </button>
                 
-                    <x-back-button :link="url('/jemaatBaru')" />
+                    <x-back-button :link="url('/pernikahan')" />
                 </form>
 
             </div>

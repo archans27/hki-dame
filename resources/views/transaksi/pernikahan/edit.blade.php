@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Buat Data Kelahiran/Angkat Anak') }}
+            {{ __('Buat Data Pernikahan') }}
         </h2>
     </x-slot>
 
@@ -39,7 +39,7 @@
                         @enderror
 
                         <label for="pasangan_mempelai_sugestion" class="block text-black mt-3 font-bold">Nama Pasangan Mempelai</label>
-                        <input type="text" name="pasangan_mempelai_sugestion" id="pasangan_mempelai_sugestion" value="{{old('pasangan_mempelai_sugestion',$pernikahan->nama_pasangan_mempelai  ?? '')}}" placeholder="Arif Chandra Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                        <input type="text" name="pasangan_mempelai_sugestion" id="pasangan_mempelai_sugestion" value="{{old('pasangan_mempelai_sugestion',$pernikahan->nama_pasangan_mempelai  ?? '')}}" placeholder="Arif Chandra Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
                         <div class="row z-10" id="match-list"></div>
                         @error('pasangan_mempelai_sugestion')
                             <div class="text-red-500">{{ $message }}</div>
@@ -47,7 +47,7 @@
 
                         <input name="pasangan_mempelai" id="pasangan_mempelai" type="hidden" value="{{$pernikahan->pasangan_mempelai ?? ''}}">
                         @error('pasangan_mempelai')
-                            <div class="text-red-500">{{ $message }}</div>
+                            <div class="text-red-500">Data tidak diambil dari auto suggest </div>
                         @enderror
 
                         <label for="tanggal_pemberkatan" class="block text-black mt-3 font-bold">Tanggal Pemberkatan Pernikahan</label>
@@ -63,7 +63,7 @@
                             <legend class="px-2 text-lg">Ucapan Syukur dari Paranak:</legend>
 
                             <label for="tk_akte_nikah_paranak" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Akte Nikah:</label>
-                            <input type="text" name="tk_akte_nikah_paranak" value="{{old('tk_akte_nikah_paranak',$ucapanSyukur['paranak']['akte_nikah'])  ?? ''}}" placeholder="Ucapan Syukur Untuk Akte Nikah (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
+                            <input type="text" name="tk_akte_nikah_paranak" value="{{old('tk_akte_nikah_paranak',$ucapanSyukur['paranak']['akte_nikah'] ??  '' )}}" placeholder="Ucapan Syukur Untuk Akte Nikah (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
                             @error('tk_akte_nikah_paranak')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -99,7 +99,7 @@
                             @enderror
 
                             <label for="tk_lain_lain_paranak" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Lainya:</label>
-                            <input type="text" name="tk_lain_lain_paranak" value="{{old('tk_lain_lain_paranak',$ucapanSyukur['paranak']['lain_lain']  ?? '')}}" placeholder="Ucapan Syukur Untuk pengembangan (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
+                            <input type="text" name="tk_lain_lain_paranak" value="{{old('tk_lain_lain_paranak',$ucapanSyukur['paranak']['lain_lain']  ?? '')}}" placeholder="Ucapan Syukur Untuk Lainnya (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
                             @error('tk_lain_lain_paranak')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
@@ -145,7 +145,7 @@
                             @enderror
 
                             <label for="tk_lain_lain_paboru" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Lainya:</label>
-                            <input type="text" name="tk_lain_lain_paboru" value="{{old('tk_lain_lain_paboru',$ucapanSyukur['paboru']['lain_lain']  ?? '')}}" placeholder="Ucapan Syukur Untuk pengembangan (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
+                            <input type="text" name="tk_lain_lain_paboru" value="{{old('tk_lain_lain_paboru',$ucapanSyukur['paboru']['lain_lain']  ?? '')}}" placeholder="Ucapan Syukur Untuk Lainnya (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
                             @error('tk_lain_lain_paboru')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
