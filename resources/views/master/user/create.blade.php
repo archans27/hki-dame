@@ -27,6 +27,16 @@
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
 
+                    <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
+                    <select name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Sektor">
+                        @foreach ($sektors as $sektor)
+                            <option @if (old('sektor_id') == $sektor->id) {{"selected"}}@endif value="{{$sektor->id}}" >{{$sektor->nama}}</option>
+                        @endforeach
+                    </select>
+                    @error('sektor_id')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+
                     <label for="role" class="block text-black mt-3 font-bold">Role</label>
                     <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="role" value="super" @if (old('role') == "super") {{"checked"}}@endif />
                     <span class="ml-2 text-gray-700">SUPER</span>
