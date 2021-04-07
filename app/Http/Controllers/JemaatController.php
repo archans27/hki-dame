@@ -7,8 +7,10 @@ use App\Models\Sektor;
 use App\Models\DetailKeluarga;
 use App\Models\Sintua;
 use App\Models\JemaatBaru;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class JemaatController extends Controller
 {
@@ -19,6 +21,7 @@ class JemaatController extends Controller
      */
     public function index(Request $request)
     {
+        dd(Auth::user()->role.' '.Auth::user()->sektor_id);
         $month = $request->month ?? false;
         $year = $request->year ?? false;
         $golongan_darah = $request->golongan_darah ?? false;
