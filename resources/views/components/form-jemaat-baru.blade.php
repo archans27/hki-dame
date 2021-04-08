@@ -36,21 +36,9 @@
 <fieldset class="border-solid border-blue-500 border-2 px-4 pb-4 mt-5">
     <legend class="px-2 text-lg">Data ucapan syukur jemaat baru:</legend>
 
-    <label for="tk_gereja" class="block text-black mt-3 font-bold">Ucapan syukur untuk Gereja:</label>
-    <input type="text" name="tk_gereja" value="{{old('tk_gereja',$ucapanSyukur['gereja']  ?? '')}}" placeholder="Ucapan syukur untuk Gereja (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('tk_gereja')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
-
     <label for="tk_pendeta" class="block text-black mt-3 font-bold">Ucapan syukur untuk Pendeta:</label>
     <input type="text" name="tk_pendeta" value="{{old('tk_pendeta',$ucapanSyukur['pendeta']  ?? '')}}" placeholder="Ucapan syukur untuk Pendeta (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('tk_pendeta')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
-
-    <label for="tk_majelis" class="block text-black mt-3 font-bold">Ucapan syukur untuk Majelis:</label>
-    <input type="text" name="tk_majelis" value="{{old('tk_majelis',$ucapanSyukur['majelis']  ?? '')}}" placeholder="Ucapan syukur untuk Majelis (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('tk_majelis')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
 
@@ -60,7 +48,19 @@
         <div class="text-red-500">{{ $message }}</div>
     @enderror
 
-    <label for="tk_pengembangan" class="block text-black mt-3 font-bold">Ucapan syukur untuk pengembangan:</label>
+    <label for="tk_gereja" class="block text-black mt-3 font-bold">Ucapan syukur untuk Gereja:</label>
+    <input type="text" name="tk_gereja" value="{{old('tk_gereja',$ucapanSyukur['gereja']  ?? '')}}" placeholder="Ucapan syukur untuk Gereja (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('tk_gereja')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
+    <label for="tk_majelis" class="block text-black mt-3 font-bold">Ucapan syukur untuk Majelis:</label>
+    <input type="text" name="tk_majelis" value="{{old('tk_majelis',$ucapanSyukur['majelis']  ?? '')}}" placeholder="Ucapan syukur untuk Majelis (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('tk_majelis')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
+    <label for="tk_pengembangan" class="block text-black mt-3 font-bold">Ucapan syukur untuk S. Pengembangan:</label>
     <input type="text" name="tk_pengembangan" value="{{old('tk_pengembangan',$ucapanSyukur['pengembangan']  ?? '')}}" placeholder="Ucapan syukur untuk pengembangan (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('tk_pengembangan')
         <div class="text-red-500">{{ $message }}</div>

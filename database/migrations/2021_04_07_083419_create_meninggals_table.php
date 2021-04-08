@@ -17,6 +17,8 @@ class CreateMeninggalsTable extends Migration
             $table->uuid('id');
             $table->uuid('jemaat_id');
             $table->date('tanggal')->nullable();
+            $table->string('tempat')->nullable();
+            $table->string('dimakamkan_di')->nullable();
             $table->text('keterangan')->nullable();
             $table->boolean('temporary')->nullable();
             $table->timestamps();

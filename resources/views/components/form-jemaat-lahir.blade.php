@@ -64,6 +64,12 @@
         <div class="text-red-500">{{ $message }}</div>
     @enderror
 
+    <label for="tk_majelis" class="block text-black mt-3 font-bold">Ucapan Syukur Kepada Majelis Jemaat:</label>
+    <input type="text" name="tk_majelis" value="{{old('tk_majelis',$ucapanSyukur['majelis']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+    @error('tk_majelis')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
     <label for="tk_pendeta" class="block text-black mt-3 font-bold">Ucapan Syukur Kepada Pendeta:</label>
     <input type="text" name="tk_pendeta" value="{{old('tk_pendeta',$ucapanSyukur['pendeta']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('tk_pendeta')
@@ -73,12 +79,6 @@
     <label for="tk_pendeta_diperbantukan" class="block text-black mt-3 font-bold">Ucapan Syukur Kepada Pendeta Diperbantukan:</label>
     <input type="text" name="tk_pendeta_diperbantukan" value="{{old('tk_pendeta_diperbantukan',$ucapanSyukur['pendeta_diperbantukan']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
     @error('tk_pendeta_diperbantukan')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
-
-    <label for="tk_majelis" class="block text-black mt-3 font-bold">Ucapan Syukur Kepada Majelis Jemaat:</label>
-    <input type="text" name="tk_majelis" value="{{old('tk_majelis',$ucapanSyukur['majelis']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('tk_majelis')
         <div class="text-red-500">{{ $message }}</div>
     @enderror
     

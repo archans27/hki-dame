@@ -37,6 +37,18 @@
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
+                        <label for="tempat" class="block text-black mt-3 font-bold">Tempat:</label>
+                        <input type="text" name="tempat" value="{{old('tempat',$meninggal->tempat)}}" placeholder="Bandung ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                        @error('tempat')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
+
+                        <label for="dimakamkan_di" class="block text-black mt-3 font-bold">Dimakamkan di:</label>
+                        <input type="text" name="dimakamkan_di" value="{{old('dimakamkan_di',$meninggal->dimakamkan_di)}}" placeholder="TPU ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                        @error('dimakamkan_di')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
+
                         <label for="keterangan" class="block text-black mt-3 font-bold">Keterangan:</label>
                         <input type="text" name="keterangan" value="{{old('keterangan',$meninggal->keterangan)}}" placeholder="Meninggal akibat ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
                         @error('keterangan')

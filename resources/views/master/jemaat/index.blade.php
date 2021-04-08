@@ -33,24 +33,8 @@
                     </select>
                   </div>
 
-                  <div class="float-left">
-                    <label for="order_from" class="block text-black font-bold  mr-2">Urut berdasarkan</label>
-                    <select name="order_from" class="w-40 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
-                      <option @if (old('order_from', $filter->order_from) == "nama") {{"selected"}}@endif value="nama" >Nama</option>
-                      <option @if (old('order_from', $filter->order_from) == "tanggal_lahir") {{"selected"}}@endif value="tanggal_lahir" >Tanggal Lahir</option>
-                    </select>
-                  </div>
-
-                </div>
-
-                <div class="block clear-both">
-                  <div class="float-left">
-                    <label for="year" class="block text-black mt-3 font-bold  mr-2">Tahun</label>
-                    <input type="text" name="year" value="{{old('year',$filter->year)}}" placeholder="{{now()->year}}" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-60 "/>  
-                  </div>
-
-                  <div class="float-left mx-4">
-                    <label for="month" class="block text-black mt-3 font-bold  mr-2">Bulan</label>
+                  <div class="float-left mr-4">
+                    <label for="month" class="block text-black font-bold  mr-2">Bulan Lahir</label>
                     <select name="month" class="w-40 h-10 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
                       <option value="">Semua</option>
                       <option @if (old('month', $filter->month) == "01") {{"selected"}}@endif value="01" >Januari</option>
@@ -68,7 +52,22 @@
                     </select>
                   </div>
 
-                  <div class="float-left">
+                  <div class="float-left mr-4">
+                    <label for="year" class="block text-black font-bold  mr-2">Tahun Lahir</label>
+                    <input type="text" name="year" value="{{old('year',$filter->year)}}" placeholder="{{now()->year}}" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-60 "/>  
+                  </div>
+
+                </div>
+
+                <div class="block clear-both">
+                  <div class="float-left mr-4">
+                    <label for="order_from" class="block text-black font-bold mt-3 mr-2">Urut berdasarkan</label>
+                    <select name="order_from" class="w-40 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
+                      <option @if (old('order_from', $filter->order_from) == "nama") {{"selected"}}@endif value="nama" >Nama</option>
+                      <option @if (old('order_from', $filter->order_from) == "tanggal_lahir") {{"selected"}}@endif value="tanggal_lahir" >Tanggal Lahir</option>
+                    </select>
+                  </div>
+                  <div class="float-left mr-4">
                     <label for="order_by" class="block text-black font-bold mt-3 mr-2">Urut secara</label>
                     <select name="order_by" class="w-40 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
                       <option @if (old('order_by', $filter->order_by) == "asc") {{"selected"}}@endif value="asc" >Ascending</option>

@@ -22,7 +22,7 @@
                 <div class="clear-both"></div>
 
                 {{-- <fieldset class="border-solid border-blue-500 border-2 px-4 rounded-md">
-                    <legend class="px-2 text-lg">Data utama jemaar:</legend>
+                    <legend class="px-2 text-lg">Data utama jemaat:</legend>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <p class="text-md font-bold text-blue-500">Nama Kepala Keluarga</p><p>{{$jemaatLahir->kepala_keluarga}}</p><br/>
@@ -55,9 +55,9 @@
                     <fieldset class="border-solid border-blue-500 border-2 px-4 rounded-md">
                         <legend class="px-2 text-lg">Ucapan Syukur:</legend>
                         <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Gereja:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['gereja'])),3)))}},-</p><br/>
+                        <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Majelis:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['majelis'])),3)))}},-</p><br/>
                         <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Pendeta:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['pendeta'])),3)))}},-</p><br/>
                         <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Pendeta Diperbantukan:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['pendeta_diperbantukan'])),3)))}},-</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Majelis:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['majelis'])),3)))}},-</p><br/>
                         <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Guru Huria:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['guru_huria'])),3)))}},-</p><br/>
                         <p class="text-md font-bold text-blue-500">Ucapan Syukur Untuk Lain-lain:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['lain_lain'])),3)))}},-</p><br/>
                     </fieldset>

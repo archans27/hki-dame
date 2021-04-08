@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Buat Data Pernikahan') }}
+            {{ __('Buat Data '.$jenis['data']) }}
         </h2>
     </x-slot>
 
@@ -9,11 +9,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
 
-                <form action="{{route('pernikahan.store')}}" method="post">
+                <form action="{{route(''.$jenis['uri'].'.store')}}" method="post">
                     @method('POST')
                     @csrf
 
                     <fieldset class="border-solid border-blue-500 border-2 px-4 pb-4">
+                        <input name="jenis" id="jenis" type="hidden" value="{{ $jenis['jenis'] }}" />
                         <legend class="px-2 text-lg">Data Keluarga:</legend>
                         <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama Kepala Keluarga</label>
                         <input id="kepala_keluarga" type="text" name="kepala_keluarga" value="{{old('kepala_keluarga')}}" placeholder="Arif C. Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
@@ -40,7 +41,7 @@
                         Simpan perubahan
                     </button>
                 
-                    <x-back-button :link="url('/pernikahan')" />
+                    <x-back-button :link="url('/'.$jenis['uri'].'')" />
                 </form>
 
             </div>

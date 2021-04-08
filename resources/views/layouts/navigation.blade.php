@@ -73,7 +73,7 @@
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Pindah</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Revisi Jemaat</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Katekisasi</x-responsive-nav-link>
-            <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Ikatan Janji</x-responsive-nav-link>
+            <x-responsive-nav-link class="{{ (request()->segment(1) == 'ikatanJanji') ? 'active' : '' }}" :active="0" href="{{url('/ikatanJanji')}}">Ikatan Janji</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Perjanjian & Permohonan Menikah</x-responsive-nav-link>
           </div>
         </div>

@@ -51,9 +51,13 @@
                               $diff = abs(strtotime($meninggal->tanggal) - strtotime($meninggal->tanggal_lahir));
                               $years = floor($diff / (365*60*60*24));
                             @endphp
-                            <p class="text-md font-bold text-blue-500">Umur</p><p>{{$years}} tahun</p><br/>
-                            <p class="text-md font-bold text-blue-500">Keterangan (meninggal akibat)</p><p>{{$meninggal->keterangan}}</p><br/>
+                            <p class="text-md font-bold text-blue-500">Tempat</p><p>{{$meninggal->tempat}}</p><br/>
+                            <p class="text-md font-bold text-blue-500">Keterangan</p><p>{{$meninggal->keterangan}}</p><br/>
                         </div>                    
+                        <div>
+                            <p class="text-md font-bold text-blue-500">Umur</p><p>{{$years}} tahun</p><br/>
+                            <p class="text-md font-bold text-blue-500">Dimakamkan di</p><p>{{$meninggal->dimakamkan_di}}</p><br/>
+                        </div>
                     </div>
                 </fieldset>
                 <div class="clear-both">&nbsp;</div>
