@@ -22,7 +22,7 @@
                 <div class="clear-both"></div>
 
                 <fieldset class="border-solid border-blue-500 border-2 px-4 rounded-md">
-                    <legend class="px-2 text-lg">Data utama jemaar:</legend>
+                    <legend class="px-2 text-lg">Data utama jemaat:</legend>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <p class="text-md font-bold text-blue-500">Nama lengkap</p><p>{{$jemaatBaru->nama}}</p><br/>
