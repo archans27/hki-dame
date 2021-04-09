@@ -25,6 +25,7 @@
                 <p class="text-md font-bold text-blue-500">Alamat Orang Tua</p><p>{{$keluarga->alamat_rumah}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Jenis Acara</p><p>{{$baptisSidi->jenis ?? ''}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Tanggal {{$baptisSidi->jenis ?? ''}}</p><p>{{$baptisSidi->tanggal ? date("d-m-Y",strToTime($baptisSidi->tanggal)) : '-'}}</p><br/>
+                <p class="text-md font-bold text-blue-500">Tempat {{$baptisSidi->jenis ?? ''}}</p><p>{{$baptisSidi->tempat ? $baptisSidi->tempat : '-'}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Peserta {{$baptisSidi->jenis ?? ''}}</p>
                     <p>
                         @if (count($pesertas) && $i = 1)

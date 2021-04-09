@@ -18,7 +18,7 @@ class PernikahanController extends Controller
     {
         $route = $request->path();
         $jenis['jenis'] = $route == 'pernikahan' ? 'M' : 'IJ';
-        $jenis['data'] = $route == 'pernikahan' ? 'Pernikahan' : 'Ikatan Janji';
+        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikatan Janji';
         $jenis['uri'] = $route;
         $pernikahans = DB::table('pernikahan')
             ->select('pernikahan.*', 'mempelai.nama as nama_mempelai', 'pasangan_mempelai.nama as nama_pasangan_mempelai')
@@ -38,7 +38,7 @@ class PernikahanController extends Controller
     {
         $route = strtok(Route::currentRouteName(), ".");
         $jenis['jenis'] = $route == 'pernikahan' ? 'M' : 'IJ';
-        $jenis['data'] = $route == 'pernikahan' ? 'Pernikahan' : 'Ikatan Janji';
+        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikatan Janji';
         $jenis['uri'] = $route;
         return view('transaksi.pernikahan.create', ['jenis' => $jenis]);
     }
@@ -61,7 +61,7 @@ class PernikahanController extends Controller
     {
         $route = strtok(Route::currentRouteName(), ".");
         $jenis['jenis'] = $route == 'pernikahan' ? 'M' : 'IJ';
-        $jenis['data'] = $route == 'pernikahan' ? 'Pernikahan' : 'Ikatan Janji';
+        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikatan Janji';
         $jenis['uri'] = $route;
 
         $pernikahan = Pernikahan::find($id);
@@ -84,7 +84,7 @@ class PernikahanController extends Controller
     {
         $route = strtok(Route::currentRouteName(), ".");
         $jenis['jenis'] = $route == 'pernikahan' ? 'M' : 'IJ';
-        $jenis['data'] = $route == 'pernikahan' ? 'Pernikahan' : 'Ikatan Janji';
+        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikatan Janji';
         $jenis['uri'] = $route;
 
         $pernikahan = Pernikahan::find($id);

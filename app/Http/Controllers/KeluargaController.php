@@ -22,6 +22,7 @@ class KeluargaController extends Controller
             ->select('keluarga.*', 'sektor.nama as nama_sektor')
             ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
             ->join('sektor', 'keluarga.sektor_id', '=', 'sektor.id')
+            ->where('is_pindah', 0)
             ->distinct()
             ->get();
 

@@ -28,11 +28,13 @@ Route::group(['middleware' => 'auth'], function() {
         'user' => \App\Http\Controllers\UserController::class,
         //DATA TRANSAKSIONAL
         'baptisSidi' => \App\Http\Controllers\BaptisSidiController::class,
+        'katekisasi' => \App\Http\Controllers\KatekisasiController::class,
         'jemaatBaru' => \App\Http\Controllers\JemaatBaruController::class,
         'jemaatLahir' => \App\Http\Controllers\JemaatLahirController::class,
-        'pernikahan' => \App\Http\Controllers\PernikahanController::class,
-        'meninggal' => \App\Http\Controllers\MeninggalController::class,
         'ikatanJanji' => \App\Http\Controllers\PernikahanController::class,
+        'pernikahan' => \App\Http\Controllers\PernikahanController::class,
+        'pindah' => \App\Http\Controllers\PindahController::class,
+        'meninggal' => \App\Http\Controllers\MeninggalController::class,
     ]);
 });
 require __DIR__.'/auth.php';
