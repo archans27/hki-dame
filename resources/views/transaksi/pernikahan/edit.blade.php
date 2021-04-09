@@ -102,7 +102,7 @@
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
 
-                            <label for="tk_lain_lain_paranak" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Lainya:</label>
+                            <label for="tk_lain_lain_paranak" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Lainnya:</label>
                             <input type="text" name="tk_lain_lain_paranak" value="{{old('tk_lain_lain_paranak',$ucapanSyukur['paranak']['lain_lain']  ?? '')}}" placeholder="Ucapan Syukur Untuk Lainnya (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
                             @error('tk_lain_lain_paranak')
                                 <div class="text-red-500">{{ $message }}</div>
@@ -149,7 +149,7 @@
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
 
-                            <label for="tk_lain_lain_parboru" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Lainya:</label>
+                            <label for="tk_lain_lain_parboru" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Lainnya:</label>
                             <input type="text" name="tk_lain_lain_parboru" value="{{old('tk_lain_lain_parboru',$ucapanSyukur['parboru']['lain_lain']  ?? '')}}" placeholder="Ucapan Syukur Untuk Lainnya (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
                             @error('tk_lain_lain_parboru')
                                 <div class="text-red-500">{{ $message }}</div>

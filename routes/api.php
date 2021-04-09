@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/jemaat/{hint}', 'App\Http\Controllers\Api\JemaatController@index');
 Route::get('/pekerjaan/{hint}', 'App\Http\Controllers\Api\JemaatController@pekerjaan');
 Route::get('/keluarga/{hint}', 'App\Http\Controllers\Api\JemaatController@kepalaKeluarga');
+Route::get('/jemaatKatekisasi/{hint}', 'App\Http\Controllers\Api\JemaatController@jemaatKatekisasi');
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

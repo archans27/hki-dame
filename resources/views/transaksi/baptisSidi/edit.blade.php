@@ -36,7 +36,7 @@
                         @enderror
 
                         <label for="tempat" class="block text-black mt-3 font-bold">Tempat</label>
-                        <input type="text" id="tempat" name="tempat" value="{{old('tempat', $baptisSidi->tempat)}}" placeholder="HKI Dame Bandung" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                        <input type="text" id="tempat" name="tempat" value="{{old('tempat', $baptisSidi->tempat ? $baptisSidi->tempat : 'HKI Dame Bandung')}}" placeholder="HKI Dame Bandung" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
                         @error('tempat')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror

@@ -21,15 +21,12 @@ class JemaatController extends Controller
      */
     public function index(Request $request)
     {
-        dd(Auth::user()->role.' '.Auth::user()->sektor_id);
         $month = $request->month ?? false;
         $year = $request->year ?? false;
         $golongan_darah = $request->golongan_darah ?? false;
         $search = $request->search ?? '';
         $orderFrom = $request->order_from ?? 'nama';
         $orderBy = $request->order_by ?? 'asc';
-
-
 
         $query = Jemaat::where('is_pindah', 0)->where('nama', 'like', "%$search%");
         if($year){$query->whereYear('tanggal_lahir', '=', $year);}

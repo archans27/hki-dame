@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Data Meninggal') }}
+            {{ __('Edit Data Katekisasi') }}
         </h2>
     </x-slot>
 
@@ -9,49 +9,56 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
 
-                <form action="{{route('meninggal.update',$meninggal->id)}}" method="post">
+                <form action="{{route('katekisasi.update',$katekisasi->id)}}" method="post">
                     @method('PUT')
                     @csrf
 
                     <fieldset class="border-solid border-blue-500 border-2 px-4 pb-4">
                         <legend class="px-2 text-lg">Data Jemaat:</legend>
                         <label for="nama" class="block text-black mt-3 font-bold">Nama Jemaat</label>
-                        <input id="jemaat_sugestion" type="text" name="nama" value="{{old('nama',$meninggal->nama)}}" placeholder="Arif C. Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off" readonly="readonly"/>
+                        <input id="jemaat_sugestion" type="text" name="nama" value="{{old('nama',$katekisasi->nama)}}" placeholder="Arif C. Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off" readonly="readonly"/>
                         <div class="row z-10" id="match-list"></div>
                         @error('nama')
                             <div class="text-red-500">{{ 'Isian tidak diisi / tidak menggunakan auto sugestion.' }}</div>
                         @enderror
 
-                        <input name="jemaat_id" id="jemaat_id" type="hidden" value="{{$meninggal->jemaat_id}}">
+                        <input name="jemaat_id" id="jemaat_id" type="hidden" value="{{$katekisasi->jemaat_id}}">
                         @error('jemaat_id')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
+
+                        <label for="nomor_telepon" class="block text-black mt-3 font-bold">No. Telepon</label>
+                        <input id="nomor_telepon" type="text" name="nomor_telepon" value="{{old('nomor_telepon',$katekisasi->nomor_telepon)}}" placeholder="Autofill" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed mt-3" readonly="readonly"/>
                     </fieldset>
 
                     <fieldset class="border-solid border-blue-500 border-2 px-4 pb-4 mt-5">
                         <legend class="px-2 text-lg">Data Meninggal:</legend>
 
                         <label for="tanggal" class="block text-black mt-3 font-bold">Tanggal:</label>
-                        <input id="tanggal" type="text" name="tanggal" value="{{old('tanggal',$meninggal->tanggal ? date("d-m-Y",strToTime($meninggal->tanggal)) : '')}}" placeholder="dd-mm-yyyy" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
+                        <input id="tanggal" type="text" name="tanggal" value="{{old('tanggal',$katekisasi->tanggal ? date("d-m-Y",strToTime($katekisasi->tanggal)) : '')}}" placeholder="dd-mm-yyyy" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
                         @error('tanggal_lahir')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
-                        <label for="tempat" class="block text-black mt-3 font-bold">Tempat:</label>
-                        <input type="text" name="tempat" value="{{old('tempat',$meninggal->tempat)}}" placeholder="Bandung ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-                        @error('tempat')
+                        <label for="status" class="block text-black mt-3 font-bold">Status:</label>
+                        <select name="status" class="w-1020 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
+                            <option value="" disabled selected>Pilih Status</option>
+                            <option value="L" @if (old('status',$katekisasi->status) == 'L') {{"selected"}}@endif>Lajang</option>
+                            <option value="M" @if (old('status',$katekisasi->status) == 'M') {{"selected"}}@endif>Mau Menikah</option>
+                        </select>
+                        @error('status')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
-                        <label for="dimakamkan_di" class="block text-black mt-3 font-bold">Dimakamkan di:</label>
-                        <input type="text" name="dimakamkan_di" value="{{old('dimakamkan_di',$meninggal->dimakamkan_di)}}" placeholder="TPU ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-                        @error('dimakamkan_di')
+                        <label for="hobi" class="block text-black mt-3 font-bold">Hobi:</label>
+                        <input type="text" name="hobi" value="{{old('hobi',$katekisasi->hobi)}}" placeholder="Sepak Bola, Bermusik ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                        @error('hobi')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
-                        <label for="keterangan" class="block text-black mt-3 font-bold">Keterangan:</label>
-                        <input type="text" name="keterangan" value="{{old('keterangan',$meninggal->keterangan)}}" placeholder="Meninggal akibat ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-                        @error('keterangan')
+                        <label for="cita" class="block text-black mt-3 font-bold">Cita-cita:</label>
+                        <input type="text" name="cita" value="{{old('cita',$katekisasi->cita)}}" placeholder="Dokter, Polisi ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                        @error('cita')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
@@ -59,9 +66,9 @@
 
                     @if (Auth::user()->role == 'super')
                         <label for="temporary" class="block text-black mt-3 font-bold">Verifikasi</label>
-                        <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="temporary" value="1" @if (old('temporary', $meninggal->temporary) == true) {{"checked"}}@endif />
+                        <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="temporary" value="1" @if (old('temporary', $katekisasi->temporary) == true) {{"checked"}}@endif />
                         <span class="ml-2 text-gray-700">Belum terverifikasi</span>
-                        <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="temporary" value="0" @if (old('temporary', $meninggal->temporary) == false) {{"checked"}}@endif />
+                        <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="temporary" value="0" @if (old('temporary', $katekisasi->temporary) == false) {{"checked"}}@endif />
                         <span class="ml-2 text-gray-700">Terverifikasi</span>
                         @error('hidup')
                             <div class="text-red-500">{{ $message }}</div>
@@ -76,7 +83,7 @@
                         Simpan perubahan
                     </button>
                 
-                    <x-back-button :link="url('/meninggal')" />
+                    <x-back-button :link="url('/katekisasi')" />
                 </form>
 
             </div>
@@ -95,23 +102,32 @@
     const matchList = document.getElementById("match-list");
     const searchInput = document.getElementById("jemaat_sugestion");
     const jemaatId = document.getElementById("jemaat_id");
+    const nomorTelepon = document.getElementById("nomor_telepon");
 
-    const url = window.location.origin + '/api/jemaat/'
-    searchInput.oninput = async ()=> getJemaat();
+    const url = window.location.origin + '/api/jemaatKatekisasi/'
+    let res = [];
+    
+    searchInput.oninput = async ()=> {
+        getJemaat();
+        jemaatId.value = '';
+        nomorTelepon.value = '';
+    }
 
-    const setSearchValue = (jemaatNama, jemaatIdRes) => {
-        searchInput.value = jemaatNama;
-        jemaatId.value = jemaatIdRes;
+    const setSearchValue = (index) => {
+        searchInput.value = res[index].nama;
+        jemaatId.value = res[index].id;
+        nomorTelepon.value = res[index].nomor_telepon;
         matchList.innerHTML = '';
     }
 
     
     //============================================================
     const outputHtml = matches => {
-    
         if (matches.length>0){
+            res = matches;
+            i = 0;
             const htmlFetched = matches.map(match => `
-                <div onclick="setSearchValue('${match.nama}', '${match.id}')" class="cursor-pointer p-2 bg-gray-200 hover:bg-gray-300 border border-gray-400">
+                <div onclick="setSearchValue('${i++}')" class="cursor-pointer p-2 bg-gray-200 hover:bg-gray-300 border border-gray-400">
                     <p><strong>${match.nama}</strong> - ${match.tanggal_lahir}</p>
                 </div>
             `).join('');

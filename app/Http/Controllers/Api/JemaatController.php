@@ -18,6 +18,12 @@ class JemaatController extends Controller
 	    return Response::json($jemaat,200);
     }
 
+    public function jemaatKatekisasi(Request $request)
+    {
+        $jemaat=Jemaat::where('nama', 'like', "%$request->hint%")->limit($this->limit)->get();
+        return Response::json($jemaat,200);
+    }
+
     public function kepalaKeluarga (Request $request)
     {
         $keluarga =  DB::table('keluarga')

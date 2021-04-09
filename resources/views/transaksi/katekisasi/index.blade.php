@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Daftar Meninggal') }}
+            {{ __('Daftar Katekisasi') }}
         </h2>
     </x-slot>
     
@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               
-              <form action="{{route('meninggal.create')}}" method="get" class="float-right m-5">
+              <form action="{{route('katekisasi.create')}}" method="get" class="float-right m-5">
                 <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
                     <span class="material-icons">
                         add
@@ -27,7 +27,7 @@
                             <th class="px-5 py-2">No</th>
                             <th class="px-5 py-2">Tanggal</th>
                             <th class="px-5 py-2">Nama</th>
-                            <th class="px-5 py-2">Umur</th>
+                            <th class="px-5 py-2">Status Jemaat</th>
                             <th class="px-5 py-2">Alamat</th>
                             <th class="px-5 py-2">Status</th>
                             <th class="px-5 py-2 text-left">Aksi</th>
@@ -35,16 +35,13 @@
                         </thead>
                         <tbody class="bg-gray-200">
                             @php $number = 1; @endphp
-                            @foreach ($meninggal as $data)
+                            @foreach ($katekisasi as $data)
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
                                 <td class="px-5 py-2 text-center" >{{$number++}}</td>
                                 <td class="px-5 py-2 text-center">{{date("d-m-Y",strToTime($data->tanggal))}}</td>
-                                <td class="px-5 py-2 text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/meninggal/'.$data->id)}}">{{$data->nama}}</a></td>
-                                @php 
-                                  $diff = abs(strtotime($data->tanggal) - strtotime($data->tanggal_lahir));
-                                  $years = floor($diff / (365*60*60*24));
-                                @endphp
-                                <td class="px-5 py-2 text-center">{{$years}} tahun</td>
+                                <td class="px-5 py-2 text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/katekisasi/'.$data->id)}}">{{$data->nama}}</a></td>
+                                @php $status = $data->status == 'L' ? 'Lajang': 'Mau Menikah';@endphp
+                                <td class="px-5 py-2 text-center">{{$status}}</td>
                                 <td class="px-5 py-2 text-center">{{$data->alamat_rumah}}</td>
                                 <td class="px-5 py-2 text-center">
                                   @if ($data->temporary)
@@ -54,20 +51,20 @@
                                   @endif
                                 </td>
                                 <td class="px-5 py-2 text-left align-middle" >
-                                  <form action="{{url('meninggal/'.$data->id.'/edit')}}" class="float-left">
+                                  <form action="{{url('katekisasi/'.$data->id.'/edit')}}" class="float-left">
                                     <button type="submit">
                                       <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">
                                         mode_edit
                                       </span>
                                     </button>|
                                   </form>
-                                  <form method="post" action="{{url('/meninggal/'.$data->id)}}" class="float-left">
+                                  <form method="post" action="{{url('/katekisasi/'.$data->id)}}" class="float-left">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit"
                                       onclick="event.preventDefault();
                                         toggleModal('modal-delete');
-                                        deletemeninggal('{{url('/meninggal/'.$data->id)}}')"
+                                        deletekatekisasi('{{url('/katekisasi/'.$data->id)}}')"
                                     >
                                       <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">
                                         delete
@@ -80,7 +77,7 @@
                         </tbody>
                       </table>
                       <br/>
-                      {{ $meninggal->links() }}
+                      {{ $katekisasi->links() }}
                 </div>
             </div>
         </div>
@@ -97,7 +94,7 @@
 </x-app-layout>
 
 <script>
-  function deletemeninggal(url){
+  function deletekatekisasi(url){
     document.getElementById('form-modal-delete').setAttribute('action', url);
   }
 </script>

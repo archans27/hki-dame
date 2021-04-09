@@ -176,6 +176,8 @@ class JemaatBaruController extends Controller
         $jemaat = Jemaat::withoutGlobalScope('temporary')->find($jemaatBaru->jemaat_id)->fill($request->all());
         $jemaat->save();
 
+        $request->input('temporary') == 0 ? DetailKeluarga::where('jemaat_id', '=', $jemaatBaru->jemaat_id)->delete() : '';
+
         $tk_gereja = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
             ->where('untuk', '=', 'gereja')
             ->first()
