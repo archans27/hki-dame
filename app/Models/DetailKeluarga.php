@@ -23,7 +23,7 @@ class DetailKeluarga extends Model
 
     public function jemaat()
     {
-        return $this->belongsTo(Jemaat::class, 'jemaat_id' , 'id');
+        return $this->hasOne(Jemaat::class);
     }
 
     public function keluarga()

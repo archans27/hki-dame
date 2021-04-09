@@ -36,5 +36,10 @@ class Jemaat extends Model
         return $this->hasOne(DetailKeluarga::class);
     }
 
+    public function Keluarga()
+    {
+        return $this->belongsTo(Keluarga::class);
+    }
+
 
 }

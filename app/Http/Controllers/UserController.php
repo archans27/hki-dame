@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Sektor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('master.user.create');
+        $sektors = Sektor::all();
+        return view('master.user.create',[
+            'sektors' => $sektors
+        ]);
     }
 
     /**
@@ -37,9 +41,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(\App\Http\Requests\CreateUserRequest $request)
-    {
-
-        
+    {        
         $user = new User();
         $user = $user->fill($request->all());
         $user->save();
@@ -54,6 +56,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $sektor = Sektor::where('id', '=', $user->sektor_id)->first();
+        if($sektor){
+            $user->sektor = $sektor->nama;
+        }
         return view('master.user.show', ['user' => $user]);
     }
 
@@ -65,8 +71,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $sektors = Sektor::all();
         if($user->email == "hkidame@mail.com"){  return redirect('/user')->with('succeed', "Jemaat default tidak boleh ubah");}
-        return view('master.user.edit', ['user' => $user]);
+        return view('master.user.edit', [
+            'user' => $user,
+            'sektors' => $sektors
+        ]);
     }
 
     /**
@@ -78,7 +88,7 @@ class UserController extends Controller
      */
     public function update(\App\Http\Requests\StoreUserRequest $request, User $user)
     {
-        //dd($request->file('foto_profile'));
+        //dd($request);
         if ($request->hasFile('foto_profile')) {
             $image = $request->file('foto_profile');
             $imageName = "foto_profile_$user->id.".$image->extension();
@@ -93,6 +103,7 @@ class UserController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->role = $request['role'];
+        $user->sektor_id = $request['sektor_id'];
         $user->save();
         
         return redirect('/user')->with('succeed', "User dengan nama $user->name sudah tersimpan ke database");
