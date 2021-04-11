@@ -69,12 +69,11 @@
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'katekisasi') ? 'active' : '' }}" :active="0" href="{{url('/katekisasi')}}">Katekisasi</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'jemaatBaru') ? 'active' : '' }}" :active="0" href="{{url('/jemaatBaru')}}">Jemaat Baru</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'jemaatLahir') ? 'active' : '' }}" :active="0" href="{{url('/jemaatLahir')}}">Jemaat Lahir</x-responsive-nav-link>
-            <x-responsive-nav-link class="{{ (request()->segment(1) == 'ikatanJanji') ? 'active' : '' }}" :active="0" href="{{url('/ikatanJanji')}}">Ikatan Janji</x-responsive-nav-link>
-            <x-responsive-nav-link class="{{ (request()->segment(1) == 'pernikahan') ? 'active' : '' }}" :active="0" href="{{url('/pernikahan')}}">Pemberkatan Pernikahan</x-responsive-nav-link>
+            <x-responsive-nav-link class="{{ (request()->segment(1) == 'ikatanJanji') ? 'active' : '' }}" :active="0" href="{{url('/ikatanJanji')}}">Ikat Janji</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Perjanjian & Permohonan Menikah</x-responsive-nav-link>
+            <x-responsive-nav-link class="{{ (request()->segment(1) == 'pernikahan') ? 'active' : '' }}" :active="0" href="{{url('/pernikahan')}}">Pemberkatan Pernikahan</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'pindah') ? 'active' : '' }}" :active="0" href="{{url('/pindah')}}">Pindah</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'meninggal') ? 'active' : '' }}" :active="0" href="{{url('/meninggal')}}">Meninggal</x-responsive-nav-link>
-            <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Revisi Jemaat</x-responsive-nav-link>
           </div>
         </div>
       </div>
