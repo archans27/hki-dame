@@ -15,7 +15,7 @@
                     @csrf
                     <div class="container">
                         <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama Kepala Keluarga</label>
-                        <input type="text" name="kepala_keluarga" value="{{$keluargas[0]->kepala_keluarga}}" placeholder="Nama kepala keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed" autocomplete="off" readonly="readonly"/>
+                        <input type="text" name="kepala_keluarga" value="{{$keluargas[0]->kepala_keluarga}}" placeholder="Arif Chandra Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed" autocomplete="off" readonly="readonly"/>
                         @error('kepala_keluarga')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
@@ -26,14 +26,8 @@
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
 
-                    <label for="no_keluarga" class="block text-black mt-3 font-bold">No. Keluarga</label>
-                    <input id="no_keluarga" type="text" name="no_keluarga" value="{{$keluargas[0]->no_keluarga}}" placeholder="Nomor Keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-                    @error('no_keluarga')
-                        <div class="text-red-500">{{ $message }}</div>
-                    @enderror
-
                     <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
-                    <select name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Sektor">
+                    <select id="sektor_id" name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Sektor">
                         @foreach ($sektors as $sektor)
                             <option @if (old('sektor_id', $keluargas[0]->sektor_id) == $sektor->id) {{"selected"}}@endif value="{{$sektor->id}}" >{{$sektor->nama}}</option>
                         @endforeach
@@ -41,9 +35,17 @@
                     @error('sektor_id')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
+                    <input type="hidden" name="hide_sektorId" id="hide_sektorId" value="{{ $keluargas[0]->sektor_id }}">
+
+                    <label for="no_keluarga" class="block text-black mt-3 font-bold">No. Keluarga</label>
+                    <input id="no_keluarga" type="text" name="no_keluarga" value="{{$keluargas[0]->no_keluarga}}" placeholder="mis : 81941008001" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+                    @error('no_keluarga')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                    <input type="hidden" name="hide_noKeluarga" id="hide_noKeluarga" value="{{ $keluargas[0]->no_keluarga }}">
 
                     <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat Rumah</label>
-                    <textarea type="text" name="alamat_rumah" value="{{old('alamat_rumah', $keluargas[0]->alamat_keluarga)}}" placeholder="Alamat rumah" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full">{{old('alamat_rumah', $keluargas[0]->alamat_keluarga)}}</textarea>
+                    <textarea type="text" name="alamat_rumah" value="{{old('alamat_rumah', $keluargas[0]->alamat_keluarga)}}" placeholder="Jln. Maleber Barat ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full">{{old('alamat_rumah', $keluargas[0]->alamat_keluarga)}}</textarea>
                     @error('alamat_rumah')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
@@ -75,8 +77,8 @@
                     @method('POST')
                     @csrf
                     <div class="container">
-                        <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama Anggota keluarga</label>
-                        <input id="jemaat_sugestion" type="text" name="kepala_keluarga" value="{{old('nama')}}" placeholder="Nama anggota keluarga" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
+                        <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama Anggota Keluarga</label>
+                        <input id="jemaat_sugestion" type="text" name="kepala_keluarga" value="{{old('nama')}}" placeholder="Daniel Christianto Widodo" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
                         <div class="row z-10" id="match-list"></div>
                     </div>
                     @error('kepala_keluarga')
@@ -94,6 +96,7 @@
                         <option @if (old('hubungan') == "Suami") {{"selected"}}@endif value='Suami' >Suami</option>
                         <option @if (old('hubungan') == "Istri") {{"selected"}}@endif value='Istri'>Istri</option>
                         <option @if (old('hubungan') == "Anak") {{"selected"}}@endif value='Anak'>Anak</option>
+                        <option @if (old('hubungan') == "Famili Lain") {{"selected"}}@endif value='Famili Lain'>Famili Lain</option>
                     </select>
                     @error('hubungan')
                         <div class="text-red-500">{{ $message }}</div>
@@ -224,6 +227,26 @@
 
     function deleteJemaat(url){
         document.getElementById('form-modal-delete').setAttribute('action', url);
+    }
+
+/* ------------------------------ */
+
+    const url_noKeluarga = window.location.origin + '/api/noKeluarga/'
+
+    const sektorInput = document.getElementById("sektor_id");
+    const noKeluargaInput = document.getElementById("no_keluarga");
+
+    sektorInput.onchange = async ()=> getNoKeluarga();
+
+    async function getNoKeluarga(){
+        var x = document.getElementById("sektor_id");
+        if(x.value == document.getElementById("hide_sektorId").value){
+            noKeluargaInput.value = document.getElementById("hide_noKeluarga").value;
+        }else{
+            var sektor_code = x.options[x.selectedIndex].text;
+            const response = await fetch(url_noKeluarga+x.value);
+            noKeluargaInput.value = '819410'+sektor_code.substr(sektor_code.length - 2)+await response.json();
+        }
     }
 
     </script>

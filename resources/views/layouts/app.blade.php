@@ -51,7 +51,7 @@
                   <div class="w-full text-center">
                     <p class="text-xl bold">HKI Dame</p> 
                     <p>Alamat: Jl. Soekarno-Hatta No.543, Gumuruh,<br />
-                      Kec. Batununggal, Kota Bandung,Jawa Barat 40275</p>
+                      Kec. Batununggal, Kota Bandung, Jawa Barat 40275</p>
                       <span class="material-icons cursor-pointer hover:text-blue-500 align-middle">phone</span> (022) 611-2030
                       <span class="material-icons cursor-pointer hover:text-blue-500 align-middle">mail</span> hkidame@mail.com
                   </div>
