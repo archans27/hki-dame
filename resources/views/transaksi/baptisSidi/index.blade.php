@@ -26,6 +26,7 @@
                           <tr class="bg-gray-800 text-white py-5">
                             <th class="p-2 text-left">Kepala Keluarga</th>
                             <th class="p-2">Tanggal</th>
+                            <th class="p-2">Status</th>
                             <th class="p-2 text-left">Aksi</th>
                           </tr>
                         </thead>
@@ -34,6 +35,13 @@
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
                                 <td class="p-2 flex flex-row text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/baptisSidi/'.$baptisSidi->id)}}">{{$baptisSidi->kepala_keluarga}}</a></td>
                                 <td class="p-2 text-center">{{$baptisSidi->tanggal ? date("d-m-Y",strToTime($baptisSidi->tanggal)) : '-'}}</td>
+                                <td class="px-16 py-2 text-center">
+                                  @if (!$baptisSidi->temporary)
+                                    <span class="bg-green-500 border-green-600 p-1.5 rounded font-bold text-white">Terverifikasi</span>
+                                  @else
+                                    <span class="bg-red-400 border-red-600 p-1.5 rounded font-bold text-white">Tidak Terverifikasi</span>
+                                  @endif
+                                </td>
                                 <td class="p-2 text-left align-middle" >
                                   <form action="{{url('baptisSidi/'.$baptisSidi->id.'/edit')}}" class="float-left">
                                     <button type="submit">
