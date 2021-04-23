@@ -48,7 +48,15 @@
                     @endif
                     <p class="text-md font-bold text-blue-500">Ucapan syukur untuk lainnya:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['lain_lain'] ?? 0)),3)))}},-</p><br/>
                 </fieldset>
+
+                <br/>
+                <div class="clear-both my-5"></div>
                 
+                @if ($baptisSidi->temporary)
+                    <span class="bg-red-500 border-red-600 p-1.5 rounded border-solid font-bold text-white">Tidak Terverifikasi</span>
+                @else
+                    <span class="bg-green-400 border-green-600 p-1.5 rounded border-solid font-bold text-white">Terverifikasi</span>
+                @endif
 
             </div>
         </div>

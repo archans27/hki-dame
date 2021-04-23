@@ -29,14 +29,17 @@
                         <label for="alamat_rumah" class="block text-black mt-3 font-bold">Alamat Rumah</label>
                         <input id="alamat_rumah" type="text" name="alamat_rumah" value="{{old('alamat_rumah')}}" placeholder="Autofill" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed mt-3" readonly="readonly"/>
 
-                        {{-- <label class="block text-black mt-3 font-bold" for="jenis">Jenis</label>
-                        <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="jenis" value="Baptis" @if (old('jenis',$baptisSidi->jenis ?? '') == "Baptis") {{"checked"}}@endif />
-                        <span class="ml-2 text-gray-700">Baptis</span>
-                        <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="jenis" value="Sidi"@if ( old('jenis',$baptisSidi->jenis ?? '') == "Sidi") {{"checked"}}@endif />
-                        <span class="ml-2 text-gray-700">Sidi</span>
-                        @error('jenis')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror --}}
+                        @if (Auth::user()->role == 'super')
+                            <label for="temporary" class="block text-black mt-3 font-bold">Verifikasi</label>
+                            <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="temporary" value="1" @if (old('temporary', $anggotaKeluarga->temporary ?? true) == true) {{"checked"}}@endif />
+                            <span class="ml-2 text-gray-700">Belum terverifikasi</span>
+                            <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="temporary" value="0" @if (old('temporary',$anggotaKeluarga->temporary ?? true) == false) {{"checked"}}@endif />
+                            <span class="ml-2 text-gray-700">Terverifikasi</span>
+                            @error('hidup')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
+                        @endif
+
                     </fieldset>
 
                     

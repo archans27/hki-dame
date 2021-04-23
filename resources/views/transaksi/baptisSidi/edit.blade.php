@@ -126,6 +126,20 @@
                     
 
                     <div class="clear-both px-5 pb-5"></div>
+
+                    @if (Auth::user()->role == 'super')
+                        <label for="temporary" class="block text-black mt-3 font-bold">Verifikasi</label>
+                        <input type="radio" class="form-radio h-5 w-5 text-gray-600" name="temporary" value="1" @if (old('temporary', $baptisSidi->temporary ?? true) == true) {{"checked"}}@endif />
+                        <span class="ml-2 text-gray-700">Belum terverifikasi</span>
+                        <input type="radio" class="form-radio h-5 w-5 ml-8 text-gray-600" name="temporary" value="0" @if (old('temporary',$baptisSidi->temporary ?? true) == false) {{"checked"}}@endif />
+                        <span class="ml-2 text-gray-700">Terverifikasi</span>
+                        @error('hidup')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
+                    @endif
+                        
+                    <div class="clear-both px-5 pb-5"></div>
+
                     <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
                         <span class="material-icons">
                             save
