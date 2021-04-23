@@ -14,7 +14,7 @@ class AddTemporaryToBaptisSidi extends Migration
     public function up()
     {
         Schema::table('baptis_sidi', function (Blueprint $table) {
-            $table->string('temporary')->nullable();
+            $table->string('temporary')->default('1');
         });
     }
 

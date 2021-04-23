@@ -19,11 +19,14 @@ class BaptisSidiController extends Controller
     
     public function index()
     {
-        $baptisSidis = DB::table('baptis_sidi')
+        $query = DB::table('baptis_sidi')
             ->select('baptis_sidi.*', 'keluarga.*', 'baptis_sidi.id as id')
             ->join('keluarga', 'keluarga.id', '=', 'baptis_sidi.keluarga_id')
-            ->get()
         ;
+        if (Auth::user()->role != 'super'){
+            $query->where('keluarga.sektor_id', '=', Auth::user()->sektor_id );
+        }
+        $baptisSidis = $query->get();
         return view('transaksi.baptisSidi.index', [
             'baptisSidis' => $baptisSidis
         ]);
@@ -41,7 +44,6 @@ class BaptisSidiController extends Controller
         $request->validate([
             'kepala_keluarga' => 'required',
             'keluarga_id' => 'required|exists:keluarga,id',
-            'temporary' => ['nullable', 'boolean'],
         ]);
 
         if (Auth::user()->role != 'super') {
