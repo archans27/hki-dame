@@ -1,7 +1,7 @@
 @props(['jemaat', 'sektors'])
 
 <label for="nama" class="block text-black mt-3 font-bold">Nama Lengkap</label>
-<input type="text" name="nama" value="{{old('nama',$jemaat->nama)}}" placeholder="Arif C. Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
+<input type="text" name="nama" value="{{old('nama',$jemaat->nama)}}" placeholder="Arif Chandra Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
 @error('nama')
     <div class="text-red-500">{{ $message }}</div>
 @enderror

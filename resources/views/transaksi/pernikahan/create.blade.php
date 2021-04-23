@@ -17,7 +17,7 @@
                         <input name="jenis" id="jenis" type="hidden" value="{{ $jenis['jenis'] }}" />
                         <legend class="px-2 text-lg">Data Keluarga:</legend>
                         <label for="kepala_keluarga" class="block text-black mt-3 font-bold">Nama Kepala Keluarga</label>
-                        <input id="kepala_keluarga" type="text" name="kepala_keluarga" value="{{old('kepala_keluarga')}}" placeholder="Arif C. Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
+                        <input id="kepala_keluarga" type="text" name="kepala_keluarga" value="{{old('kepala_keluarga')}}" placeholder="Arif Chandra Simanjuntak" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" autocomplete="off"/>
                         <div class="row z-10" id="match-list"></div>
                         @error('kepala_keluarga')
                             <div class="text-red-500">{{ $message }}</div>
