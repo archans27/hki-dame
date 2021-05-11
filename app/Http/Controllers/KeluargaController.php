@@ -6,6 +6,7 @@ use App\Models\Keluarga;
 use App\Models\DetailKeluarga;
 use App\Models\Jemaat;
 use App\Models\Sektor;
+use App\Enums\AnggotaKeluargaEnum;
 use Illuminate\Http\Request;
 use DB;
 
@@ -57,7 +58,7 @@ class KeluargaController extends Controller
             'alamat_rumah' => 'required',
             'status_rumah' => 'required',
         ]);
-        
+
         $keluarga = Keluarga::create($request->all());
         $keluarga->save();
         $detailKeluarga = DetailKeluarga::where('jemaat_id', '=', $request->kepala_keluarga_id)->first();
@@ -68,7 +69,15 @@ class KeluargaController extends Controller
         $detailKeluarga->keluarga_id = $keluarga->refresh()->id;
         $detailKeluarga->hubungan = $request->hubungan;
         $detailKeluarga->save();
-        
+        $jemaat = Jemaat::where('id', '=', $detailKeluarga->jemaat_id)->first();
+        switch (strtolower($request->hubungan)) {
+            case AnggotaKeluargaEnum::suami():
+                $jemaat->no_anggota = $request->no_keluarga.'001';
+                break;
+        }
+
+        $jemaat->save();
+
         return redirect('/keluarga/'.$keluarga->id)->with('succeed', "Keluarga dengan kepala $keluarga->kepala_keluarga tersimpan ke database");
     }
 
@@ -90,7 +99,7 @@ class KeluargaController extends Controller
             ->orderBy('jemaat.tanggal_lahir', 'asc')
             ->get()
         ;
-        
+
         return view('master.keluarga.show', ['keluargas' => $keluargas]);
     }
 
@@ -141,7 +150,7 @@ class KeluargaController extends Controller
                 'kepala_keluarga' => $kepalaKeluarga->nama
             ]);
         }
-        
+
         $request->validate([
             'kepala_keluarga_id' => 'required|exists:jemaat,id',
             'kepala_keluarga' => 'required',
@@ -179,4 +188,6 @@ class KeluargaController extends Controller
         $keluarga->save();
         return redirect()->back()->with('succeed', "Data kepala keluarga telah diubah menjadi $jemaat->nama ");
     }
+
+
 }
