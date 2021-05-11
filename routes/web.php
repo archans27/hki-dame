@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function() {
         'pernikahan' => \App\Http\Controllers\PernikahanController::class,
         'pindah' => \App\Http\Controllers\PindahController::class,
         'meninggal' => \App\Http\Controllers\MeninggalController::class,
+        'martupol' => \App\Http\Controllers\MartupolController::class,
     ]);
 });
 require __DIR__.'/auth.php';
