@@ -38,7 +38,7 @@ class JemaatController extends Controller
 
 
     public function create(Jemaat $jemaat, Sektor $sektor)
-    {   
+    {
         return view('master.jemaat.create', [
             'jemaat' => $jemaat,
             'sektors' => $sektor->all()
@@ -52,7 +52,7 @@ class JemaatController extends Controller
 
         $jemaat = Jemaat::create($request->all());
         $namaJemaat = $jemaat->refresh()->nama;
-        
+
         return redirect('/jemaat/'.$jemaat->id)->with('succeed', "Jemaat dengan nama $namaJemaat sudah tersimpan ke database");
     }
 

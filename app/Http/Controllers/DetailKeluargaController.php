@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DetailKeluarga;
 use App\Models\Keluarga;
+use App\Models\Jemaat;
+use App\Enums\AnggotaKeluargaEnum;
+use DB;
 
 class DetailKeluargaController extends Controller
 {
@@ -48,6 +51,31 @@ class DetailKeluargaController extends Controller
         }
         $detailKeluarga->keluarga_id = $request->keluarga_id;
         $detailKeluarga->hubungan = $request->hubungan;
+        $keluarga = Keluarga::where('id', '=', $detailKeluarga->keluarga_id)->first();
+        $jemaat = Jemaat::where('id', '=', $detailKeluarga->jemaat_id)->first();
+        $hubungan = str_replace(' ', '_', strtolower($request->hubungan));
+        $countChildren = DB::select('select count(1) + 1 as total from detail_keluarga where LOWER(hubungan) = ? AND keluarga_id = ?', [$hubungan, $detailKeluarga->keluarga_id]);
+        $total = $countChildren[0]->total;
+        switch ($hubungan) {
+            case AnggotaKeluargaEnum::istri();
+                $jemaat->no_anggota = $keluarga->no_keluarga.'002';
+                break;
+
+            case AnggotaKeluargaEnum::anak();
+                $countChildren = DB::select('select count(1) + 3 as total from detail_keluarga where LOWER(hubungan) = ? AND keluarga_id = ?', [$hubungan, $detailKeluarga->keluarga_id]);
+                $total = $countChildren[0]->total;
+                $totalString = strlen($total) == 1 ? '00'.$total : '0'.$total;
+                $jemaat->no_anggota = $keluarga->no_keluarga.$totalString;
+                break;
+
+            case AnggotaKeluargaEnum::famili_lain();
+                $countChildren = DB::select('select count(1) + 1 as total from detail_keluarga where LOWER(hubungan) = ? AND keluarga_id = ?', [$hubungan, $detailKeluarga->keluarga_id]);
+                $total = $countChildren[0]->total;
+                $totalString = strlen($total) == 1 ? '10'.$total : '1'.$total;
+                $jemaat->no_anggota = $keluarga->no_keluarga.$totalString;
+                break;
+        }
+        $jemaat->save();
         $detailKeluarga->save();
         return redirect()->back();
     }
@@ -99,7 +127,7 @@ class DetailKeluargaController extends Controller
             $detailKeluarga->delete();
         }
         $keluargasCount = DetailKeluarga::where('keluarga_id' , '=', $detailKeluarga->keluarga_id)->count();
-        
+
         if (!$keluargasCount){
             $keluargas = Keluarga::find($detailKeluarga->keluarga_id)->delete();
             return redirect('/keluarga');
