@@ -70,6 +70,7 @@
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'jemaatBaru') ? 'active' : '' }}" :active="0" href="{{url('/jemaatBaru')}}">Jemaat Baru</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'jemaatLahir') ? 'active' : '' }}" :active="0" href="{{url('/jemaatLahir')}}">Jemaat Lahir</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'ikatanJanji') ? 'active' : '' }}" :active="0" href="{{url('/ikatanJanji')}}">Ikat Janji</x-responsive-nav-link>
+            <x-responsive-nav-link class="{{ (request()->segment(1) == 'martupol') ? 'active' : '' }}" :active="0" href="{{url('/martupol')}}">Martupol</x-responsive-nav-link>
             <x-responsive-nav-link class="" :active="0" href="{{url('#')}}">Perjanjian & Permohonan Menikah</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'pernikahan') ? 'active' : '' }}" :active="0" href="{{url('/pernikahan')}}">Pemberkatan Pernikahan</x-responsive-nav-link>
             <x-responsive-nav-link class="{{ (request()->segment(1) == 'pindah') ? 'active' : '' }}" :active="0" href="{{url('/pindah')}}">Pindah</x-responsive-nav-link>
