@@ -112,7 +112,7 @@ class JemaatBaruController extends Controller
         $tk_pengembangan->tanggal = $request['tanggal_anggota'];
         $tk_pengembangan->save();
 
-        
+
 
         $jemaatBaru = JemaatBaru::create([
             "id" => $uuid['jemaatBaruId'],
@@ -157,7 +157,7 @@ class JemaatBaruController extends Controller
         {
             $ucapanSyukurToArray[$ucapanSyukur->untuk] = $ucapanSyukur->besaran;
         }
-        //dd($ucapanSyukurToArray);   
+        //dd($ucapanSyukurToArray);
         return view('transaksi.jemaatBaru.edit', [
             'jemaat' => $jemaatBaru,
             'ucapanSyukur' => $ucapanSyukurToArray,
