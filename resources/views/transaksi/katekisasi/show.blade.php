@@ -47,12 +47,9 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <p class="text-md font-bold text-blue-500">Tanggal</p><p>{{date("d-m-Y",strToTime($katekisasi->tanggal))}}</p><br/>
-                            @php $status = $katekisasi->status == 'L' ? 'Lajang': 'Mau Menikah';@endphp
-                            <p class="text-md font-bold text-blue-500">Status</p><p>{{$status}}</p><br/>
-                        </div>                    
-                        <div>
                             <p class="text-md font-bold text-blue-500">Hobi</p><p>{{$katekisasi->hobi}}</p><br/>
-                            <p class="text-md font-bold text-blue-500">Cita-cita</p><p>{{$katekisasi->cita}}</p><br/>
+                            @php $kelas = $katekisasi->kelas == 'R' ? 'Reguler': 'Khusus';@endphp
+                            <p class="text-md font-bold text-blue-500">Jenis Kelas</p><p>{{$kelas}}</p><br/>
                         </div>
                     </div>
                 </fieldset>

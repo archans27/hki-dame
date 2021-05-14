@@ -42,14 +42,14 @@
                     <div class="block clear-both">
                       <div class="float-left mr-4">
                         <label for="order_from" class="block text-black font-bold mt-3 mr-2">Urut berdasarkan</label>
-                        <select name="order_from" class="w-40 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Urut berdasarkan">
+                        <select name="order_from" class="w-60 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Urut berdasarkan">
                           <option @if (old('order_from', $filter->order_from) == "kepala_keluarga") {{"selected"}}@endif value="kepala_keluarga" >Kepala Keluarga</option>
                           <option @if (old('order_from', $filter->order_from) == "no_keluarga") {{"selected"}}@endif value="no_keluarga" >Nomor Keluarga</option>
                         </select>
                       </div>
                       <div class="float-left mr-4">
                         <label for="order_by" class="block text-black font-bold mt-3 mr-2">Urut secara</label>
-                        <select name="order_by" class="w-40 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
+                        <select name="order_by" class="w-60 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
                           <option @if (old('order_by', $filter->order_by) == "asc") {{"selected"}}@endif value="asc" >Ascending</option>
                           <option @if (old('order_by', $filter->order_by) == "desc") {{"selected"}}@endif value="desc" >Descending</option>
                         </select>
@@ -72,6 +72,7 @@
 
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="min-w-full table-auto">
+                      <caption><p class="text-left pb-2">Terdapat {{$keluargas->total()}} hasil dari data keluarga<br /></p></caption>
                         <thead class="justify-between">
                           <tr class="bg-gray-800 text-white">
                             <th class="px-16 py-2 text-left">Nama Kepala Keluarga</th>
