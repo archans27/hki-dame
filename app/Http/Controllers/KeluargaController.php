@@ -17,17 +17,24 @@ class KeluargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $keluargas =  DB::table('keluarga')
+        $sector = $request->sector ?? null;
+        $orderFrom = $request->order_from ?? 'kepala_keluarga';
+        $orderBy = $request->order_by ?? 'asc';
+        $search = $request->search ?? null;
+        $query =  DB::table('keluarga')
             ->select('keluarga.*', 'sektor.nama as nama_sektor')
             ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
             ->join('sektor', 'keluarga.sektor_id', '=', 'sektor.id')
             ->where('is_pindah', 0)
-            ->distinct()
-            ->get();
+            ->distinct();
+        if($search){$query->where('kepala_keluarga', 'like', "%$search%");}
+        if($sector){$query->where('sektor_id', '=', $sector);}
+        $keluargas = $query->orderBy($orderFrom, $orderBy)
+            ->paginate(20)->appends($request->all());
 
-        return view('master.keluarga.index', ['keluargas' => $keluargas]);
+        return view('master.keluarga.index', ['keluargas' => $keluargas, 'filter' => $request]);
     }
 
     /**
