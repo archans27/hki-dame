@@ -77,6 +77,7 @@
       :action="'Hapus data'"
       :actionUrl="url('/')"
       :actionMethod="'DELETE'"
+      
     />
 </x-app-layout>
 

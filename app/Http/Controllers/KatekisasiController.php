@@ -58,7 +58,7 @@ class KatekisasiController extends Controller
             $request['temporary'] = 0;
         }
 
-        $katekisasi = new Katekisasi();
+        $katekisasi = new Katekisasi(); 
         $katekisasi = $katekisasi->fill($request->all());
         $katekisasi->save();
         $nama = $request->input('nama');

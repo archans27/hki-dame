@@ -28,7 +28,7 @@ class JemaatController extends Controller
         $orderFrom = $request->order_from ?? 'nama';
         $orderBy = $request->order_by ?? 'asc';
 
-        $query = Jemaat::where('is_pindah', 0)->where('nama', 'like', "%$search%");
+        $query = Jemaat::where('is_pindah', 0)->where('hidup',1 )->where('nama', 'like', "%$search%");
         if($year){$query->whereYear('tanggal_lahir', '=', $year);}
         if($month){$query->whereMonth('tanggal_lahir', '=', $month);}
         if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
