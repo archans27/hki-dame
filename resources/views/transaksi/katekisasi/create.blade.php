@@ -29,6 +29,9 @@
 
                         <label for="nomor_telepon" class="block text-black mt-3 font-bold">No. Telepon</label>
                         <input id="nomor_telepon" type="text" name="nomor_telepon" value="{{old('nomor_telepon')}}" placeholder="Autofill" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed mt-3" readonly="readonly"/>
+
+                        <label for="status" class="block text-black mt-3 font-bold">Status</label>
+                        <input id="status" type="string" name="status" value="{{old('status')}}" placeholder="Autofill" class="rounded-md px-4 py-2 focus:outline-none bg-gray-300 lg:w-1/2 sm:w-full cursor-not-allowed mt-3" readonly="readonly"/>
                     </fieldset>
 
                     <fieldset class="border-solid border-blue-500 border-2 px-4 pb-4 mt-5">
@@ -40,25 +43,19 @@
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
-                        <label for="status" class="block text-black mt-3 font-bold">Status:</label>
-                        <select name="status" class="w-1020 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
-                            <option value="" disabled selected>Pilih Status</option>
-                            <option value="L" @if (old('status') == 'L') {{"selected"}}@endif>Lajang</option>
-                            <option value="M" @if (old('status') == 'M') {{"selected"}}@endif>Mau Menikah</option>
-                        </select>
-                        @error('status')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
-
                         <label for="hobi" class="block text-black mt-3 font-bold">Hobi:</label>
                         <input type="text" name="hobi" value="{{old('hobi')}}" placeholder="Sepak Bola, Bermusik ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
                         @error('hobi')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
-                        <label for="cita" class="block text-black mt-3 font-bold">Cita-cita:</label>
-                        <input type="text" name="cita" value="{{old('cita')}}" placeholder="Dokter, Polisi ..." class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-                        @error('cita')
+                        <label for="kelas" class="block text-black mt-3 font-bold">Jenis Kelas</label>
+                        <select name="kelas" class="w-1020 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
+                            <option value="" disabled selected>Pilih Kelas</option>
+                            <option value="R" @if (old('kelas') == 'R') {{"selected"}}@endif>Reguler</option>
+                            <option value="K" @if (old('kelas') == 'K') {{"selected"}}@endif>Khusus</option>
+                        </select>
+                        @error('kelas')
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
@@ -103,6 +100,7 @@
     const searchInput = document.getElementById("jemaat_sugestion");
     const jemaatId = document.getElementById("jemaat_id");
     const nomorTelepon = document.getElementById("nomor_telepon");
+    const status = document.getElementById("status");
 
     const url = window.location.origin + '/api/jemaatKatekisasi/'
     let res = [];
@@ -111,12 +109,14 @@
         getJemaat();
         jemaatId.value = '';
         nomorTelepon.value = '';
+        status.value = '';
     }
 
     const setSearchValue = (index) => {
         searchInput.value = res[index].nama;
         jemaatId.value = res[index].id;
         nomorTelepon.value = res[index].nomor_telepon;
+        status.value = res[index].pekerjaan;
         matchList.innerHTML = '';
     }
 

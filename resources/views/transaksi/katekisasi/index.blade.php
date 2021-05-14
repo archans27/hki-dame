@@ -27,7 +27,7 @@
                             <th class="px-5 py-2">No</th>
                             <th class="px-5 py-2">Tanggal</th>
                             <th class="px-5 py-2">Nama</th>
-                            <th class="px-5 py-2">Status Jemaat</th>
+                            <th class="px-5 py-2">Jenis Kelas</th>
                             <th class="px-5 py-2">Alamat</th>
                             <th class="px-5 py-2">Status</th>
                             <th class="px-5 py-2 text-left">Aksi</th>
@@ -40,8 +40,8 @@
                                 <td class="px-5 py-2 text-center" >{{$number++}}</td>
                                 <td class="px-5 py-2 text-center">{{date("d-m-Y",strToTime($data->tanggal))}}</td>
                                 <td class="px-5 py-2 text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/katekisasi/'.$data->id)}}">{{$data->nama}}</a></td>
-                                @php $status = $data->status == 'L' ? 'Lajang': 'Mau Menikah';@endphp
-                                <td class="px-5 py-2 text-center">{{$status}}</td>
+                                @php $kelas = $data->kelas == 'R' ? 'Reguler': 'Khusus';@endphp
+                                <td class="px-5 py-2 text-center">{{$kelas}}</td>
                                 <td class="px-5 py-2 text-center">{{$data->alamat_rumah}}</td>
                                 <td class="px-5 py-2 text-center">
                                   @if ($data->temporary)
