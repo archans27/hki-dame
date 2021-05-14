@@ -95,7 +95,7 @@
                     <select name="hubungan" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Hubungan dalam keluarga">
                         <option @if (old('hubungan') == "Suami") {{"selected"}}@endif value='Suami' >Suami</option>
                         <option @if (old('hubungan') == "Istri") {{"selected"}}@endif value='Istri'>Istri</option>
-                        <option @if (old('hubungan') == "Anak") {{"selected"}}@endif value='Anak'>Anak</option>
+                        <option @if (old('hubungan') == "Anak") {{"selected"}}@endif value='Anak' selected>Anak</option>
                         <option @if (old('hubungan') == "Famili Lain") {{"selected"}}@endif value='Famili Lain'>Famili Lain</option>
                     </select>
                     @error('hubungan')
@@ -155,7 +155,7 @@
                                             @if ($keluargas[0]->kepala_keluarga_id == $keluarga->jemaat_id)
                                                 <span class="material-icons cursor-pointer text-yellow-500 hover:text-blue-500">
                                             @else
-                                                <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">  
+                                                <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">
                                             @endif
                                                     star
                                                 </span>
@@ -195,8 +195,8 @@
         jemaat_id.value = jemaatId;
         matchList.innerHTML = '';
     }
-    
-    
+
+
     const outputHtml = matches => {
 
         if (matches.length>0){
@@ -219,7 +219,7 @@
         else matchList.innerHTML = '';
     }
 
-    window.addEventListener('click', function(e){   
+    window.addEventListener('click', function(e){
         if (!document.getElementById('body').contains(e.target)){
             matchList.innerHTML = '';
         }
