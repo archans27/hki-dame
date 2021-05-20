@@ -34,11 +34,11 @@ class JemaatController extends Controller
             ->limit($this->limit)
             ->get()
         ;
-        
+
         return Response::json($keluarga,200);
     }
 
-    
+
     public function pekerjaan(Request $request)
     {
         $listPekerjaan = [
@@ -136,5 +136,12 @@ class JemaatController extends Controller
         $result = preg_grep('~' . $request->hint . '~i', $listPekerjaan);
         $limitOutout = array_slice($result, 0, $this->limit);
         return response()->json($limitOutout);
+    }
+
+    public function noAnggota(Request $request)
+    {
+        $jemaat = Jemaat::select(DB::raw('cast(substr(no_anggota, -9, 3)AS INT) as sector_id, substr(no_anggota, -3) + 1 as last_number '))->where('sector_id', $request->hint)->orderBy('no_anggota', 'DESC')->first();
+        $last_number = $jemaat != null ? sprintf("%03d", $jemaat->last_number) : '001';
+        return Response::json($last_number, 200);
     }
 }

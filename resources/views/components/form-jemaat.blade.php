@@ -24,7 +24,7 @@
     @enderror
 
     <label for="no_anggota" class="block text-black mt-3 font-bold">No. Anggota</label>
-    <input type="text" name="no_anggota" value="{{old('no_anggota',$jemaat->no_anggota, '819410')}}"
+    <input id="no_anggota" type="text" name="no_anggota" value="{{old('no_anggota', '819410')}}"
         placeholder="mis : 81941008001001" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" />
     @error('no_anggota')
         <div class="text-red-500">{{ $message }}</div>
@@ -197,6 +197,20 @@
             blockNaposo.style.display = "none"
         }
         checkBox.value = checkBox.checked;
+    }
+
+    const url_noAnggota = window.location.origin + '/api/noAnggota/'
+
+    const sektorInput = document.getElementById("sektor_id");
+    const noAnggotaInput = document.getElementById("no_anggota");
+
+    sektorInput.onchange = async ()=> getNoAnggota();
+
+    const getNoAnggota = async () => {
+        var x = document.getElementById("sektor_id");
+        var sektor_code = x.options[x.selectedIndex].text;
+        const response = await fetch(url_noAnggota+x.value);
+        noKeluargaInput.value = '819410'+sektor_code.substr(sektor_code.length - 2)+await response.json();
     }
 
 </script>
