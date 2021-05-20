@@ -140,7 +140,10 @@ class JemaatController extends Controller
 
     public function noAnggota(Request $request)
     {
-        $jemaat = Jemaat::select(DB::raw('cast(substr(no_anggota, -9, 3)AS INT) as sector_id, substr(no_anggota, -3) + 1 as last_number '))->where('sector_id', $request->hint)->orderBy('no_anggota', 'DESC')->first();
+        $jemaat = Jemaat::select(DB::raw('substr(no_anggota, -8, 2) as sector_id, substr(no_anggota, -3) + 1 as last_number '))
+        ->where('sector_id', $request->hint)
+        ->where(DB::raw('substr(no_anggota, -6, 3)'), '000')
+        ->orderBy('no_anggota', 'DESC')->first();
         $last_number = $jemaat != null ? sprintf("%03d", $jemaat->last_number) : '001';
         return Response::json($last_number, 200);
     }
