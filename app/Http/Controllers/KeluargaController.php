@@ -83,6 +83,7 @@ class KeluargaController extends Controller
                 break;
         }
 
+        $jemaat->is_naposo = '0';
         $jemaat->save();
 
         return redirect('/keluarga/'.$keluarga->id)->with('succeed', "Keluarga dengan kepala $keluarga->kepala_keluarga tersimpan ke database");

@@ -75,6 +75,7 @@ class DetailKeluargaController extends Controller
                 $jemaat->no_anggota = $keluarga->no_keluarga.$totalString;
                 break;
         }
+        $jemaat->is_naposo = '0';
         $jemaat->save();
         $detailKeluarga->save();
         return redirect()->back();
