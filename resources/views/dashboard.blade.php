@@ -17,7 +17,7 @@
                     <strong>Perhitungan jumlah</strong>
                 </div>
                 <p class="">
-                    <strong class="text-2xl">2045</strong> orang jemaat<br/> <strong class="text-2xl">403</strong> Kepala keluarga
+                    <strong class="text-2xl">{{ $jemaat }}</strong> orang jemaat<br/> <strong class="text-2xl">{{ $keluarga }}</strong> Kepala keluarga
                 </p>
              </div>
 
@@ -25,7 +25,8 @@
 
         <script>
             let myChart = document.getElementById('myChart').getContext('2d');
-            
+            var count_jk = <?php echo json_encode($count_jk); ?>;
+
             var myDoughnutChart = new Chart(myChart, {
                 type: 'doughnut',
                 data: {
@@ -33,22 +34,23 @@
                     datasets: [{
                         label: 'My First dataset',
                         backgroundColor: ['#19AADE','#DB4CB2','rgb(100, 100, 255)'],
-                        data: [55, 57, 5]
+                        data: count_jk
                     }]
                 },
                options:{} 
             });
 
             let myChart2 = document.getElementById('myChart2').getContext('2d');
+            var count_golda = <?php echo json_encode($count_golda); ?>;
             
             var myDoughnutChart = new Chart(myChart2, {
                 type: 'doughnut',
                 data: {
-                    labels: [ 'SMP', 'SMA', 'Kuliah', 'Bekerja'],
+                    labels: [ 'A', 'B', 'AB', 'O', 'Lainnya'],
                     datasets: [{
                         label: 'My First dataset',
-                        backgroundColor: ['#DB4CB2','#1DE4BD', '#7D3AC1', '#EE9A3A'],
-                        data: [ 10, 5, 2, 20]
+                        backgroundColor: ['#19AADE','#DB4CB2','#1DE4BD', '#7D3AC1', 'rgb(100, 100, 255)'],
+                        data: count_golda
                     }]
                 },
                options:{} 
