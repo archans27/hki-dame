@@ -54,15 +54,6 @@ class JemaatController extends Controller
         $request['is_naposo'] = $request['is_naposo'] ? 1 : 0;
 
         $jemaat = Jemaat::create($request->all());
-
-        if ($request->is_naposo) {
-            $countNaposo = DB::select('select count(1) + 1 as total from jemaat where is_naposo = ? ', [$request->is_naposo]);
-            $total = $countNaposo[0]->total;
-            $totalString = strlen($total) == 1 ? '00'.$total : '0'.$total;
-            $sector = strlen($request->sektor_id) == 1 ? '0'.$request->sektor_id : $request->sektor_id;
-            $jemaat->no_anggota = NoAnggotaNaposo::NOMOR_ANGGOTA_NAPOSO.$sector.'000'.$totalString;
-        }
-
         $jemaat->save();
         $namaJemaat = $jemaat->refresh()->nama;
 
