@@ -199,4 +199,18 @@
         checkBox.value = checkBox.checked;
     }
 
+    const url_noAnggota = window.location.origin + '/api/noAnggota/'
+
+    const sektorInput = document.getElementById("sektor_id");
+    const noAnggotaInput = document.getElementById("no_anggota");
+
+    sektorInput.onchange = async ()=> getNoAnggota();
+
+    const getNoAnggota = async () => {
+        var x = document.getElementById("sektor_id");
+        var sektor_code = x.options[x.selectedIndex].text;
+        const response = await fetch(url_noAnggota+x.value);
+        noKeluargaInput.value = '819410'+sektor_code.substr(sektor_code.length - 2)+await response.json();
+    }
+
 </script>
