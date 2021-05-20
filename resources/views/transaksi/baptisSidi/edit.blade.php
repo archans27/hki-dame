@@ -78,52 +78,7 @@
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
-                        <label for="tk_gereja" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Gereja:</label>
-                        <input type="text" name="tk_gereja" value="{{old('tk_gereja',$ucapanSyukur['gereja']  ?? '')}}" placeholder="Ucapan Syukur Untuk Gereja (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                        @error('tk_gereja')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
-
-                        <label for="tk_majelis" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Majelis:</label>
-                        <input type="text" name="tk_majelis" value="{{old('tk_majelis',$ucapanSyukur['majelis']  ?? '')}}" placeholder="Ucapan Syukur Untuk Majelis (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                        @error('tk_majelis')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
-
-                        <label for="tk_pendeta" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Pendeta:</label>
-                        <input type="text" name="tk_pendeta" value="{{old('tk_pendeta',$ucapanSyukur['pendeta']  ?? '')}}" placeholder="Ucapan Syukur Untuk Pendeta (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                        @error('tk_pendeta')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
-
-                        <label for="tk_guru_huria" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Guru Huria:</label>
-                        <input type="text" name="tk_guru_huria" value="{{old('tk_guru_huria',$ucapanSyukur['guru_huria']  ?? '')}}" placeholder="Ucapan Syukur Untuk Guru Huria (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                        @error('tk_guru_huria')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
-
-                        <label id="label_akta" for="tk_akte" class="block text-black mt-3 font-bold">Ucapan Syukur Pengganti Akte:</label>
-                        <input type="text" name="tk_akte" value="{{old('tk_akte',$ucapanSyukur['akte']  ?? '')}}" placeholder="Ucapan Syukur Untuk Akta (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                        @error('tk_akte')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
-
-                        <div id="container_tk_pengajar">
-                            <label for="tk_tim_pengajar" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Tim Pengajar:</label>
-                            <input type="text" name="tk_tim_pengajar" value="{{old('tk_tim_pengajar',$ucapanSyukur['tim_pengajar']  ?? '')}}" placeholder="Ucapan Syukur Untuk Tim Pengajar (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                            @error('tk_tim_pengajar')
-                                <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <label for="tk_lain_lain" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Lainnya:</label>
-                        <input type="text" name="tk_lain_lain" value="{{old('tk_lain_lain',$ucapanSyukur['lain_lain']  ?? '')}}" placeholder="Ucapan Syukur Untuk Lainnya (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                        @error('tk_lain_lain')
-                            <div class="text-red-500">{{ $message }}</div>
-                        @enderror
-
-                    
-                    
+                        <x-form-ucapan-syukur :ucapanSyukur="$ucapanSyukur"/>                    
 
                     <div class="clear-both px-5 pb-5"></div>
 
@@ -162,24 +117,7 @@
         format: 'DD-MM-YYYY',
     })
     let jenis = document.getElementsByName('jenis');
-    let label_akta = document.getElementById('label_akta');
-    let container_tk_pengajar = document.getElementById('container_tk_pengajar');
-
-    const getJenis = () => {
-        jenis.forEach(element => {
-            element.addEventListener('change', function() {
-                if (element.value == 'Baptis' && element.checked) {
-                    label_akta.innerHTML = 'Ucapan Syukur Pengganti Akta Baptis:'
-                    container_tk_pengajar.style.display = "none";
-                }else{
-                    label_akta.innerHTML = 'Ucapan Syukur Pengganti Akta Sidi:'
-                    container_tk_pengajar.style.display = "block";
-                }
-            });
-        });
-    }
-
-    getJenis();
+    
     var event = new Event('change');
     jenis[0].dispatchEvent(event);
 

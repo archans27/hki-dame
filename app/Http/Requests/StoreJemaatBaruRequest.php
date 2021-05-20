@@ -26,7 +26,6 @@ class StoreJemaatBaruRequest extends FormRequest
     {
         return [
             'nama' => ['required'],
-            'no_anggota' => ['required'],
             'jenis_kelamin' => ['required', Rule::in(['Laki-laki', 'Perempuan'])],
             'tempat_lahir' => ['required'],
             'tanggal_lahir' => ['required','date:d-m-Y'],

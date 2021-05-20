@@ -66,7 +66,7 @@ class JemaatBaruController extends Controller
         //     "tk_pendeta" => $validated['tk_pendeta'],
         //     "tk_majelis" => $validated['tk_majelis'],
         //     "tk_guru_huria" => $validated['tk_guru_huria'],
-        //     "tk_pengembangan" => $validated['tk_pengembangan'],
+        //     "tk_pembangunan" => $validated['tk_pembangunan'],
         //     "tanggal" => $validated['tanggal_anggota']
         // ]);
 
@@ -79,14 +79,6 @@ class JemaatBaruController extends Controller
         $tk_gereja->record = $uuid['jemaatBaruId'];
         $tk_gereja->tanggal = $request['tanggal_anggota'];
         $tk_gereja->save();
-        $tk_pendeta = new UcapanSyukur();
-        $tk_pendeta->ucapan_syukur_id = $uuid['ucapanSyukurId'];
-        $tk_pendeta->untuk = "pendeta";
-        $tk_pendeta->besaran = $request['tk_pendeta'];
-        $tk_pendeta->dari_acara = "jemaatBaru";
-        $tk_pendeta->record = $uuid['jemaatBaruId'];
-        $tk_pendeta->tanggal = $request['tanggal_anggota'];
-        $tk_pendeta->save();
         $tk_majelis = new UcapanSyukur();
         $tk_majelis->ucapan_syukur_id = $uuid['ucapanSyukurId'];
         $tk_majelis->untuk = "majelis";
@@ -95,6 +87,14 @@ class JemaatBaruController extends Controller
         $tk_majelis->record = $uuid['jemaatBaruId'];
         $tk_majelis->tanggal = $request['tanggal_anggota'];
         $tk_majelis->save();
+        $tk_pendeta = new UcapanSyukur();
+        $tk_pendeta->ucapan_syukur_id = $uuid['ucapanSyukurId'];
+        $tk_pendeta->untuk = "pendeta";
+        $tk_pendeta->besaran = $request['tk_pendeta'];
+        $tk_pendeta->dari_acara = "jemaatBaru";
+        $tk_pendeta->record = $uuid['jemaatBaruId'];
+        $tk_pendeta->tanggal = $request['tanggal_anggota'];
+        $tk_pendeta->save();
         $tk_guru_huria = new UcapanSyukur();
         $tk_guru_huria->ucapan_syukur_id = $uuid['ucapanSyukurId'];
         $tk_guru_huria->untuk = "guru_huria";
@@ -103,14 +103,14 @@ class JemaatBaruController extends Controller
         $tk_guru_huria->record = $uuid['jemaatBaruId'];
         $tk_guru_huria->tanggal = $request['tanggal_anggota'];
         $tk_guru_huria->save();
-        $tk_pengembangan = new UcapanSyukur();
-        $tk_pengembangan->ucapan_syukur_id = $uuid['ucapanSyukurId'];
-        $tk_pengembangan->untuk = "pengembangan";
-        $tk_pengembangan->besaran = $request['tk_pengembangan'];
-        $tk_pengembangan->dari_acara = "jemaatBaru";
-        $tk_pengembangan->record = $uuid['jemaatBaruId'];
-        $tk_pengembangan->tanggal = $request['tanggal_anggota'];
-        $tk_pengembangan->save();
+        $tk_pembangunan = new UcapanSyukur();
+        $tk_pembangunan->ucapan_syukur_id = $uuid['ucapanSyukurId'];
+        $tk_pembangunan->untuk = "pembangunan";
+        $tk_pembangunan->besaran = $request['tk_pembangunan'];
+        $tk_pembangunan->dari_acara = "jemaatBaru";
+        $tk_pembangunan->record = $uuid['jemaatBaruId'];
+        $tk_pembangunan->tanggal = $request['tanggal_anggota'];
+        $tk_pembangunan->save();
 
 
 
@@ -184,30 +184,30 @@ class JemaatBaruController extends Controller
         ;
         $tk_gereja->besaran = $request['tk_gereja'];
         $tk_gereja->save();
-        $tk_pendeta = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
-            ->where('untuk', '=', 'pendeta')
-            ->first()
-        ;
-        $tk_pendeta->besaran = $request['tk_pendeta'];
-        $tk_pendeta->save();
         $tk_majelis = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
             ->where('untuk', '=', 'majelis')
             ->first()
         ;
         $tk_majelis->besaran = $request['tk_majelis'];
         $tk_majelis->save();
+        $tk_pendeta = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
+            ->where('untuk', '=', 'pendeta')
+            ->first()
+        ;
+        $tk_pendeta->besaran = $request['tk_pendeta'];
+        $tk_pendeta->save();
         $tk_guru_huria = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
             ->where('untuk', '=', 'guru_huria')
             ->first()
         ;
         $tk_guru_huria->besaran = $request['tk_guru_huria'];
         $tk_guru_huria->save();
-        $tk_pengembangan = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
-            ->where('untuk', '=', 'pengembangan')
+        $tk_pembangunan = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatBaru->ucapan_syukur_id)
+            ->where('untuk', '=', 'pembangunan')
             ->first()
         ;
-        $tk_pengembangan->besaran = $request['tk_pengembangan'];
-        $tk_pengembangan->save();
+        $tk_pembangunan->besaran = $request['tk_pembangunan'];
+        $tk_pembangunan->save();
 
         return redirect("/jemaatBaru/$id")
             ->with('succeed', "Perubahan Jemaat baru dengan nama ".$jemaat->nama." sudah tersimpan ke database")
@@ -248,7 +248,7 @@ class JemaatBaruController extends Controller
     //         "tk_pendeta" => $validated['tk_pendeta'],
     //         "tk_majelis" => $validated['tk_majelis'],
     //         "tk_guru_huria" => $validated['tk_guru_huria'],
-    //         "tk_pengembangan" => $validated['tk_pengembangan'],
+    //         "tk_pembangunan" => $validated['tk_pembangunan'],
     //         "tanggal" => $validated['tanggal_anggota']
     //     ]);
 

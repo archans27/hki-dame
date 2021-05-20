@@ -174,11 +174,8 @@ class BaptisSidiController extends Controller
             UcapanSyukur::where('ucapan_syukur_id', '=', $baptisSidi->ucapan_syukur)->delete();
         }
 
-        $jenisUcapanSyukur =  ['gereja', 'pendeta', 'majelis', 'guru_huria', 'lain_lain', 'akte'];
-        if ($request->jenis == 'Sidi'){
-            array_push($jenisUcapanSyukur, 'tim_pengajar');
-        }
-
+        $jenisUcapanSyukur =  ['gereja', 'pendeta', 'majelis', 'guru_huria', 'pembangunan'];
+        
         $ucapanSyukurId = (string) Str::uuid();
 
         foreach ($jenisUcapanSyukur as $untuk){

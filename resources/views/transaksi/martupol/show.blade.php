@@ -69,18 +69,12 @@
                             <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( $ucapanSyukur['parboru']['guru_huria'] ??0)),3)))}}</td>
                             <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( (int)($ucapanSyukur['paranak']['guru_huria']??0) +(int)($ucapanSyukur['parboru']['guru_huria'] ??0) )),3)))}}</td>
                         </tr>
-                            <td class="border text-center p-2">{{ $no++ }}</td>
-                            <td class="border text-left p-2">Sintua Sektor</td>
-                            <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( $ucapanSyukur['paranak']['sintua_sektor'] ??0)),3)))}}</td>
-                            <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( $ucapanSyukur['parboru']['sintua_sektor'] ??0 )),3)))}}</td>
-                            <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( (int)($ucapanSyukur['paranak']['sintua_sektor']??0)+(int)($ucapanSyukur['parboru']['sintua_sektor'] ??0) )),3)))}}</td>
-                        </tr>
                         <tr>
                             <td class="border text-center p-2">{{ $no++ }}</td>
-                            <td class="border text-left p-2">Lainnya</td>
-                            <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( $ucapanSyukur['paranak']['lain_lain'] ??0)),3)))}}</td>
-                            <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( $ucapanSyukur['parboru']['lain_lain'] ??0 )),3)))}}</td>
-                            <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( (int)($ucapanSyukur['paranak']['lain_lain']??0) +(int)($ucapanSyukur['parboru']['lain_lain'] ??0) )),3)))}}</td>
+                            <td class="border text-left p-2">Pembangunan</td>
+                            <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( $ucapanSyukur['paranak']['pembangunan'] ??0)),3)))}}</td>
+                            <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( $ucapanSyukur['parboru']['pembangunan'] ??0 )),3)))}}</td>
+                            <td class="border text-right p-2">{{'Rp. '.strrev(implode('.',str_split(strrev(strval( (int)($ucapanSyukur['paranak']['pembangunan']??0) +(int)($ucapanSyukur['parboru']['pembangunan'] ??0) )),3)))}}</td>
                         </tr>
                         @php
                             function sum($carry, $item)
