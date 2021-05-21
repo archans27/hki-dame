@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {return view('welcome');});
-Route::get('/dashboard', function () { return view('dashboard'); })->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 Route::post('/gantiKepalaKeluarga', [\App\Http\Controllers\KeluargaController::class, 'gantiKepalaKeluarga']);
 
 Route::group(['middleware' => 'auth'], function() {

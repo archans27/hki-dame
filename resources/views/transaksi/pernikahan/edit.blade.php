@@ -64,14 +64,6 @@
                         <fieldset class="border-solid border-blue-500 border-2 p-4 rounded-md">
                             <legend class="px-2 text-lg">Ucapan Syukur dari Paranak:</legend>
 
-                        @if($jenis['jenis'] == 'M')
-                            <label for="tk_akte_nikah_paranak" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Akte Nikah:</label>
-                            <input type="text" name="tk_akte_nikah_paranak" value="{{old('tk_akte_nikah_paranak',$ucapanSyukur['paranak']['akte_nikah'] ??  '' )}}" placeholder="Ucapan Syukur Untuk Akte Nikah (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                            @error('tk_akte_nikah_paranak')
-                                <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-                        @endif
-
                             <label for="tk_gereja_paranak" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Gereja:</label>
                             <input type="text" name="tk_gereja_paranak" value="{{old('tk_gereja_paranak',$ucapanSyukur['paranak']['gereja']  ?? '')}}" placeholder="Ucapan Syukur Untuk Gereja (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
                             @error('tk_gereja_paranak')
@@ -96,29 +88,16 @@
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
 
-                            <label for="tk_sintua_sektor_paranak" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Sintua Sektor:</label>
-                            <input type="text" name="tk_sintua_sektor_paranak" value="{{old('tk_sintua_sektor_paranak',$ucapanSyukur['paranak']['sintua_sektor']  ?? '')}}" placeholder="Ucapan Syukur Untuk Sintua Sektor (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                            @error('tk_sintua_sektor_paranak')
-                                <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-
-                            <label for="tk_lain_lain_paranak" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Lainnya:</label>
-                            <input type="text" name="tk_lain_lain_paranak" value="{{old('tk_lain_lain_paranak',$ucapanSyukur['paranak']['lain_lain']  ?? '')}}" placeholder="Ucapan Syukur Untuk Lainnya (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                            @error('tk_lain_lain_paranak')
+                            <label for="tk_pembangunan_paranak" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Pembangunan:</label>
+                            <input type="text" name="tk_pembangunan_paranak" value="{{old('tk_pembangunan_paranak',$ucapanSyukur['paranak']['pembangunan']  ?? '')}}" placeholder="Ucapan Syukur Untuk Pembangunan (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
+                            @error('tk_pembangunan_paranak')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
 
                         </fieldset>
                         <fieldset class="border-solid border-blue-500 border-2 p-4 rounded-md">
                             <legend class="px-2 text-lg">Ucapan Syukur dari parboru:</legend>
-                        @if($jenis['jenis'] == 'M')
-                            <label for="tk_akte_nikah_parboru" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Akte Nikah:</label>
-                            <input type="text" name="tk_akte_nikah_parboru" value="{{old('tk_akte_nikah_parboru',$ucapanSyukur['parboru']['akte_nikah']  ?? '')}}" placeholder="Ucapan Syukur Untuk Akte Nikah (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                            @error('tk_akte_nikah_parboru')
-                                <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-                        @endif
-
+                        
                             <label for="tk_gereja_parboru" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Gereja:</label>
                             <input type="text" name="tk_gereja_parboru" value="{{old('tk_gereja_parboru',$ucapanSyukur['parboru']['gereja']  ?? '')}}" placeholder="Ucapan Syukur Untuk Gereja (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
                             @error('tk_gereja_parboru')
@@ -143,15 +122,9 @@
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
 
-                            <label for="tk_sintua_sektor_parboru" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Sintua Sektor:</label>
-                            <input type="text" name="tk_sintua_sektor_parboru" value="{{old('tk_sintua_sektor_parboru',$ucapanSyukur['parboru']['sintua_sektor']  ?? '')}}" placeholder="Ucapan Syukur Untuk Sintua Sektor (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                            @error('tk_sintua_sektor_parboru')
-                                <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-
-                            <label for="tk_lain_lain_parboru" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Lainnya:</label>
-                            <input type="text" name="tk_lain_lain_parboru" value="{{old('tk_lain_lain_parboru',$ucapanSyukur['parboru']['lain_lain']  ?? '')}}" placeholder="Ucapan Syukur Untuk Lainnya (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
-                            @error('tk_lain_lain_parboru')
+                            <label for="tk_pembangunan_parboru" class="block text-black mt-3 font-bold">Ucapan Syukur Untuk Pembangunan:</label>
+                            <input type="text" name="tk_pembangunan_parboru" value="{{old('tk_pembangunan_parboru',$ucapanSyukur['parboru']['pembangunan']  ?? '')}}" placeholder="Ucapan Syukur Untuk Pembangunan (numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 sm:w-full"/>
+                            @error('tk_pembangunan_parboru')
                                 <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </fieldset>

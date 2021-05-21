@@ -65,22 +65,6 @@ class JemaatLahirController extends Controller
         $tk_gereja->record = $jemaatLahir->id;
         $tk_gereja->tanggal = $jemaatLahir->created_at;
         $tk_gereja->save();
-        $tk_pendeta = new UcapanSyukur();
-        $tk_pendeta->ucapan_syukur_id = $ucapanSyukurId;
-        $tk_pendeta->untuk = "pendeta";
-        $tk_pendeta->besaran = $request['tk_pendeta'];
-        $tk_pendeta->dari_acara = "jemaatLahir";
-        $tk_pendeta->record = $jemaatLahir->id;
-        $tk_pendeta->tanggal = $jemaatLahir->created_at;
-        $tk_pendeta->save();
-        $tk_pendeta_diperbantukan = new UcapanSyukur();
-        $tk_pendeta_diperbantukan->ucapan_syukur_id = $ucapanSyukurId;
-        $tk_pendeta_diperbantukan->untuk = "pendeta_diperbantukan";
-        $tk_pendeta_diperbantukan->besaran = $request['tk_pendeta_diperbantukan'];
-        $tk_pendeta_diperbantukan->dari_acara = "jemaatLahir";
-        $tk_pendeta_diperbantukan->record = $jemaatLahir->id;
-        $tk_pendeta_diperbantukan->tanggal = $jemaatLahir->created_at;
-        $tk_pendeta_diperbantukan->save();
         $tk_majelis = new UcapanSyukur();
         $tk_majelis->ucapan_syukur_id = $ucapanSyukurId;
         $tk_majelis->untuk = "majelis";
@@ -89,6 +73,14 @@ class JemaatLahirController extends Controller
         $tk_majelis->record = $jemaatLahir->id;
         $tk_majelis->tanggal = $jemaatLahir->created_at;
         $tk_majelis->save();
+        $tk_pendeta = new UcapanSyukur();
+        $tk_pendeta->ucapan_syukur_id = $ucapanSyukurId;
+        $tk_pendeta->untuk = "pendeta";
+        $tk_pendeta->besaran = $request['tk_pendeta'];
+        $tk_pendeta->dari_acara = "jemaatLahir";
+        $tk_pendeta->record = $jemaatLahir->id;
+        $tk_pendeta->tanggal = $jemaatLahir->created_at;
+        $tk_pendeta->save();
         $tk_guru_huria = new UcapanSyukur();
         $tk_guru_huria->ucapan_syukur_id = $ucapanSyukurId;
         $tk_guru_huria->untuk = "guru_huria";
@@ -97,14 +89,14 @@ class JemaatLahirController extends Controller
         $tk_guru_huria->record = $jemaatLahir->id;
         $tk_guru_huria->tanggal = $jemaatLahir->created_at;
         $tk_guru_huria->save();
-        $tk_lain_lain = new UcapanSyukur();
-        $tk_lain_lain->ucapan_syukur_id = $ucapanSyukurId;
-        $tk_lain_lain->untuk = "lain_lain";
-        $tk_lain_lain->besaran = $request['tk_lain_lain'];
-        $tk_lain_lain->dari_acara = "jemaatLahir";
-        $tk_lain_lain->record = $jemaatLahir->id;
-        $tk_lain_lain->tanggal = $jemaatLahir->created_at;
-        $tk_lain_lain->save();
+        $tk_pembangunan = new UcapanSyukur();
+        $tk_pembangunan->ucapan_syukur_id = $ucapanSyukurId;
+        $tk_pembangunan->untuk = "pembangunan";
+        $tk_pembangunan->besaran = $request['tk_pembangunan'];
+        $tk_pembangunan->dari_acara = "jemaatLahir";
+        $tk_pembangunan->record = $jemaatLahir->id;
+        $tk_pembangunan->tanggal = $jemaatLahir->created_at;
+        $tk_pembangunan->save();
         return redirect('/jemaatLahir/')
             ->with('succeed', "Anak dengan nama ".$jemaat->nama." sudah tersimpan ke database")
         ;
@@ -176,37 +168,30 @@ class JemaatLahirController extends Controller
         ;
         $tk_gereja->besaran = $request['tk_gereja'];
         $tk_gereja->save();
-        $tk_pendeta = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
-            ->where('untuk', '=', 'pendeta')
-            ->first()
-        ;
-        $tk_pendeta->besaran = $request['tk_pendeta'];
-        $tk_pendeta->save();
-        $tk_pendeta_diperbantukan = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
-            ->where('untuk', '=', 'pendeta_diperbantukan')
-            ->first()
-        ;
-        $tk_pendeta_diperbantukan->besaran = $request['tk_pendeta_diperbantukan'];
-        $tk_pendeta_diperbantukan->save();
-
         $tk_majelis = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
             ->where('untuk', '=', 'majelis')
             ->first()
         ;
         $tk_majelis->besaran = $request['tk_majelis'];
         $tk_majelis->save();
+        $tk_pendeta = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
+            ->where('untuk', '=', 'pendeta')
+            ->first()
+        ;
+        $tk_pendeta->besaran = $request['tk_pendeta'];
+        $tk_pendeta->save();
         $tk_guru_huria = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
             ->where('untuk', '=', 'guru_huria')
             ->first()
         ;
         $tk_guru_huria->besaran = $request['tk_guru_huria'];
         $tk_guru_huria->save();
-        $tk_lain_lain = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
-            ->where('untuk', '=', 'lain_lain')
+        $tk_pembangunan = UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)
+            ->where('untuk', '=', 'pembangunan')
             ->first()
         ;
-        $tk_lain_lain->besaran = $request['tk_lain_lain'];
-        $tk_lain_lain->save();
+        $tk_pembangunan->besaran = $request['tk_pembangunan'];
+        $tk_pembangunan->save();
 
         return redirect("/jemaatLahir/$jemaatLahir->id")
             ->with('succeed', "Perubahan data jemaat dengan nama ".$jemaat->nama." sudah tersimpan ke database")

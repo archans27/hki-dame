@@ -6,11 +6,30 @@
     <div class="text-red-500">{{ $message }}</div>
 @enderror
 
-<label for="no_anggota" class="block text-black mt-3 font-bold">No. Anggota</label>
-<input type="text" name="no_anggota" value="{{old('no_anggota',$jemaat->no_anggota)}}" placeholder="mis : 81941008001001" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-@error('no_anggota')
-    <div class="text-red-500">{{ $message }}</div>
-@enderror
+<div class="block text-black mt-3 font-bold">
+    <input type="checkbox" name="is_naposo" @if (old('is_naposo', $jemaat->is_naposo) == 1) {{"checked"}}@endif value="{{old('is_naposo',$jemaat->is_naposo)}}" id="is_naposo" onclick="isNaposo()"/>
+    <label for="is_naposo" >Naposo</label>
+</div>
+
+<div id="block-of-naposo" style="@if (old('is_naposo', $jemaat->is_naposo) == 1) {{"display:block"}}@else {{"display:none"}} @endif">
+    <label for="sektor_id" class="block text-black mt-3 font-bold">Sektor</label>
+    <select id="sektor_id" name="sektor_id" class="lg:w-1/2 sm:w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Sektor">
+        <option value="" disabled selected>Pilih Sektor</option>
+        @foreach ($sektors as $sektor)
+            <option @if (old('sektor_id') == $sektor->id) {{"selected"}}@endif value="{{$sektor->id}}" >{{$sektor->nama}}</option>
+        @endforeach
+    </select>
+    @error('sektor_id')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+
+    <label for="no_anggota" class="block text-black mt-3 font-bold">No. Anggota</label>
+    <input type="text" id="no_anggota" name="no_anggota" value="{{old('no_anggota',$jemaat->no_anggota ?? '819410')}}"
+        placeholder="mis : 81941008001001" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full" />
+    @error('no_anggota')
+        <div class="text-red-500">{{ $message }}</div>
+    @enderror
+</div>
 
 <label for="tempat_lahir" class="block text-black mt-3 font-bold">Tempat Lahir</label>
 <input type="text" name="tempat_lahir" value="{{old('tempat_lahir',$jemaat->tempat_lahir)}}" placeholder="Bandung" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
@@ -140,7 +159,7 @@
         pekerjaanApi.value = true;
         matchList.innerHTML = '';
     }
-    
+
     //============================================================
     const outputHtml = matches => {
         if (matches.length>0){
@@ -163,10 +182,36 @@
         else matchList.innerHTML = '';
     }
 
-    window.addEventListener('click', function(e){   
+    window.addEventListener('click', function(e){
         if (!document.getElementById('body').contains(e.target)){
             matchList.innerHTML = '';
         }
     });
+
+    const isNaposo = () => {
+        var checkBox = document.getElementById("is_naposo")
+        var blockNaposo = document.getElementById("block-of-naposo")
+        if (checkBox.checked) {
+            blockNaposo.style.display = "block"
+        } else {
+            blockNaposo.style.display = "none"
+        }
+        checkBox.value = checkBox.checked;
+    }
+
+    const url_noAnggota = window.location.origin + '/api/noAnggota/'
+
+    const sektorInput = document.getElementById("sektor_id");
+    const noAnggotaInput = document.getElementById("no_anggota");
+
+    sektorInput.onchange = async ()=> getNoAnggota();
+
+    const getNoAnggota = async () => {
+        var x = document.getElementById("sektor_id");
+        var sektor_element = x.options[x.selectedIndex].text;
+        var sektor_code = sektor_element.substr(sektor_element.length - 2);
+        const response = await fetch(url_noAnggota+sektor_code);
+        noAnggotaInput.value = '819410'+sektor_code+'000'+await response.json();
+    }
 
 </script>

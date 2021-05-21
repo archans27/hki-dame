@@ -18,7 +18,7 @@ class PernikahanController extends Controller
     {
         $route = $request->path();
         $jenis['jenis'] = $route == 'pernikahan' ? 'M' : 'IJ';
-        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikatan Janji';
+        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikat Janji';
         $jenis['uri'] = $route;
         $pernikahans = DB::table('pernikahan')
             ->select('pernikahan.*', 'mempelai.nama as nama_mempelai', 'pasangan_mempelai.nama as nama_pasangan_mempelai')
@@ -38,7 +38,7 @@ class PernikahanController extends Controller
     {
         $route = strtok(Route::currentRouteName(), ".");
         $jenis['jenis'] = $route == 'pernikahan' ? 'M' : 'IJ';
-        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikatan Janji';
+        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikat Janji';
         $jenis['uri'] = $route;
         return view('transaksi.pernikahan.create', ['jenis' => $jenis]);
     }
@@ -61,7 +61,7 @@ class PernikahanController extends Controller
     {
         $route = strtok(Route::currentRouteName(), ".");
         $jenis['jenis'] = $route == 'pernikahan' ? 'M' : 'IJ';
-        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikatan Janji';
+        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikat Janji';
         $jenis['uri'] = $route;
 
         $pernikahan = Pernikahan::find($id);
@@ -84,7 +84,7 @@ class PernikahanController extends Controller
     {
         $route = strtok(Route::currentRouteName(), ".");
         $jenis['jenis'] = $route == 'pernikahan' ? 'M' : 'IJ';
-        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikatan Janji';
+        $jenis['data'] = $route == 'pernikahan' ? 'Pemberkatan Pernikahan' : 'Ikat Janji';
         $jenis['uri'] = $route;
 
         $pernikahan = Pernikahan::find($id);
@@ -165,8 +165,7 @@ class PernikahanController extends Controller
 
     private function saveUcapanSyukur($request, $pernikahan, $route)
     {
-        $jenisUcapanSyukur = ['gereja', 'majelis', 'pendeta', 'guru_huria', 'sintua_sektor', 'lain_lain'];
-        $route == 'pernikahan' ? array_push($jenisUcapanSyukur, 'akte_nikah') : '';
+        $jenisUcapanSyukur = ['gereja', 'majelis', 'pendeta', 'guru_huria', 'pembangunan'];
         foreach($jenisUcapanSyukur as $ucapanSyukur)
         {
             UcapanSyukur::create([
@@ -191,9 +190,8 @@ class PernikahanController extends Controller
 
     private function updateUcapanSyukur($request, $pernikahan)
     {
-        $jenisUcapanSyukur = ['gereja', 'majelis', 'pendeta', 'guru_huria', 'sintua_sektor', 'lain_lain'];
-        $route == 'pernikahan' ? array_push($jenisUcapanSyukur, 'akte_nikah') : '';
-
+        $jenisUcapanSyukur = ['gereja', 'majelis', 'pendeta', 'guru_huria', 'pembangunan'];
+        
         foreach($jenisUcapanSyukur as $ucapanSyukur)
         {
             UcapanSyukur::where('ucapan_syukur_id', '=', $pernikahan->ucapan_syukur)

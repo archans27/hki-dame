@@ -56,44 +56,9 @@
 </fieldset>
 
 <fieldset class="border-solid border-blue-500 border-2 px-4 pb-4 mt-5">
-    <legend class="px-2 text-lg">Data ucapan syukur jemaat baru:</legend>
+    <legend class="px-2 text-lg">Data ucapan syukur jemaat lahir:</legend>
 
-    <label for="tk_gereja" class="block text-black mt-3 font-bold">Ucapan Syukur Kepada Gereja:</label>
-    <input type="text" name="tk_gereja" value="{{old('tk_gereja',$ucapanSyukur['gereja']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('tk_gereja')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
-
-    <label for="tk_majelis" class="block text-black mt-3 font-bold">Ucapan Syukur Kepada Majelis Jemaat:</label>
-    <input type="text" name="tk_majelis" value="{{old('tk_majelis',$ucapanSyukur['majelis']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('tk_majelis')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
-
-    <label for="tk_pendeta" class="block text-black mt-3 font-bold">Ucapan Syukur Kepada Pendeta:</label>
-    <input type="text" name="tk_pendeta" value="{{old('tk_pendeta',$ucapanSyukur['pendeta']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('tk_pendeta')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
-
-    <label for="tk_pendeta_diperbantukan" class="block text-black mt-3 font-bold">Ucapan Syukur Kepada Pendeta Diperbantukan:</label>
-    <input type="text" name="tk_pendeta_diperbantukan" value="{{old('tk_pendeta_diperbantukan',$ucapanSyukur['pendeta_diperbantukan']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('tk_pendeta_diperbantukan')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
-    
-
-    <label for="tk_guru_huria" class="block text-black mt-3 font-bold">Ucapan syukur untuk Guru Jemaat:</label>
-    <input type="text" name="tk_guru_huria" value="{{old('tk_guru_huria',$ucapanSyukur['guru_huria']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('tk_guru_huria')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
-
-    <label for="tk_lain_lain" class="block text-black mt-3 font-bold">Ucapan Syukur Lain-lain:</label>
-    <input type="text" name="tk_lain_lain" value="{{old('tk_lain_lain',$ucapanSyukur['lain_lain']  ?? '')}}" placeholder="(numerik tanpa tanda)" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-1/2 sm:w-full"/>
-    @error('tk_lain_lain')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
+    <x-form-ucapan-syukur :ucapanSyukur="$ucapanSyukur ?? ''"/>
 
 </fieldset>
 

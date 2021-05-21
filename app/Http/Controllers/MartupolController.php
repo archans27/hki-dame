@@ -176,8 +176,7 @@ class MartupolController extends Controller
     }
     private function saveUcapanSyukur($request, $martupol, $route)
     {
-        $jenisUcapanSyukur = ['gereja', 'majelis', 'pendeta', 'guru_huria', 'sintua_sektor', 'lain_lain'];
-        $route == 'martupol' ? array_push($jenisUcapanSyukur, 'akte_nikah') : '';
+        $jenisUcapanSyukur = ['gereja', 'majelis', 'pendeta', 'guru_huria', 'pembangunan'];
         foreach($jenisUcapanSyukur as $ucapanSyukur)
         {
             UcapanSyukur::create([
@@ -202,8 +201,7 @@ class MartupolController extends Controller
 
     private function updateUcapanSyukur($request, $martupol)
     {
-        $jenisUcapanSyukur = ['gereja', 'majelis', 'pendeta', 'guru_huria', 'sintua_sektor', 'lain_lain'];
-        $route == 'martupol' ? array_push($jenisUcapanSyukur, 'akte_nikah') : '';
+        $jenisUcapanSyukur = ['gereja', 'majelis', 'pendeta', 'guru_huria', 'pembangunan'];
 
         foreach($jenisUcapanSyukur as $ucapanSyukur)
         {

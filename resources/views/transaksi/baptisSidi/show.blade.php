@@ -36,19 +36,7 @@
                             -
                         @endif
                     </p><br/>
-                <fieldset class="border-solid border-blue-500 border-2 px-4 rounded-md">
-                    <legend class="px-2 text-lg">Ucapan Syukur:</legend>
-                    <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Gereja:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['gereja'] ?? 0)),3)))}},-</p><br/>
-                    <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Majelis:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['majelis'] ?? 0)),3)))}},-</p><br/>
-                    <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Pendeta:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['pendeta'] ?? 0)),3)))}},-</p><br/>
-                    <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Guru Huria:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['guru_huria'] ?? 0)),3)))}},-</p><br/>
-                    <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Akte:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['akte'] ?? 0)),3)))}},-</p><br/>
-                    @if ($baptisSidi->jenis == 'Sidi')
-                        <p class="text-md font-bold text-blue-500">Ucapan syukur untuk Tim Pengajar:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['tim_pengajar'] ?? 0)),3)))}},-</p><br/>
-                    @endif
-                    <p class="text-md font-bold text-blue-500">Ucapan syukur untuk lainnya:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['lain_lain'] ?? 0)),3)))}},-</p><br/>
-                </fieldset>
-
+                <x-ucapan-syukur :ucapanSyukur="$ucapanSyukur"/>
                 <br/>
                 <div class="clear-both my-5"></div>
                 

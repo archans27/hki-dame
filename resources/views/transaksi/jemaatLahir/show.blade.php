@@ -52,15 +52,7 @@
                         <p class="text-md font-bold text-blue-500">Golongan darah</p><p>{{$jemaatLahir->golongan_darah}}</p><br/>
                         <p class="text-md font-bold text-blue-500">Status Anak</p><p>{{$jemaatLahir->status_anak}}</p><br/>
                     </fieldset>
-                    <fieldset class="border-solid border-blue-500 border-2 px-4 rounded-md">
-                        <legend class="px-2 text-lg">Ucapan Syukur:</legend>
-                        <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Gereja:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['gereja'])),3)))}},-</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Majelis:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['majelis'])),3)))}},-</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Pendeta:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['pendeta'])),3)))}},-</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Pendeta Diperbantukan:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['pendeta_diperbantukan'])),3)))}},-</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan Syukur Kepada Guru Huria:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['guru_huria'])),3)))}},-</p><br/>
-                        <p class="text-md font-bold text-blue-500">Ucapan Syukur Untuk Lain-lain:</p><p>{{'Rp. '.strrev(implode('.',str_split(strrev(strval($ucapanSyukur['lain_lain'])),3)))}},-</p><br/>
-                    </fieldset>
+                    <x-ucapan-syukur :ucapanSyukur="$ucapanSyukur"/>
                 </div>
                 <div class="clear-both my-5"></div>
                 @if ($jemaatLahir->temporary)

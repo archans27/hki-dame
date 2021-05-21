@@ -72,7 +72,7 @@
 
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="min-w-full table-auto">
-                      <caption><p class="text-left pb-2">Terdapat {{$keluargas->total()}} hasil dari data keluarga<br /></p></caption>
+                      <caption><p class="text-left pb-2">Terdapat {{$keluargas->count()}} hasil dari data keluarga<br /></p></caption>
                         <thead class="justify-between">
                           <tr class="bg-gray-800 text-white">
                             <th class="px-16 py-2 text-left">Nama Kepala Keluarga</th>

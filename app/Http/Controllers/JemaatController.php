@@ -11,6 +11,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\NoAnggotaNaposo;
+use DB;
 
 class JemaatController extends Controller
 {
@@ -49,8 +51,10 @@ class JemaatController extends Controller
     {
         $request['tanggal_lahir'] = date("Y-m-d",strToTime($request['tanggal_lahir']));
         $request['tanggal_anggota'] = date("Y-m-d",strToTime($request['tanggal_anggota']));
+        $request['is_naposo'] = $request['is_naposo'] ? 1 : 0;
 
         $jemaat = Jemaat::create($request->all());
+        $jemaat->save();
         $namaJemaat = $jemaat->refresh()->nama;
 
         return redirect('/jemaat/'.$jemaat->id)->with('succeed', "Jemaat dengan nama $namaJemaat sudah tersimpan ke database");

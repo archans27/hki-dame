@@ -19,7 +19,7 @@ Route::get('/pekerjaan/{hint}', 'App\Http\Controllers\Api\JemaatController@peker
 Route::get('/keluarga/{hint}', 'App\Http\Controllers\Api\JemaatController@kepalaKeluarga');
 Route::get('/jemaatKatekisasi/{hint}', 'App\Http\Controllers\Api\JemaatController@jemaatKatekisasi');
 Route::get('/noKeluarga/{hint}', 'App\Http\Controllers\Api\KeluargaController@noKeluarga');
-
+Route::get('/noAnggota/{hint}', 'App\Http\Controllers\Api\JemaatController@noAnggota');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
