@@ -32,7 +32,8 @@ class KeluargaController extends Controller
         if($search){$query->where('kepala_keluarga', 'like', "%$search%");}
         if($sector){$query->where('sektor_id', '=', $sector);}
         $keluargas = $query->orderBy($orderFrom, $orderBy)
-            ->paginate(20)->appends($request->all());
+            ->get();
+            // ->paginate(20)->appends($request->all());
 
         return view('master.keluarga.index', ['keluargas' => $keluargas, 'filter' => $request]);
     }

@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {return view('welcome');});
-Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
+// Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 Route::post('/gantiKepalaKeluarga', [\App\Http\Controllers\KeluargaController::class, 'gantiKepalaKeluarga']);
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
     Route::resources([
         //DATA MASTER
         'jemaat' => \App\Http\Controllers\JemaatController::class,
