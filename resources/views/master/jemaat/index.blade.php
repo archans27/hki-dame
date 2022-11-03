@@ -35,7 +35,7 @@
 
                   <div class="float-left mr-4">
                     <label for="month" class="block text-black font-bold  mr-2">Bulan Lahir</label>
-                    <select name="month" class="w-40 h-10 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
+                    <select name="month" class="w-40 h-10 text-base placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Bulan Lahir">
                       <option value="">Semua</option>
                       <option @if (old('month', $filter->month) == "01") {{"selected"}}@endif value="01" >Januari</option>
                       <option @if (old('month', $filter->month) == "02") {{"selected"}}@endif value="02" >Februari</option>
@@ -62,14 +62,15 @@
                 <div class="block clear-both">
                   <div class="float-left mr-4">
                     <label for="order_from" class="block text-black font-bold mt-3 mr-2">Urut berdasarkan</label>
-                    <select name="order_from" class="w-40 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
+                    <select name="order_from" class="w-50 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Urut Berdasarkan">
                       <option @if (old('order_from', $filter->order_from) == "nama") {{"selected"}}@endif value="nama" >Nama</option>
                       <option @if (old('order_from', $filter->order_from) == "tanggal_lahir") {{"selected"}}@endif value="tanggal_lahir" >Tanggal Lahir</option>
+                      <option @if (old('order_from', $filter->order_from) == "hari_lahir") {{"selected"}}@endif value="hari_lahir" >Hari Lahir (1-31)</option>
                     </select>
                   </div>
                   <div class="float-left mr-4">
                     <label for="order_by" class="block text-black font-bold mt-3 mr-2">Urut secara</label>
-                    <select name="order_by" class="w-40 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Golongan darah">
+                    <select name="order_by" class="w-40 h-10  placeholder-gray-600 bg-gray-100 border rounded-md appearance-none focus:shadow-outline" placeholder="Urut Secara">
                       <option @if (old('order_by', $filter->order_by) == "asc") {{"selected"}}@endif value="asc" >Ascending</option>
                       <option @if (old('order_by', $filter->order_by) == "desc") {{"selected"}}@endif value="desc" >Descending</option>
                     </select>

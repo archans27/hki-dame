@@ -28,9 +28,10 @@ class JemaatController extends Controller
         $golongan_darah = $request->golongan_darah ?? false;
         $search = $request->search ?? '';
         $orderFrom = $request->order_from ?? 'nama';
+        $orderFrom = $request->order_from == 'hari_lahir' ? DB::raw('strftime("%d", "tanggal_lahir")') : $orderFrom;
         $orderBy = $request->order_by ?? 'asc';
 
-        $query = Jemaat::where('is_pindah', 0)->where('hidup',1 )->where('nama', 'like', "%$search%");
+        $query = Jemaat::where('is_pindah', 0)->where('hidup',1)->where('nama', 'like', "%$search%");
         if($year){$query->whereYear('tanggal_lahir', '=', $year);}
         if($month){$query->whereMonth('tanggal_lahir', '=', $month);}
         if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
