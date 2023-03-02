@@ -38,5 +38,7 @@ Route::group(['middleware' => 'auth'], function() {
         'meninggal' => \App\Http\Controllers\MeninggalController::class,
         'martupol' => \App\Http\Controllers\MartupolController::class,
     ]);
+
+    Route::get('jemaat-pdf', [\App\Http\Controllers\JemaatController::class, 'generatePDF']);
 });
 require __DIR__.'/auth.php';

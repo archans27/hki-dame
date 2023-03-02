@@ -13,6 +13,7 @@ use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\NoAnggotaNaposo;
 use DB;
+use PDF;
 
 class JemaatController extends Controller
 {
@@ -30,6 +31,16 @@ class JemaatController extends Controller
         $orderFrom = $request->order_from ?? 'nama';
         $orderFrom = $request->order_from == 'hari_lahir' ? DB::raw('strftime("%d", "tanggal_lahir")') : $orderFrom;
         $orderBy = $request->order_by ?? 'asc';
+
+        $request_excel = (object)[
+            "month" => $month,
+            "year" => $year,
+            "golongan_darah" => $golongan_darah,
+            "search" => $search,
+            "orderFrom" => $orderFrom,
+            "orderBy" => $orderBy
+        ];
+        $request->session()->put('request_excel_jemaat', $request_excel);
 
         $query = Jemaat::where('is_pindah', 0)->where('hidup',1)->where('nama', 'like', "%$search%");
         if($year){$query->whereYear('tanggal_lahir', '=', $year);}
@@ -92,5 +103,26 @@ class JemaatController extends Controller
         JemaatBaru::where('jemaat_id', '=', $jemaat->id)->delete();
         $jemaat->delete();
         return redirect('/jemaat')->with('succeed', "Jemaat dengan nama $jemaat->nama sudah dihapus dari database");
+    }
+
+    public function generatePDF(Request $request)
+    {
+        $request_excel = $request->session()->get('request_excel_jemaat');
+        $month = $request_excel->month;
+        $year = $request_excel->year;
+        $golongan_darah = $request_excel->golongan_darah;
+        $search = $request_excel->search;
+        $orderFrom = $request_excel->orderFrom;
+        $orderBy = $request_excel->orderBy;
+
+        $query = Jemaat::where('is_pindah', 0)->where('hidup',1)->where('nama', 'like', "%$search%");
+        if($year){$query->whereYear('tanggal_lahir', '=', $year);}
+        if($month){$query->whereMonth('tanggal_lahir', '=', $month);}
+        if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
+        $jemaats = $query->orderBy($orderFrom, $orderBy)->paginate()->appends($request->all());
+        $pdf = PDF::loadView('master.jemaat.pdf', ['jemaats' => $jemaats, 'filter' => $request_excel]);
+    
+        $request->session()->forget('request_excel_jemaat');
+        return $pdf->stream('Daftar Jemaat.pdf',array('Attachment'=>0));
     }
 }

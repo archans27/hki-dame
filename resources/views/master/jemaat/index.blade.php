@@ -83,12 +83,21 @@
                 </div>
               </form>
 
-              <form action="{{route('jemaat.create')}}" method="get" class="float-right m-5">
+              <form action="{{route('jemaat.create')}}" method="get" class="float-right mr-5">
                 <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
                     <span class="material-icons">
                         add
                     </span>
                     Tambah data
+                </button>
+              </form>
+
+              <form action="{{url('jemaat-pdf')}}" method="get" class="float-right" target="_blank">
+                <button type="submit" class='relative bg-red-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
+                    <span class="material-icons">
+                        download
+                    </span>
+                    Export to PDF
                 </button>
               </form>
 
