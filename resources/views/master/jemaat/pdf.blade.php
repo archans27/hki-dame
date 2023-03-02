@@ -8,7 +8,7 @@
     </head>
     <body class="font-sans antialiased" id="body">
         <h1>Daftar Jemaat</h1>
-        <p class="text-left pb-2">Terdapat {{$jemaats->total()}} hasil dari data jemaat</p>
+        <p class="text-left pb-2">Terdapat {{$jemaats->count()}} hasil dari data jemaat</p>
         <div class="p-6 bg-white border-b border-gray-200">    
             <table class="min-w-full table-auto text-left">
                 <thead class="justify-between">

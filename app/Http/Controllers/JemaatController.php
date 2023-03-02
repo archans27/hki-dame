@@ -119,7 +119,7 @@ class JemaatController extends Controller
         if($year){$query->whereYear('tanggal_lahir', '=', $year);}
         if($month){$query->whereMonth('tanggal_lahir', '=', $month);}
         if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
-        $jemaats = $query->orderBy($orderFrom, $orderBy)->paginate()->appends($request->all());
+        $jemaats = $query->orderBy($orderFrom, $orderBy)->get();
         $pdf = PDF::loadView('master.jemaat.pdf', ['jemaats' => $jemaats, 'filter' => $request_excel]);
     
         $request->session()->forget('request_excel_jemaat');
