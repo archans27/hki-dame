@@ -27,8 +27,12 @@
         display: block; margin-left: auto; margin-right: auto;
       }
     </style>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   </head>
-  <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
+  <body class="leading-normal tracking-normal gradient" style="font-family: 'Source Sans Pro', sans-serif;">
     {{-- //TODO Change field dynamically --}}
     <!--Nav-->
     <nav id="header" class="fixed w-full z-30 top-0 text-white">
@@ -47,7 +51,7 @@
             </svg>
           </button>
         </div>
-        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
+        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:bg-transparent text-black z-20" id="nav-content">
           <ul class="list-reset lg:flex justify-end flex-1 items-center">
             {{-- <li class="mr-3">
               <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Active</a>
@@ -55,7 +59,7 @@
           </ul>
           <button
             id="navAction"
-            class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+            class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
           >
             <a href="{{ config('app.simpel_url') }}/dashboard">SIMPEL</a>
           </button>
@@ -64,7 +68,7 @@
       <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
     <!--Hero-->
-    <div class="pt-24">
+    <div class="pt-24 text-white">
       <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <!--Left Col-->
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
@@ -170,6 +174,23 @@
           </div>
         </div>
       </div>
+      <div class="container mt-5">
+          <h2 class="mb-4">Data Jemaat</h2>
+          <table class="table table-bordered yajra-datatable">
+              <thead>
+                  <tr>
+                      <th>No</th>
+                      <th>Nama jemaat</th>
+                      <th>Tanggal lahir</th>
+                      <th>Sektor</th>
+                      <th>Jenis kelamin</th>
+                      <!-- <th>Action</th> -->
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+      </div>
     </section>
     <!-- Change the colour #f8fafc to match the previous section colour -->
     <div class="gradient-blue">
@@ -194,7 +215,7 @@
         </g>
       </g>
     </svg>
-    <section class="container mx-auto text-left py-3">
+    <section class="container mx-auto text-left py-3 text-white">
       <div class="flex flex-wrap">
         <div class="w-5/6 sm:w-1/2 p-6">
           <br/><br />
@@ -213,7 +234,35 @@
       </div>
     </section>
     </div>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+
+        var table = $('.yajra-datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('jemaat.list') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'nama', name: 'nama'},
+                {data: 'tglLahir', name: 'tglLahir'},
+                {data: 'namaSektor', name: 'namaSektor'},
+                {data: 'jenis_kelamin', name: 'jenis_kelamin'},
+                // {
+                //     data: 'action', 
+                //     name: 'action', 
+                //     orderable: true, 
+                //     searchable: true
+                // },
+            ]
+        });
+
+      });
+    </script>
     <script>
       var scrollpos = window.scrollY;
       var header = document.getElementById("header");

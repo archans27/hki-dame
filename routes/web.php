@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
-// Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
+// Route::get('/', function () {return view('welcome');});
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/jemaatList', [\App\Http\Controllers\HomeController::class, 'getJemaats'])->name('jemaat.list');
 Route::post('/gantiKepalaKeluarga', [\App\Http\Controllers\KeluargaController::class, 'gantiKepalaKeluarga']);
 
 Route::group(['middleware' => 'auth'], function() {
