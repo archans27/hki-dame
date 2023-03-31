@@ -42,14 +42,7 @@ class JemaatController extends Controller
         ];
         $request->session()->put('request_excel_jemaat', $request_excel);
 
-        // $query = Jemaat::where('is_pindah', 0)->where('hidup',1)->where('nama', 'like', "%$search%");
-        $query = DB::table('jemaat')
-            ->select('jemaat.*','sektor.nama as nama_sektor')
-            ->where('jemaat.is_pindah', 0)->where('jemaat.hidup',1)->where('jemaat.nama', 'like', "%$search%")
-            ->join('detail_keluarga', 'jemaat.id', '=', 'detail_keluarga.jemaat_id')
-            ->join('keluarga', 'detail_keluarga.keluarga_id', '=', 'keluarga.id')
-            ->join('sektor', 'keluarga.sektor_id', '=', 'sektor.id')
-        ;
+        $query = Jemaat::where('is_pindah', 0)->where('hidup',1)->where('nama', 'like', "%$search%");
         if($year){$query->whereYear('tanggal_lahir', '=', $year);}
         if($month){$query->whereMonth('tanggal_lahir', '=', $month);}
         if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
