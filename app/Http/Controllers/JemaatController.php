@@ -32,7 +32,7 @@ class JemaatController extends Controller
         $orderFrom = $request->order_from == 'hari_lahir' ? DB::raw('strftime("%d", "tanggal_lahir")') : $orderFrom;
         $orderBy = $request->order_by ?? 'asc';
 
-        $request_excel = (object)[
+        $request_pdf = (object)[
             "month" => $month,
             "year" => $year,
             "golongan_darah" => $golongan_darah,
@@ -40,9 +40,16 @@ class JemaatController extends Controller
             "orderFrom" => $orderFrom,
             "orderBy" => $orderBy
         ];
-        $request->session()->put('request_excel_jemaat', $request_excel);
+        $request->session()->put('request_pdf_jemaat', $request_pdf);
 
-        $query = Jemaat::where('is_pindah', 0)->where('hidup',1)->where('nama', 'like', "%$search%");
+        // $query = Jemaat::where('is_pindah', 0)->where('hidup',1)->where('nama', 'like', "%$search%");
+        $query =  DB::table('jemaat as j')
+            ->select('j.*', 'k.sektor_id', 'k.alamat_rumah', 'd.hubungan')
+            ->leftJoin('detail_keluarga as d', 'd.jemaat_id', '=', 'j.id')
+            ->leftJoin('keluarga as k', 'd.keluarga_id', '=', 'k.id')
+            ->where('j.is_pindah', 0)
+            ->where('j.hidup', 1)
+            ->where('j.nama', 'like', "%$search%");
         if($year){$query->whereYear('tanggal_lahir', '=', $year);}
         if($month){$query->whereMonth('tanggal_lahir', '=', $month);}
         if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
@@ -107,22 +114,55 @@ class JemaatController extends Controller
 
     public function generatePDF(Request $request)
     {
-        $request_excel = $request->session()->get('request_excel_jemaat');
-        $month = $request_excel->month;
-        $year = $request_excel->year;
-        $golongan_darah = $request_excel->golongan_darah;
-        $search = $request_excel->search;
-        $orderFrom = $request_excel->orderFrom;
-        $orderBy = $request_excel->orderBy;
+        $request_pdf = $request->session()->get('request_pdf_jemaat');
+        $month = $request_pdf->month;
+        $year = $request_pdf->year;
+        $golongan_darah = $request_pdf->golongan_darah;
+        $search = $request_pdf->search;
+        $orderFrom = $request_pdf->orderFrom;
+        $orderBy = $request_pdf->orderBy;
 
-        $query = Jemaat::where('is_pindah', 0)->where('hidup',1)->where('nama', 'like', "%$search%");
+        // $query = Jemaat::where('is_pindah', 0)->where('hidup',1)->where('nama', 'like', "%$search%");
+        $query =  DB::table('jemaat as j')
+            ->select('j.*', 'k.sektor_id', 'k.alamat_rumah', 'd.hubungan')
+            ->leftJoin('detail_keluarga as d', 'd.jemaat_id', '=', 'j.id')
+            ->leftJoin('keluarga as k', 'd.keluarga_id', '=', 'k.id')
+            ->where('j.is_pindah', 0)
+            ->where('j.hidup', 1)
+            ->where('j.nama', 'like', "%$search%");
         if($year){$query->whereYear('tanggal_lahir', '=', $year);}
         if($month){$query->whereMonth('tanggal_lahir', '=', $month);}
         if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
         $jemaats = $query->orderBy($orderFrom, $orderBy)->get();
-        $pdf = PDF::loadView('master.jemaat.pdf', ['jemaats' => $jemaats, 'filter' => $request_excel]);
+        $pdf = PDF::loadView('master.jemaat.pdf', ['jemaats' => $jemaats, 'filter' => $request_pdf]);
     
-        $request->session()->forget('request_excel_jemaat');
+        // $request->session()->forget('request_pdf_jemaat');
+        return $pdf->stream('Daftar Jemaat.pdf',array('Attachment'=>0));
+    }
+
+    public function generatePDFUltah(Request $request)
+    {
+        $request_pdf = $request->session()->get('request_pdf_jemaat');
+        $month = $request_pdf->month;
+        $year = $request_pdf->year;
+        $golongan_darah = $request_pdf->golongan_darah;
+        $search = $request_pdf->search;
+        
+        $query =  DB::table('jemaat as j')
+            ->select('j.*', 'k.sektor_id', 'k.alamat_rumah', 'd.hubungan')
+            ->leftJoin('detail_keluarga as d', 'd.jemaat_id', '=', 'j.id')
+            ->leftJoin('keluarga as k', 'd.keluarga_id', '=', 'k.id')
+            ->where('j.is_pindah', 0)
+            ->where('j.hidup', 1)
+            ->where('j.nama', 'like', "%$search%")
+            ->orderBy('d.hubungan', 'DESC');
+        if($year){$query->whereYear('tanggal_lahir', '=', $year);}
+        if($month){$query->whereMonth('tanggal_lahir', '=', $month);}
+        if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
+        $jemaats = $query->orderByRaw('strftime("%d", "tanggal_lahir"), strftime("%y", "tanggal_lahir"), j.nama, k.sektor_id')->get();
+        $pdf = PDF::loadView('master.jemaat.pdfultah', ['jemaats' => $jemaats, 'filter' => $request_pdf]);
+    
+        // $request->session()->forget('request_pdf_jemaat');
         return $pdf->stream('Daftar Jemaat.pdf',array('Attachment'=>0));
     }
 }

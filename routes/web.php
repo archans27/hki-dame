@@ -40,5 +40,6 @@ Route::group(['middleware' => 'auth'], function() {
     ]);
 
     Route::get('jemaat-pdf', [\App\Http\Controllers\JemaatController::class, 'generatePDF']);
+    Route::get('ultah-pdf', [\App\Http\Controllers\JemaatController::class, 'generatePDFUltah']);
 });
 require __DIR__.'/auth.php';

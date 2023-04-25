@@ -16,6 +16,7 @@
                     <th class="px-16 py-2">Nama jemaat</th>
                     <th class="px-16 py-2">Tanggal lahir</th>
                     <th class="px-16 py-2">Jenis kelamin</th>
+                    <th class="px-2 py-2">Sektor</th>
                     </tr>
                 </thead>
                 <tbody class="bg-gray-200">
@@ -24,6 +25,7 @@
                         <td class="px-16 py-2 flex flex-row text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/jemaat/'.$jemaat->id)}}">{{$jemaat->nama}}</a></td>
                         <td class="px-16 py-2 text-center">{{date("d-m-Y",strToTime($jemaat->tanggal_lahir))}}</td>
                         <td class="px-16 py-2 text-center">{{$jemaat->jenis_kelamin}}</td>
+                        <td class="px-2 py-2 text-center">{{$jemaat->sektor_id}}</td>
                         </tr>
                     @endforeach
                 </tbody>

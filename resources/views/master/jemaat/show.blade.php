@@ -24,8 +24,8 @@
 
                 <p class="text-md font-bold text-blue-500">Nama Lengkap</p><p>{{$jemaat->nama}}</p><br/>
                 <p class="text-md font-bold text-blue-500">No. Anggota</p><p>{{$jemaat->no_anggota}}</p><br/>
-                <p class="text-md font-bold text-blue-500">Tanggal Lahir</p><p>{{$jemaat->tempat_lahir}}</p><br/>
-                <p class="text-md font-bold text-blue-500">Tempat Lahir</p><p>{{date("d-m-Y",strToTime($jemaat->tanggal_lahir))}}</p><br/>
+                <p class="text-md font-bold text-blue-500">Tempat Lahir</p><p>{{$jemaat->tempat_lahir}}</p><br/>
+                <p class="text-md font-bold text-blue-500">Tanggal Lahir</p><p>{{date("d-m-Y",strToTime($jemaat->tanggal_lahir))}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Jenis Kelamin</p><p>{{$jemaat->jenis_kelamin}}</p><br/>
                 <p class="text-md font-bold text-blue-500">Golongan Darah</p><p>{{$jemaat->golongan_darah}}</p><br/>
                 <p class="text-md font-bold text-blue-500">No. Telepon</p><p>{{$jemaat->nomor_telepon}}</p><br/>

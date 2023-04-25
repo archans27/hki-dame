@@ -92,14 +92,38 @@
                 </button>
               </form>
 
-              <form action="{{url('jemaat-pdf')}}" method="get" class="float-right" target="_blank">
-                <button type="submit" class='relative bg-red-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
-                    <span class="material-icons">
-                        download
-                    </span>
-                    Export to PDF
+              <div class="relative float-right" x-data="{ open: false }">
+                <button @click="open = !open" class='relative bg-red-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
+                  <span class="material-icons">
+                      download
+                  </span>
+                  Export to PDF
                 </button>
-              </form>
+                <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="w-full mt-2 origin-top-right rounded-md shadow-lg">
+                  <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                    <x-responsive-nav-link>
+                      <form action="{{url('jemaat-pdf')}}" method="get" target="_blank">
+                        <button @click="open = !open" type="submit">
+                            <span class="material-icons">
+                                download
+                            </span>
+                            Format Biasa
+                        </button>
+                      </form>
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link>
+                      <form action="{{url('ultah-pdf')}}" method="get" target="_blank">
+                        <button @click="open = !open" type="submit">
+                            <span class="material-icons">
+                                cake
+                            </span>
+                            Format Ulang Tahun
+                        </button>
+                      </form>
+                    </x-responsive-nav-link>
+                  </div>
+                </div>
+              </div>
 
 
                 <div class="p-6 bg-white border-b border-gray-200">    
@@ -108,18 +132,20 @@
                         <thead class="justify-between">
                           <tr class="bg-gray-800 text-white">
                             <th class="px-16 py-2">Nama jemaat</th>
-                            <th class="px-16 py-2">Tanggal lahir</th>
-                            <th class="px-16 py-2">Jenis kelamin</th>
-                            <th class="px-16 py-2 text-left">Aksi</th>
+                            <th class="px-4 py-2">Tanggal lahir</th>
+                            <th class="px-4 py-2">Jenis kelamin</th>
+                            <th class="px-2 py-2">Sektor</th>
+                            <th class="px-4 py-2 text-left">Aksi</th>
                           </tr>
                         </thead>
                         <tbody class="bg-gray-200">
                             @foreach ($jemaats as $jemaat)
                               <tr class="bg-white border-4 border-gray-200 items-center text-gray-700 hover:bg-gray-200">
                                 <td class="px-16 py-2 flex flex-row text-center cursor-pointer font-bold text-blue-500 hover:text-yellow-500" ><a href="{{url('/jemaat/'.$jemaat->id)}}">{{$jemaat->nama}}</a></td>
-                                <td class="px-16 py-2 text-center">{{date("d-m-Y",strToTime($jemaat->tanggal_lahir))}}</td>
-                                <td class="px-16 py-2 text-center">{{$jemaat->jenis_kelamin}}</td>
-                                <td class="px-16 py-2 text-left align-middle" >
+                                <td class="px-4 py-2 text-center">{{date("d-m-Y",strToTime($jemaat->tanggal_lahir))}}</td>
+                                <td class="px-4 py-2 text-center">{{$jemaat->jenis_kelamin}}</td>
+                                <td class="px-2 py-2 text-center">{{$jemaat->sektor_id}}</td>
+                                <td class="px-4 py-2 text-left align-middle" >
                                   <form action="{{url('jemaat/'.$jemaat->id.'/edit')}}" class="float-left">
                                     <button type="submit">
                                       <span class="material-icons cursor-pointer text-gray-500 hover:text-blue-500">
