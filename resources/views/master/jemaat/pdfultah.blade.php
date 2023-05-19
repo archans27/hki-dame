@@ -7,6 +7,7 @@
         <style>
             #jemaat-table {
             font-family: Arial, Helvetica, sans-serif;
+            font-size: 80%;
             border-collapse: collapse;
             width: 100%;
             }
