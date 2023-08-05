@@ -14,7 +14,7 @@
 
             #jemaat-table td, #jemaat-table th {
             border: 1px solid #ddd;
-            padding: 8px;
+            /* padding: 8px; */
             }
 
             #jemaat-table tr:nth-child(even){background-color: #f2f2f2;}
@@ -22,8 +22,8 @@
             #jemaat-table tr:hover {background-color: #ddd;}
 
             #jemaat-table th {
-            padding-top: 12px;
-            padding-bottom: 12px;
+            /* padding-top: 12px; */
+            /* padding-bottom: 12px; */
             text-align: left;
             background-color: #04AA6D;
             color: white;
@@ -33,8 +33,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
     </head>
     <body>
-        <h1>Anggota Jemaat</h1>
-        <p>yang berulang tahun pada bulan {{ date('F', strtotime("1970-$filter->month-01")) }} </p>
+        <h1 style="text-transform: uppercase; font-size: 120%; text-align:center;">Anggota Jemaat yang berulang tahun pada bulan {{ date('F', strtotime("1970-$filter->month-01")) }}</h1>
         <div>    
             <table id="jemaat-table">
                 <tr>
@@ -58,7 +57,7 @@
                 <tr>
                     <td>{{ $no }}.</td>
                     <td>{{ $jemaat->sektor_id }}</td>
-                    <td><a href="{{url('/jemaat/'.$jemaat->id)}}">{{$jemaat->nama}}</a> </br> ({{date("d-m-Y",strToTime($jemaat->tanggal_lahir))}})</td>
+                    <td>{{ $jemaat->nama }} ({{date("d-m-Y",strToTime($jemaat->tanggal_lahir))}})</td>
                     <td>{{ $jemaat->alamat_rumah }}
                     </td>
                 </tr>
