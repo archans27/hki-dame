@@ -16,8 +16,14 @@ class JemaatBaru extends Model
     public function jemaat()
     {
         return $this->belongsTo(Jemaat::class);
+
     }
 
+    public function sektor()
+    {
+        return $this->belongsTo(Sektor::class);
+    }
+    
     public static function customGet($id = null)
     {
         $jemaatBaru = DB::table('jemaat_baru')
@@ -29,7 +35,7 @@ class JemaatBaru extends Model
         if ($id !== null){
             return $jemaatBaru->where('jemaat_baru.id', '=', $id)->first();
         }
-        
+
         return $jemaatBaru->get();
     }
 

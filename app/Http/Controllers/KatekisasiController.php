@@ -15,21 +15,34 @@ class KatekisasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $katekisasi = DB::table('katekisasi')
-            ->select('katekisasi.*', 'jemaat.nama', 'jemaat.tanggal_lahir', 'keluarga.alamat_rumah')
-            ->join('jemaat', 'jemaat.id', '=', 'katekisasi.jemaat_id')
-            ->join('detail_keluarga', 'detail_keluarga.jemaat_id', '=', 'katekisasi.jemaat_id')
-            ->join('keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
-            ->distinct()
-            ->paginate(10)
-        ;
-        
-        return view('transaksi.katekisasi.index', [
-            'katekisasi' => $katekisasi
-        ]);
+    public function index(Request $request)
+{
+    $filter = (object) [
+        'search_year' => $request->input('search_year', ''),
+    ];
+
+    $query = DB::table('katekisasi')
+        ->select('katekisasi.*', 'jemaat.nama', 'jemaat.tanggal_lahir', 'keluarga.alamat_rumah', 'keluarga.sektor_id')
+        ->join('jemaat', 'jemaat.id', '=', 'katekisasi.jemaat_id')
+        ->join('detail_keluarga', 'detail_keluarga.jemaat_id', '=', 'katekisasi.jemaat_id')
+        ->join('keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
+        ->distinct();
+
+    if (Auth::user()->role != 'super') {
+        $query->where('keluarga.sektor_id', '=', Auth::user()->sektor_id);
     }
+
+    if ($filter->search_year) {
+        $query->whereYear('katekisasi.tanggal', $filter->search_year);
+    }
+
+    $katekisasi = $query->paginate(10);
+
+    return view('transaksi.katekisasi.index', [
+        'katekisasi' => $katekisasi,
+        'filter' => $filter,
+    ]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -58,7 +71,7 @@ class KatekisasiController extends Controller
             $request['temporary'] = 0;
         }
 
-        $katekisasi = new Katekisasi(); 
+        $katekisasi = new Katekisasi();
         $katekisasi = $katekisasi->fill($request->all());
         $katekisasi->save();
         $nama = $request->input('nama');

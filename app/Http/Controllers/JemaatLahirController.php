@@ -18,17 +18,30 @@ class JemaatLahirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filter = (object) [
+            'search_year' => $request->input('search_year', ''),
+        ];
+
         $jemaatLahirs = DB::table('jemaat_lahir')
-            ->select('jemaat.*', 'keluarga.kepala_keluarga AS nama_kepala_keluarga', 'jemaat_lahir.id as idJemaatLahir')
+            ->select('jemaat.*', 'keluarga.kepala_keluarga AS nama_kepala_keluarga', 'jemaat_lahir.id as idJemaatLahir', 'keluarga.sektor_id')
             ->join('detail_keluarga', 'detail_keluarga.id', '=', 'jemaat_lahir.detail_keluarga_id')
             ->join('jemaat', 'jemaat.id', '=', 'detail_keluarga.jemaat_id')
             ->join('keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
-            ->distinct()
-            ->paginate(10)
-        ;
-        return view('transaksi.jemaatLahir.index', ['jemaatLahirs' => $jemaatLahirs]);
+            ->distinct();
+
+        if (Auth::user()->role != 'super') {
+            $jemaatLahirs->where('keluarga.sektor_id', '=', Auth::user()->sektor_id);
+        }
+
+        if ($filter->search_year) {
+            $jemaatLahirs->whereYear('jemaat_lahir.created_at', $filter->search_year);
+        }
+
+        $jemaatLahirs = $jemaatLahirs->paginate(10);
+
+        return view('transaksi.jemaatLahir.index', ['jemaatLahirs' => $jemaatLahirs, 'filter' => $filter]);
     }
 
     public function create(Jemaat $jemaat)
@@ -205,7 +218,7 @@ class JemaatLahirController extends Controller
         UcapanSyukur::where('ucapan_syukur_id','=',$jemaatLahir->ucapan_syukur_id)->delete();
         $detailKeluarga = DetailKeluarga::withoutGlobalScope('temporary')->where('id', '=', $jemaatLahir->detail_keluarga_id);
         $jemaat = Jemaat::withoutGlobalScope('temporary')->find($detailKeluarga->first()->jemaat_id);
-        
+
         $nama = $jemaat->nama;
         $detailKeluarga->delete();
         $jemaat->delete();

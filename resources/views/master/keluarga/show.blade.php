@@ -9,9 +9,11 @@
 
 
     <div class="py-12" style="clear: both">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
                 <x-back-button :class="'float-right'" :link="url('/keluarga')"/>
+
+                <!-- Tombol Ubah Data -->
                 <form action="{{url('/keluarga/'.$keluargas[0]->keluarga_id.'/edit')}}" class="float-right">
                     <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
                         <span class="material-icons">
@@ -20,7 +22,22 @@
                         Ubah data
                     </button>
                 </form>
+
+                <!-- Tombol Export to PDF -->
+                <form action="{{ route('generate-pdf-detail-keluarga', ['keluarga' => $keluargas[0]->keluarga_id]) }}" method="GET" class="float-right">
+                    <button type="submit" class="relative bg-red-500 text-white border border-red-500 p-1 px-3 m-1 rounded overflow-hidden">
+                        <span class="material-icons">
+                            download
+                        </span>
+                        Export to PDF
+                    </button>
+                </form>
+
+
                 <div class="clear-both"></div>
+    </div>
+
+
 
                 <p class="text-md font-bold text-blue-500">Nama Kepala Keluarga</p><p>{{$keluargas[0]->kepala_keluarga}}</p><br/>
                 <p class="text-md font-bold text-blue-500">No. Keluarga</p><p>{{$keluargas[0]->no_keluarga}}</p><br/>

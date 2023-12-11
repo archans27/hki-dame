@@ -135,7 +135,7 @@ class JemaatController extends Controller
         if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
         $jemaats = $query->orderBy($orderFrom, $orderBy)->get();
         $pdf = PDF::loadView('master.jemaat.pdf', ['jemaats' => $jemaats, 'filter' => $request_pdf]);
-    
+
         // $request->session()->forget('request_pdf_jemaat');
         return $pdf->stream('Daftar Jemaat.pdf',array('Attachment'=>0));
     }
@@ -147,7 +147,7 @@ class JemaatController extends Controller
         $year = $request_pdf->year;
         $golongan_darah = $request_pdf->golongan_darah;
         $search = $request_pdf->search;
-        
+
         $query =  DB::table('jemaat as j')
             ->select('j.*', 'k.sektor_id', 'k.alamat_rumah', 'd.hubungan')
             ->leftJoin('detail_keluarga as d', 'd.jemaat_id', '=', 'j.id')
@@ -161,7 +161,7 @@ class JemaatController extends Controller
         if($golongan_darah){$query->where('golongan_darah', '=', $golongan_darah);}
         $jemaats = $query->orderByRaw('strftime("%d", "tanggal_lahir"), strftime("%y", "tanggal_lahir"), j.nama, k.sektor_id')->get();
         $pdf = PDF::loadView('master.jemaat.pdfultah', ['jemaats' => $jemaats, 'filter' => $request_pdf]);
-    
+
         // $request->session()->forget('request_pdf_jemaat');
         return $pdf->stream('Daftar Jemaat.pdf',array('Attachment'=>0));
     }

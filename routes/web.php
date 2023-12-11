@@ -41,5 +41,13 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('jemaat-pdf', [\App\Http\Controllers\JemaatController::class, 'generatePDF']);
     Route::get('ultah-pdf', [\App\Http\Controllers\JemaatController::class, 'generatePDFUltah']);
+    Route::get('keluarga-pdf', [\App\Http\Controllers\KeluargaController::class, 'generatePDFKeluarga']);
+    Route::get('generate-pdf-keluarga', [\App\Http\Controllers\KeluargaController::class, 'generatePDFKeluarga'])->name('generate-pdf-keluarga');
+    Route::get('generate-pdf-detail-keluarga}', [\App\Http\Controllers\DetailKeluargaController::class, 'generatePDFDetailKeluarga'])->name('generate-pdf-detail-keluarga');
+    Route::get('/generate-pdf-baptis-sidi', [BaptisSidiController::class, 'generatePDFbaptisSidi'])->name('generate-pdf-baptis-sidi');
+
+
+
+
 });
 require __DIR__.'/auth.php';

@@ -2,36 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\BaptisSidi;
 use App\Models\DetailBaptisSidi;
 use App\Models\Keluarga;
 use App\Models\DetailKeluarga;
 use App\Models\Jemaat;
 use App\Models\UcapanSyukur;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use PDF;
+
 
 class BaptisSidiController extends Controller
 {
 
-    
-    public function index()
-    {
-        $query = DB::table('baptis_sidi')
-            ->select('baptis_sidi.*', 'keluarga.*', 'baptis_sidi.id as id')
-            ->join('keluarga', 'keluarga.id', '=', 'baptis_sidi.keluarga_id')
-        ;
-        if (Auth::user()->role != 'super'){
-            $query->where('keluarga.sektor_id', '=', Auth::user()->sektor_id );
-        }
-        $baptisSidis = $query->get();
-        return view('transaksi.baptisSidi.index', [
-            'baptisSidis' => $baptisSidis
-        ]);
+
+    public function index(Request $request)
+{
+    $filter = (object) [
+        'search_year' => $request->input('search_year', ''),
+    ];
+
+    $query = DB::table('baptis_sidi')
+        ->select('baptis_sidi.*', 'keluarga.*', 'baptis_sidi.id as id', 'keluarga.sektor_id') // Perbarui kolom menjadi sektor_id
+        ->join('keluarga', 'keluarga.id', '=', 'baptis_sidi.keluarga_id');
+
+    if (Auth::user()->role != 'super') {
+        $query->where('keluarga.sektor_id', '=', Auth::user()->sektor_id);
     }
 
+    if ($filter->search_year) {
+        $query->whereYear('baptis_sidi.tanggal', $filter->search_year);
+    }
+
+    $baptisSidis = $query->get();
+
+    return view('transaksi.baptisSidi.index', [
+        'baptisSidis' => $baptisSidis,
+        'filter' => $filter,
+    ]);
+}
 
     public function create()
     {
@@ -56,7 +68,7 @@ class BaptisSidiController extends Controller
         ;
     }
 
-    
+
     public function show(BaptisSidi $baptisSidi)
     {
         $keluarga = Keluarga::find($baptisSidi->keluarga_id);
@@ -125,7 +137,7 @@ class BaptisSidiController extends Controller
         if (Auth::user()->role != 'super') {
             $request['temporary'] = true;
         }
-        
+
         $this->saveDetailTransaction($request->peserta, $baptisSidi);
         $ucapanSyukurId = $this->saveUcpanSyukur($request, $baptisSidi);
         $request->merge([
@@ -138,7 +150,7 @@ class BaptisSidiController extends Controller
         ;
     }
 
-    
+
     public function destroy(BaptisSidi $baptisSidi)
     {
         UcapanSyukur::where('dari_acara', '=', 'baptis_sidi')
@@ -175,7 +187,7 @@ class BaptisSidiController extends Controller
         }
 
         $jenisUcapanSyukur =  ['gereja', 'pendeta', 'majelis', 'guru_huria', 'pembangunan'];
-        
+
         $ucapanSyukurId = (string) Str::uuid();
 
         foreach ($jenisUcapanSyukur as $untuk){
@@ -191,4 +203,21 @@ class BaptisSidiController extends Controller
 
         return $ucapanSyukurId;
     }
+    public function generatePDFbaptisSidi()
+    {
+        // Fetch data for the PDF
+        $query = DB::table('baptis_sidi')
+        ->select('baptis_sidi.*', 'keluarga.sektor_id', 'keluarga.kepala_keluarga', 'keluarga.status')
+        ->join('keluarga', 'keluarga.id', '=', 'baptis_sidi.keluarga_id')
+        ->get();
+
+
+        // Generate PDF view
+        $pdf = PDF::loadView('pdfbaptissidi', compact('baptisSidis'));
+
+        // Download or stream PDF
+        return $pdf->stream('Daftar_Baptis_Sidi.pdf');
+    }
+
+
 }

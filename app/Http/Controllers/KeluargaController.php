@@ -9,6 +9,7 @@ use App\Models\Sektor;
 use App\Enums\AnggotaKeluargaEnum;
 use Illuminate\Http\Request;
 use DB;
+use PDF;
 
 class KeluargaController extends Controller
 {
@@ -19,24 +20,51 @@ class KeluargaController extends Controller
      */
     public function index(Request $request)
     {
+
         $sector = $request->sector ?? null;
+        $sector = $request->sector ?? false;
         $orderFrom = $request->order_from ?? 'kepala_keluarga';
         $orderBy = $request->order_by ?? 'asc';
-        $search = $request->search ?? null;
-        $query =  DB::table('keluarga')
-            ->select('keluarga.*', 'sektor.nama as nama_sektor')
+        $search = $request->search ?? '';
+
+
+        $request_pdf = (object)[
+            "sector" => $sector,
+            "search" => $search,
+            "orderFrom" => $orderFrom,
+            "orderBy" => $orderBy
+        ];
+        $request->session()->put('request_pdf_keluarga', $request_pdf);
+
+        // Bangun kueri SQL
+        $query = DB::table('keluarga')
+            ->select('keluarga.id', 'keluarga.kepala_keluarga', 'keluarga.alamat_rumah as alamat_keluarga', 'sektor.nama as nama_sektor', 'jemaat.nama as nama_jemaat')
             ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
             ->join('sektor', 'keluarga.sektor_id', '=', 'sektor.id')
-            ->where('is_pindah', 0)
-            ->distinct();
-        if($search){$query->where('kepala_keluarga', 'like', "%$search%");}
-        if($sector){$query->where('sektor_id', '=', $sector);}
-        $keluargas = $query->orderBy($orderFrom, $orderBy)
-            ->get();
-            // ->paginate(20)->appends($request->all());
+            ->join('jemaat', 'jemaat.id', '=', 'detail_keluarga.jemaat_id')
+            ->where('keluarga.is_pindah', 0);
+
+        if ($search) {
+            $query->where('jemaat.nama', 'like', "%$search");
+        }
+
+        if ($sector) {
+            $query->where('keluarga.sektor_id', '=', $sector); // Perbaikan disini, gunakan "keluarga.sektor_id" untuk pencarian berdasarkan sektor
+        }
+
+        $query->groupBy('keluarga.kepala_keluarga');
+
+        $keluargas = $query->orderBy($orderFrom, $orderBy)->get();
+
+        if ($request->has('exportpdf')) {
+            // Jika permintaan PDF ada, maka buat objek PDF dan kirimkannya
+            $pdf = PDF::loadView('master.keluarga.pdf', ['keluargas' => $keluargas]);
+            return $pdf->download('Daftar_Keluarga.pdf');
+        }
 
         return view('master.keluarga.index', ['keluargas' => $keluargas, 'filter' => $request]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -197,6 +225,41 @@ class KeluargaController extends Controller
         $keluarga->save();
         return redirect()->back()->with('succeed', "Data kepala keluarga telah diubah menjadi $jemaat->nama ");
     }
+
+
+    public function generatePDFKeluarga(Request $request)
+    {
+        $request_pdf = $request->session()->get('request_pdf_keluarga');
+        $sector = $request_pdf->sector;
+        $search = $request_pdf->search;
+        $orderFrom = $request_pdf->orderFrom;
+        $orderBy = $request_pdf->orderBy;
+
+        $query = DB::table('keluarga')
+            ->select('keluarga.id', 'keluarga.kepala_keluarga', 'keluarga.alamat_rumah as alamat_keluarga', 'sektor.nama as nama_sektor', 'jemaat.nama as nama_jemaat')
+            ->join('detail_keluarga', 'keluarga.id', '=', 'detail_keluarga.keluarga_id')
+            ->join('sektor', 'keluarga.sektor_id', '=', 'sektor.id')
+            ->join('jemaat', 'jemaat.id', '=', 'detail_keluarga.jemaat_id')
+            ->where('keluarga.is_pindah', 0);
+
+        if ($search) {
+            $query->where('jemaat.nama', 'like', "%$search");
+        }
+
+        if ($sector) {
+            $query->where('keluarga.sektor_id', '=', $sector);
+        }
+
+        $query->groupBy('keluarga.kepala_keluarga');
+
+        $keluargas = $query->orderBy($orderFrom, $orderBy)->get();
+
+        $pdf = PDF::loadView('master.keluarga.pdfkeluarga', ['keluargas' => $keluargas, 'filter' => $request_pdf]);
+
+        return $pdf->stream('Daftar Keluarga.pdf', ['Attachment' => 0]);
+    }
+
+
 
 
 }

@@ -3,13 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <title>{{ config('app.name', 'Laravel') }}</title>
     </head>
     <body class="font-sans antialiased" id="body">
         <h1>Daftar Jemaat</h1>
         <p class="text-left pb-2">Terdapat {{$jemaats->count()}} hasil dari data jemaat</p>
-        <div class="p-6 bg-white border-b border-gray-200">    
+        <div class="p-6 bg-white border-b border-gray-200">
             <table class="min-w-full table-auto text-left">
                 <thead class="justify-between">
                     <tr class="bg-gray-800 text-white">

@@ -107,24 +107,24 @@
     </div>
     <section class="bg-white py-8">
       <div class="container max-w-5xl mx-auto m-8">
-        <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-black">
-            Selamat beribadah
-          </h1>
+        <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+          Selamat beribadah
+        </h1>
         <div class="w-full mb-4">
           <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
         <div class="flex flex-wrap">
           <div class="w-5/6 sm:w-1/2 p-6">
             <br/><br/>
-            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3 text-black">
-                Ibadah online bersama kami
-              </h3>
-              <p class="text-gray-600 mb-8 text-black">
-                Bagi Bapak-Ibu jemaat yang tidak dapat menghadiri kebaktian, dapat mengikuti ibadah online melalui youtube
+            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+              Ibadah online bersama kami
+            </h3>
+            <p class="text-gray-600 mb-8">
+              Bagi Bapak-Ibu jemaat yang tidak dapat menghadiri kebaktian, dapat mengikuti ibadah online melalui youtube
               <br />
               <br />
 
-              Link kanal :
+              Link kanal : 
 
               <a class="text-pink-500 underline" href="https://www.youtube.com/channel/UCLk0InQBf5aG5dPluHaJmiA">Youtube</a>
             </p>
@@ -146,10 +146,10 @@
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <br/><br/>
-              <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3 text-black">
+              <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
                 Pengumuman gereja
               </h3>
-              <p class="text-gray-600 mb-8 text-black">
+              <p class="text-gray-600 mb-8">
                 Pengumuman mingguan gereja untuk diperhatikan oleh <br />Bapak-Ibu jemaat sekalian.
               </p>
             </div>
@@ -158,12 +158,12 @@
         <div class="flex flex-wrap mt-5">
           <div class="w-5/6 sm:w-1/2 p-6">
             <br/><br/>
-            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3 text-black">
-                Jadwal Ibadah
-              </h3>
-              <p class="text-gray-600 mb-8 text-black">
-                Jadwal kegiatan rutin mingguan gereja untuk ibadah, persekutuan, dan kegiatan gereja lainnya.
-              </p>
+            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+              Jadwal Ibadah
+            </h3>
+            <p class="text-gray-600 mb-8">
+              Jadwal kegiatan rutin mingguan gereja untuk ibadah, persekutuan, dan kegiatan gereja lainnya.
+            </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
             <img src="{{asset('storage/jadwal.png')}}" alt=""/>
@@ -198,14 +198,14 @@
       <div class="flex flex-wrap">
         <div class="w-5/6 sm:w-1/2 p-6">
           <br/><br />
-          <span class="material-icons cursor-pointer hover:text-blue-500 align-middle">phone</span>
+          <span class="material-icons cursor-pointer hover:text-blue-500 align-middle">phone</span> 
           (022) 611-2030
           <br />
-          <span class="material-icons cursor-pointer hover:text-blue-500 align-middle">mail</span>
+          <span class="material-icons cursor-pointer hover:text-blue-500 align-middle">mail</span> 
           (022) 611-2030
         </div>
         <div class="w-full sm:w-1/2 p-6 text-center">
-          <p class="text-xl bold">HKI Dame</p>
+          <p class="text-xl bold">HKI Dame</p> 
           <p>Alamat: Jl. Soekarno-Hatta No.543, Gumuruh,<br />
             Kec. Batununggal, Kota Bandung, <br />
             Jawa Barat 40275</p>
@@ -213,7 +213,7 @@
       </div>
     </section>
     </div>
-
+    
     <script>
       var scrollpos = window.scrollY;
       var header = document.getElementById("header");

@@ -4,13 +4,13 @@
             {{ __('Daftar Jemaat') }}
         </h2>
     </x-slot>
-    
+
     <x-succeed-flash />
 
     <div class="py-5" style="clear:both">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg ">
-              
+
               <div>
 
               </div>
@@ -18,9 +18,9 @@
                 <div class="block">
                   <div class="float-left mr-4">
                     <label for="search" class="block text-black font-bold">Pencarian Nama</label>
-                    <input type="text" name="search" value="{{old('search',$filter->search)}}" placeholder="Pencarian" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-60"/> 
+                    <input type="text" name="search" value="{{old('search',$filter->search)}}" placeholder="Pencarian" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-60"/>
                   </div>
-                  
+
 
                   <div class="float-left mr-4">
                     <label for="golongan_darah" class="block text-black font-bold  mr-2">Golongan Darah</label>
@@ -54,7 +54,7 @@
 
                   <div class="float-left mr-4">
                     <label for="year" class="block text-black font-bold  mr-2">Tahun Lahir</label>
-                    <input type="text" name="year" value="{{old('year',$filter->year)}}" placeholder="{{now()->year}}" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-60 "/>  
+                    <input type="text" name="year" value="{{old('year',$filter->year)}}" placeholder="{{now()->year}}" class="rounded-md px-4 py-2  focus:outline-none bg-gray-100 lg:w-60 "/>
                   </div>
 
                 </div>
@@ -126,7 +126,7 @@
               </div>
 
 
-                <div class="p-6 bg-white border-b border-gray-200">    
+                <div class="p-6 bg-white border-b border-gray-200">
                     <table class="min-w-full table-auto text-left">
                       <caption><p class="text-left pb-2">Terdapat {{$jemaats->total()}} hasil dari data jemaat<br /></p></caption>
                         <thead class="justify-between">

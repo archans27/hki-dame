@@ -16,16 +16,45 @@ use DB;
 class JemaatBaruController extends Controller
 {
 
-    public function index(JemaatBaru $jemaatBaru)
-    {
-        $jemaatBarus = DB::table('jemaat_baru')
-            ->select('jemaat_baru.*', 'jemaat.*', 'jemaat_baru.id AS idJemaatBaru', )
-            ->join('jemaat', 'jemaat.id', '=', 'jemaat_baru.jemaat_id')
-            ->distinct()
-            ->paginate(5)
-        ;
-        return view('transaksi.jemaatBaru.index', ['jemaatBarus' => $jemaatBarus]);
+    public function index(JemaatBaru $jemaatBaru, Request $request)
+{
+    $filter = (object) [
+        'search_year' => $request->input('search_year', ''),
+    ];
+
+    $jemaatBarus = DB::table('jemaat_baru')
+        ->select('jemaat_baru.*', 'jemaat.*', 'jemaat_baru.id AS idJemaatBaru', 'keluarga.sektor_id' )
+        ->join('jemaat', 'jemaat.id', '=', 'jemaat_baru.jemaat_id')
+        ->leftJoin('detail_keluarga', 'detail_keluarga.jemaat_id', '=', 'jemaat.id')
+        ->leftJoin('keluarga', 'detail_keluarga.keluarga_id', '=', 'keluarga.id')
+        ->distinct()
+        ->get();
+
+    if ($filter->search_year) {
+        $jemaatBarus = $jemaatBarus->filter(function ($item) use ($filter) {
+            return isset($item->tanggal) && date('Y', strtotime($item->tanggal)) == $filter->search_year;
+        });
     }
+
+    // Convert the filtered results to a LengthAwarePaginator
+    $perPage = 5;
+    $currentPage = \Illuminate\Pagination\Paginator::resolveCurrentPage();
+    $currentPageItems = array_slice($jemaatBarus->toArray(), ($currentPage - 1) * $perPage, $perPage);
+    $jemaatBarus = new \Illuminate\Pagination\LengthAwarePaginator(
+        $currentPageItems,
+        count($jemaatBarus),
+        $perPage,
+        $currentPage,
+        ['path' => \Illuminate\Pagination\Paginator::resolveCurrentPath()]
+    );
+
+    return view('transaksi.jemaatBaru.index', ['jemaatBarus' => $jemaatBarus, 'filter' => $filter]);
+}
+
+
+
+
+
 
 
     public function create(Jemaat $jemaat, Sektor $sektor)
