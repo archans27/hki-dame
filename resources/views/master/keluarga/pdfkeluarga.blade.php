@@ -23,7 +23,7 @@
         <tbody>
             @foreach($keluargas as $keluarga)
                 <tr>
-                    <td>{{ $keluarga->nama_jemaat }}</td>
+                    <td>{{ $keluarga->kepala_keluarga }}</td>
                     <td>{{ $keluarga->nama_sektor }}</td>
                     <td>{{ $keluarga->alamat_keluarga }}</td>
                 </tr>
