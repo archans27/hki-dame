@@ -34,7 +34,7 @@ class BaptisSidiController extends Controller
     }
 
     if ($filter->search_year) {
-        $query->whereYear('baptis_sidi.tanggal', $filter->search_year);
+        $query->whereYear('baptis_sidi.created_at', $filter->search_year);
     }
 
     $baptisSidis = $query->get();

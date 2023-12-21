@@ -33,7 +33,7 @@ class KatekisasiController extends Controller
     }
 
     if ($filter->search_year) {
-        $query->whereYear('katekisasi.tanggal', $filter->search_year);
+        $query->whereYear('katekisasi.created_at', $filter->search_year);
     }
 
     $katekisasi = $query->paginate(10);

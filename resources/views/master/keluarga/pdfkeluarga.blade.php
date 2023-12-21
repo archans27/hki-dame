@@ -4,6 +4,11 @@
 <html>
 <head>
     <title>Daftar Keluarga</title>
+    <style>
+        table, th, td {
+            border: 1px solid;
+        }
+    </style>
 </head>
 <body>
     <h1>Daftar Keluarga</h1>

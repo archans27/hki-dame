@@ -21,29 +21,16 @@
                             Cari
                         </button>
                     </div>
-             </form>
-             
-          #belum beres bagian pdf
-                <div class="float-right m-5">
-                    <form action="{{ route('generate-pdf-baptis-sidi') }}" method="get" target="_blank" class="inline-block">
-                        <button type="submit" class='relative bg-red-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
-                            <span class="material-icons">
-                                download
-                            </span>
-                            Export to PDF
-                        </button>
-                    </form>
+                </form>
 
-
-                    <form action="{{ route('baptisSidi.create') }}" method="get" class="inline-block">
-                        <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
-                            <span class="material-icons">
-                                add
-                            </span>
-                            Tambah data
-                        </button>
-                    </form>
-                </div>
+                <form action="{{ route('baptisSidi.create') }}" method="get" class="float-right m-5">
+                    <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
+                        <span class="material-icons">
+                            add
+                        </span>
+                        Tambah data
+                    </button>
+                </form>
 
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="min-w-full table-auto">

@@ -10,20 +10,18 @@
     <div class="py-5" style="clear: both">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
-                <form action="{{ route('katekisasi.index') }}" method="get" class="float-left m-5">
-                    <!-- Tambahkan ini pada bagian formulir pencarian -->
-                    <div class="float-left mr-4">
-                        <label for="search_year" class="block text-black font-bold mr-2">Tahun Input</label>
-                        <input type="text" name="search_year" value="{{ old('search_year', $filter->search_year) }}" placeholder="Tahun Input" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-60" />
-                        <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded align-middle overflow-hidden'>
-                            Cari
-                        </button>
-                    </div>
-                </form>
-
-   #belum beres bagian pdf
-   
+              
+              <form action="{{ route('katekisasi.index') }}" method="get" class="float-left m-5">
+                  <!-- Tambahkan ini pada bagian formulir pencarian -->
+                  <div class="float-left mr-4">
+                      <label for="search_year" class="block text-black font-bold mr-2">Tahun Input</label>
+                      <input type="text" name="search_year" value="{{ old('search_year', $filter->search_year) }}" placeholder="Tahun Input" class="rounded-md px-4 py-2 focus:outline-none bg-gray-100 lg:w-60" />
+                      <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded align-middle overflow-hidden'>
+                          Cari
+                      </button>
+                  </div>
+              </form>
+                
               <form action="{{route('katekisasi.create')}}" method="get" class="float-right m-5">
                 <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
                     <span class="material-icons">

@@ -32,7 +32,7 @@ class JemaatBaruController extends Controller
 
     if ($filter->search_year) {
         $jemaatBarus = $jemaatBarus->filter(function ($item) use ($filter) {
-            return isset($item->tanggal) && date('Y', strtotime($item->tanggal)) == $filter->search_year;
+            return isset($item->created_at) && date('Y', strtotime($item->created_at)) == $filter->search_year;
         });
     }
 

@@ -24,7 +24,7 @@
                 </form>
 
                 <!-- Tombol Export to PDF -->
-                <form action="{{ route('generate-pdf-detail-keluarga', ['keluarga' => $keluargas[0]->keluarga_id]) }}" method="GET" class="float-right">
+                <form action="{{ route('generate-pdf-detail-keluarga', ['keluarga' => $keluargas[0]->keluarga_id]) }}" method="GET" target="_blank" class="float-right">
                     <button type="submit" class="relative bg-red-500 text-white border border-red-500 p-1 px-3 m-1 rounded overflow-hidden">
                         <span class="material-icons">
                             download
