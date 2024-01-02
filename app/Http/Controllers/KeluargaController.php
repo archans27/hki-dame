@@ -45,7 +45,7 @@ class KeluargaController extends Controller
             ->where('keluarga.is_pindah', 0);
 
         if ($search) {
-            $query->where('jemaat.nama', 'like', "%$search");
+            $query->where('jemaat.nama', 'like', "%$search%");
         }
 
         if ($sector) {
