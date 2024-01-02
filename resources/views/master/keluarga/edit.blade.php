@@ -10,7 +10,7 @@
     <div class="pb-12 pt-5" style="clear: both">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
-                <form action="{{url('keluarga/'.$keluargas[0]->keluarga_id)}}" method="post">
+                <form action="{{url('keluarga/'.$keluarga_id)}}" method="post">
                     @method('PUT')
                     @csrf
                     <div class="container">
@@ -85,7 +85,7 @@
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
 
-                    <input name="keluarga_id" type="hidden" value="{{$keluargas[0]->keluarga_id}}" required>
+                    <input name="keluarga_id" type="hidden" value="{{$keluarga_id}}" required>
                     <input name="jemaat_id" id="jemaat_id" type="hidden" value="">
                     @error('jemaat_id')
                         <div class="text-red-500">{{ 'Isian tidak diisi / tidak menggunakan auto suggestion.' }}</div>
@@ -148,7 +148,7 @@
                                       <form method="post" action="{{url('gantiKepalaKeluarga/')}}" class="float-left text-yellow-500">
                                         @method('POST')
                                         @csrf
-                                        <input name="calon_keluarga_id" id="calon_kepala_keluarga_id" type="hidden" value="{{$keluargas[0]->keluarga_id}}">
+                                        <input name="calon_keluarga_id" id="calon_kepala_keluarga_id" type="hidden" value="{{$keluarga_id}}">
                                         <input name="calon_kepala_keluarga_id" id="calon_kepala_keluarga_id" type="hidden" value="{{$keluarga->jemaat_id}}">
 
                                         <button type="submit">

@@ -14,7 +14,7 @@
                 <x-back-button :class="'float-right'" :link="url('/keluarga')"/>
 
                 <!-- Tombol Ubah Data -->
-                <form action="{{url('/keluarga/'.$keluargas[0]->keluarga_id.'/edit')}}" class="float-right">
+                <form action="{{url('/keluarga/'.$keluarga_id.'/edit')}}" class="float-right">
                     <button type="submit" class='relative bg-blue-500 text-white border border-blue-500 p-1 px-3 m-1 rounded overflow-hidden'>
                         <span class="material-icons">
                             mode_edit
@@ -24,7 +24,7 @@
                 </form>
 
                 <!-- Tombol Export to PDF -->
-                <form action="{{ route('generate-pdf-detail-keluarga', ['keluarga' => $keluargas[0]->keluarga_id]) }}" method="GET" target="_blank" class="float-right">
+                <form action="{{ route('generate-pdf-detail-keluarga', ['keluarga' => $keluarga_id]) }}" method="GET" target="_blank" class="float-right">
                     <button type="submit" class="relative bg-red-500 text-white border border-red-500 p-1 px-3 m-1 rounded overflow-hidden">
                         <span class="material-icons">
                             download

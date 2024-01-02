@@ -137,7 +137,7 @@ class KeluargaController extends Controller
             ->get()
         ;
 
-        return view('master.keluarga.show', ['keluargas' => $keluargas]);
+        return view('master.keluarga.show', ['keluargas' => $keluargas, 'keluarga_id' => $keluarga->id]);
     }
 
     /**
@@ -161,7 +161,8 @@ class KeluargaController extends Controller
 
         return view('master.keluarga.edit', [
             'keluargas' => $keluargas,
-            'sektors' => $sektor->all()
+            'sektors' => $sektor->all(),
+            'keluarga_id' => $keluarga->id
         ]);
     }
 
